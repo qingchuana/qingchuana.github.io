@@ -1,0 +1,114 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.8.0" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.8.0" type="image/png" sizes="32x32"><meta name="description" content="#Xml实体注入漏洞 ##xml介绍 ###什么是 XML?  XML 指可扩展标记语言（EXtensible Markup Language） XML 是一种标记语言，很类似 HTML XML 的设计宗旨是传输数据，而非显示数据 XML 标签没有被预定义。您需要自行定义标签。 XML 被设计为具有自我描述性。 XML 是 W3C 的推荐标准  ###XML 与 HTML 的主要差异 XML 不是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Xml实体注入漏洞">
+<meta property="og:url" content="https://qingchuana.github.io/2023/08/20/Xml%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/index.html">
+<meta property="og:site_name" content="晴川&#39;s Blog">
+<meta property="og:description" content="#Xml实体注入漏洞 ##xml介绍 ###什么是 XML?  XML 指可扩展标记语言（EXtensible Markup Language） XML 是一种标记语言，很类似 HTML XML 的设计宗旨是传输数据，而非显示数据 XML 标签没有被预定义。您需要自行定义标签。 XML 被设计为具有自我描述性。 XML 是 W3C 的推荐标准  ###XML 与 HTML 的主要差异 XML 不是">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://qingchuana.github.io/2023/08/20/Xml%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/AAwangzhan/1/hexoblog/source/image/20200904173922834.png">
+<meta property="article:published_time" content="2023-08-19T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-11-12T09:23:49.416Z">
+<meta property="article:author" content="Qingchuan">
+<meta property="article:tag" content="ctf 小菜鸡 热爱">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://qingchuana.github.io/2023/08/20/Xml%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/AAwangzhan/1/hexoblog/source/image/20200904173922834.png"><title>Xml实体注入漏洞 | 晴川's Blog</title><link ref="canonical" href="https://qingchuana.github.io/2023/08/20/Xml%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.8.0"><link rel="stylesheet" href="css/custom.css"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">Hello Stun</div><div class="header-banner-info__subtitle">An elegant theme for Hexo</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">Xml实体注入漏洞</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-08-20</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2023-11-12</span></span></div></header><div class="post-body"><p>#Xml实体注入漏洞</p>
+<p>##xml介绍</p>
+<p>###什么是 XML?</p>
+<ul>
+<li>XML 指可扩展标记语言（<em>EX</em>tensible <em>M</em>arkup <em>L</em>anguage）</li>
+<li>XML 是一种<em>标记语言</em>，很类似 HTML</li>
+<li>XML 的设计宗旨是<em>传输数据</em>，而非显示数据</li>
+<li>XML 标签没有被预定义。您需要<em>自行定义标签</em>。</li>
+<li>XML 被设计为具有<em>自我描述性</em>。</li>
+<li>XML 是 <em>W3C 的推荐标准</em></li>
+</ul>
+<p>###XML 与 HTML 的主要差异</p>
+<p>XML 不是 HTML 的替代。</p>
+<p>XML 和 HTML 为不同的目的而设计：</p>
+<p>XML 被设计为传输和存储数据，其焦点是数据的内容。</p>
+<p>HTML 被设计用来显示数据，其焦点是数据的外观。</p>
+<p>HTML 旨在显示信息，而 XML 旨在传输信息。</p>
+
+        <h3 id="没有任何行为的-XML">
+          <a href="#没有任何行为的-XML" class="heading-link"><i class="fas fa-link"></i></a><a href="#没有任何行为的-XML" class="headerlink" title="没有任何行为的 XML"></a>没有任何行为的 XML</h3>
+      <p><strong>XML 是不作为的。</strong></p>
+<p>也许这有点难以理解，但是 XML 不会做任何事情。XML 被设计用来结构化、存储以及传输信息。</p>
+<p><strong>XML 被设计用来传输和存储数据。</strong></p>
+<p><strong>HTML 被设计用来显示数据。</strong></p>
+<p>###基本语法</p>
+<blockquote>
+<p>所有 XML 元素都须有关闭标签<br> XML 标签对大小写敏感<br> XML 文档必须有根元素<br> XML 的属性值须加引号</p>
+</blockquote>
+
+        <h3 id="实体引用">
+          <a href="#实体引用" class="heading-link"><i class="fas fa-link"></i></a><a href="#实体引用" class="headerlink" title="实体引用"></a>实体引用</h3>
+      <p><img src="/2023/08/20/Xml%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/AAwangzhan\1\hexoblog\source\image\20200904173922834.png"></p>
+<p>##DTD介绍</p>
+<p><span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://www.w3school.com.cn/dtd/dtd_intro.asp">DTD介绍</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p><strong>文档类型定义（DTD）可定义合法的XML文档构建模块。它使用一系列合法的元素来定义文档的结构。</strong></p>
+<p><strong>DTD 可被成行地声明于 XML 文档中，也可作为一个外部引用。</strong></p>
+<p>内部的 DOCTYPE 声明</p>
+<p>假如 DTD 被包含在您的 XML 源文件中，它应当通过下面的语法包装在一个 DOCTYPE 声明中：</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE 根元素 [元素声明]&gt;</span><br></pre></td></tr></table></div></figure>
+
+<p>带有 DTD 的 XML 文档实例（请在 IE5 以及更高的版本打开，并选择查看源代码）：</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE note [</span><br><span class="line">  &lt;!ELEMENT note (to,from,heading,body)&gt;</span><br><span class="line">  &lt;!ELEMENT to      (#PCDATA)&gt;</span><br><span class="line">  &lt;!ELEMENT from    (#PCDATA)&gt;</span><br><span class="line">  &lt;!ELEMENT heading (#PCDATA)&gt;</span><br><span class="line">  &lt;!ELEMENT body    (#PCDATA)&gt;</span><br><span class="line">]&gt;</span><br><span class="line">&lt;note&gt;</span><br><span class="line">  &lt;to&gt;George&lt;/to&gt;</span><br><span class="line">  &lt;from&gt;John&lt;/from&gt;</span><br><span class="line">  &lt;heading&gt;Reminder&lt;/heading&gt;</span><br><span class="line">  &lt;body&gt;Don&#x27;t forget the meeting!&lt;/body&gt;</span><br><span class="line">&lt;/note&gt;</span><br></pre></td></tr></table></div></figure>
+
+<p><em>!DOCTYPE note</em> (第二行)定义此文档是 <em>note</em> 类型的文档。</p>
+<p><em>!ELEMENT note</em> (第三行)定义 <em>note</em> 元素有四个元素：”to、from、heading,、body”</p>
+<p><em>!ELEMENT to</em> (第四行)定义 <em>to</em> 元素为 “#PCDATA” 类型</p>
+<p><em>!ELEMENT from</em> (第五行)定义 <em>from</em> 元素为 “#PCDATA” 类型</p>
+<p><em>!ELEMENT heading</em> (第六行)定义 <em>heading</em> 元素为 “#PCDATA” 类型</p>
+<p><em>!ELEMENT body</em> (第七行)定义 <em>body</em> 元素为 “#PCDATA” 类型</p>
+<p>###外部文档声明</p>
+<p>假如 DTD 位于 XML 源文件的外部，那么它应通过下面的语法被封装在一个 DOCTYPE 定义中：</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE 根元素 SYSTEM &quot;文件名&quot;&gt;</span><br></pre></td></tr></table></div></figure>
+
+<p>这个 XML 文档和上面的 XML 文档相同，但是拥有一个外部的 DTD: （<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://www.w3school.com.cn/dtd/note_ex_dtd.xml">在 IE5 中打开</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>，并选择“查看源代码”命令。）</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE note SYSTEM &quot;note.dtd&quot;&gt;</span><br><span class="line">&lt;note&gt;</span><br><span class="line">&lt;to&gt;George&lt;/to&gt;</span><br><span class="line">&lt;from&gt;John&lt;/from&gt;</span><br><span class="line">&lt;heading&gt;Reminder&lt;/heading&gt;</span><br><span class="line">&lt;body&gt;Don&#x27;t forget the meeting!&lt;/body&gt;</span><br><span class="line">&lt;/note&gt; </span><br></pre></td></tr></table></div></figure>
+
+<p>这是包含 DTD 的 “note.dtd” 文件：</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ELEMENT note (to,from,heading,body)&gt;</span><br><span class="line">&lt;!ELEMENT to (#PCDATA)&gt;</span><br><span class="line">&lt;!ELEMENT from (#PCDATA)&gt;</span><br><span class="line">&lt;!ELEMENT heading (#PCDATA)&gt;</span><br><span class="line">&lt;!ELEMENT body (#PCDATA)&gt;</span><br></pre></td></tr></table></div></figure>
+
+<p>附上实例：</p>
+<pre><code>内部实体声明
+DTD 实例:
+&lt;!ENTITY writer &quot;Donald Duck.&quot;&gt; &lt;!ENTITY copyright &quot;Copyright runoob.com&quot;&gt;
+
+XML 实例：&lt;author&gt;&amp;writer;&amp;copyright;&lt;/author&gt;
+
+外部实体声明
+DTD 实例:
+&lt;!ENTITY writer SYSTEM &quot;http://www.runoob.com/entities.dtd&quot;&gt; &lt;!ENTITY copyright SYSTEM &quot;http://www.runoob.com/entities.dtd&quot;&gt;
+
+XML 实例:&lt;author&gt;&amp;writer;&amp;copyright;&lt;/author&gt;
+</code></pre>
+<p>一个实体由三部分构成: 一个和号 (&amp;), 一个实体名称, 以及一个分号（;）</p>
+<p>xxe主要是利用了DTD引用外部实体导致的漏洞</p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="https://qingchuana.github.io">Qingchuan</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="https://qingchuana.github.io/2023/08/20/Xml%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/">https://qingchuana.github.io/2023/08/20/Xml%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2023/08/24/java%E5%AD%A6%E4%B9%A0/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">Java学习笔记</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2023/08/17/XSS%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%B3%A8%E5%85%A5%E6%94%BB%E5%87%BB/"><span class="paginator-prev__text">XSS跨站脚本注入攻击</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B2%A1%E6%9C%89%E4%BB%BB%E4%BD%95%E8%A1%8C%E4%B8%BA%E7%9A%84-XML"><span class="toc-number">1.</span> <span class="toc-text">
+          没有任何行为的 XML</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E4%BD%93%E5%BC%95%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text">
+          实体引用</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/icons/stun-logo.svg" alt="avatar"></div><p class="sidebar-ov-author__text">Hello Stun</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">36</div><div class="sidebar-ov-state-item__name">归档</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2023</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Qingchuan</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v6.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.8.0</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="/js/utils.js?v=2.8.0"></script><script src="/js/stun-boot.js?v=2.8.0"></script><script src="/js/scroll.js?v=2.8.0"></script><script src="/js/header.js?v=2.8.0"></script><script src="/js/sidebar.js?v=2.8.0"></script><script async>window.onload=function(){var a=document.createElement('script'),b=document.getElementsByTagName('script')[0];a.type='text/javascript',a.async=!0,a.src='/sw-register.js?v='+Date.now(),b.parentNode.insertBefore(a,b)};</script></body></html>

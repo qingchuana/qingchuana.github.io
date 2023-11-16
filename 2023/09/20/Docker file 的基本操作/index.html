@@ -1,0 +1,257 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.8.0" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.8.0" type="image/png" sizes="32x32"><meta name="description" content="Docker file 的基本操作       1docker run hello-world   出现这种情况就说明正常，                     对Docker操作       安装完成Docker后,默认每次开机的时候都会自动启动,但我们也可以手动启动,关闭或者重启Docker 123456# 启动dockersudo service">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker File 的基本操作">
+<meta property="og:url" content="https://qingchuana.github.io/2023/09/20/Docker%20file%20%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:site_name" content="晴川&#39;s Blog">
+<meta property="og:description" content="Docker file 的基本操作       1docker run hello-world   出现这种情况就说明正常，                     对Docker操作       安装完成Docker后,默认每次开机的时候都会自动启动,但我们也可以手动启动,关闭或者重启Docker 123456# 启动dockersudo service">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://qingchuana.github.io/2023/09/20/Docker%20file%20%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/AAwangzhan/1/hexoblog/source/image/image-20230919184844700.png">
+<meta property="og:image" content="https://qingchuana.github.io/2023/09/20/Docker%20file%20%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/AAwangzhan/1/hexoblog/source/image/image-20230919191443576.png">
+<meta property="article:published_time" content="2023-09-19T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-11-12T09:21:25.071Z">
+<meta property="article:author" content="Qingchuan">
+<meta property="article:tag" content="学习笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://qingchuana.github.io/2023/09/20/Docker%20file%20%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/AAwangzhan/1/hexoblog/source/image/image-20230919184844700.png"><title>Docker File 的基本操作 | 晴川's Blog</title><link ref="canonical" href="https://qingchuana.github.io/2023/09/20/Docker%20file%20%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.8.0"><link rel="stylesheet" href="css/custom.css"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">Hello Stun</div><div class="header-banner-info__subtitle">An elegant theme for Hexo</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">Docker File 的基本操作</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-09-20</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2023-11-12</span></span></div></header><div class="post-body">
+        <h1 id="Docker-file-的基本操作">
+          <a href="#Docker-file-的基本操作" class="heading-link"><i class="fas fa-link"></i></a><a href="#Docker-file-的基本操作" class="headerlink" title="Docker file 的基本操作"></a>Docker file 的基本操作</h1>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run hello-world</span><br></pre></td></tr></table></div></figure>
+
+<p><img src="/2023/09/20/Docker%20file%20%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/AAwangzhan\1\hexoblog\source\image\image-20230919184844700.png"></p>
+<p>出现这种情况就说明正常，</p>
+
+        <h2 id="对Docker操作">
+          <a href="#对Docker操作" class="heading-link"><i class="fas fa-link"></i></a><a href="#对Docker操作" class="headerlink" title="对Docker操作"></a>对Docker操作</h2>
+      <p>安装完成Docker后,默认每次开机的时候都会自动启动,但我们也可以手动启动,关闭或者重启Docker</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 启动docker</span><br><span class="line">sudo service docker start</span><br><span class="line"># 重启docker</span><br><span class="line">sudo service docker restart</span><br><span class="line"># 停止docker</span><br><span class="line">sudo service docker stop</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="对镜像的基础操作">
+          <a href="#对镜像的基础操作" class="heading-link"><i class="fas fa-link"></i></a><a href="#对镜像的基础操作" class="headerlink" title="对镜像的基础操作"></a>对镜像的基础操作</h2>
+      
+        <h3 id="获取当时所有镜像-docker-images">
+          <a href="#获取当时所有镜像-docker-images" class="heading-link"><i class="fas fa-link"></i></a><a href="#获取当时所有镜像-docker-images" class="headerlink" title="获取当时所有镜像(docker images)"></a>获取当时所有镜像(docker images)</h3>
+      <figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker image <span class="built_in">ls</span></span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line">docker images</span><br></pre></td></tr></table></div></figure>
+
+<div class="table-container"><table>
+<thead>
+<tr>
+<th>标签</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>REPOSITORY</td>
+<td>镜像所在的仓库名称</td>
+</tr>
+<tr>
+<td>TAG</td>
+<td>镜像标签</td>
+</tr>
+<tr>
+<td>IMAGEID</td>
+<td>镜像ID</td>
+</tr>
+<tr>
+<td>CREATED</td>
+<td>镜像的创建日期(不是获取该镜像的日期)</td>
+</tr>
+<tr>
+<td>SIZE</td>
+<td>镜像大小</td>
+</tr>
+</tbody></table></div>
+
+        <h3 id="拉去镜像-docker-pull">
+          <a href="#拉去镜像-docker-pull" class="heading-link"><i class="fas fa-link"></i></a><a href="#拉去镜像-docker-pull" class="headerlink" title="拉去镜像(docker pull)"></a>拉去镜像(docker pull)</h3>
+      <p>除了使用官方的镜像外,我们还可以在仓库中申请一个自己的账号,保存自己制作的进行,或者拉去使用他人的镜像。</p>
+
+        <h1 id="官方镜像">
+          <a href="#官方镜像" class="heading-link"><i class="fas fa-link"></i></a><a href="#官方镜像" class="headerlink" title="官方镜像"></a>官方镜像</h1>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">docker image pull 镜像名称 </span><br><span class="line"># 或简写为 </span><br><span class="line">docker pull 镜像名称</span><br><span class="line"># 比如</span><br><span class="line">docker pull ubuntu</span><br><span class="line">docker pull ubuntu:16.04</span><br><span class="line"></span><br><span class="line"># 个人镜像</span><br><span class="line">docker pull 仓库名称/镜像名称</span><br><span class="line">docker pull xunmi/django</span><br><span class="line"></span><br><span class="line"># 第三方仓库拉去</span><br><span class="line">docker pull 第三方仓库地址/仓库名称/镜像名称</span><br><span class="line">docker pull hub.c.163.com/library/mysql:latest</span><br><span class="line">(默认仓库名为library,所有从官方获取镜像相当于`sudo docker image pull library/镜像名称`)</span><br></pre></td></tr></table></div></figure>
+
+
+        <h3 id="删除镜像-docker-rmi">
+          <a href="#删除镜像-docker-rmi" class="heading-link"><i class="fas fa-link"></i></a><a href="#删除镜像-docker-rmi" class="headerlink" title="删除镜像(docker rmi)"></a>删除镜像(docker rmi)</h3>
+      <figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker image <span class="built_in">rm</span> 镜像名或镜像ID 或 docker rmi 镜像名或镜像ID</span><br><span class="line">docker image <span class="built_in">rm</span> hello<span class="literal">-world</span></span><br><span class="line">docker rmi <span class="number">9</span>e64176cd8a2</span><br></pre></td></tr></table></div></figure>
+
+<p>删除镜像的前提是没有使用这个镜像的容器,如果有需要先删除容器(报错:Error response from daemon: conflict: unable to delete 镜像ID (must be forced) - image is being used by stopped container 容器ID则代表有容器使用了此镜像。)可以尝试先执行docker rm 容器ID删除容器,如果还报错,可以看我下方删除容器的具体方法。<br>几条删除命令的区别</p>
+<ul>
+<li><p>docker rm: 删除一个或多个 容器</p>
+</li>
+<li><p>docker rmi: 删除一个或多个 镜像</p>
+</li>
+<li><p>docker prune: 用来删除不再使用的 docker 对象</p>
+<p>##加载镜像(docker run)</p>
+<p>上面我们说过,镜像只是一个只读类型的文件,而我们的环境不可能只是一个这样的文件,所以我们需要把这个镜像加载成我们的环境,也就是让他变成容器。</p>
+</li>
+</ul>
+<figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run [可选参数] 镜像名 [向启动容器中传入的命令]</span><br></pre></td></tr></table></div></figure>
+
+<p>常用可选参数	作用<br>-i	表示以《交互模式》运行容器。<br>-d	会创建一个守护式容器在后台运行(这样创建容器后不会自动登录容器)。<br>-t	表示容器启动后会进入其命令行。加入这两个参数后，容器创建就能登录进去。即分配一个伪终端。<br>–name	为创建的容器命名。(默认会随机给名字,不支持中文字符!!!)<br>-v	表示目录映射关系，即宿主机目录:容器中目录。注意:最好做目录映射，在宿主机上做修改，然后共享到容器上。<br>-p	表示端口映射，即宿主机端口:容器中端口。 比如:-p 8080:80 就是将容器中的80端口,映射到主机中的8080端口<br>–network&#x3D;host	表示将主机的网络环境映射到容器中，使容器的网络与主机相同。每个 Docker 容器都有自己的网络连接空间连接到虚拟 LAN。使用此命令则会让容器和主机共享一个网络空间。</p>
+<p>可以启动一个系统docker run -i -d -t –name&#x3D;kali-test kalilinux&#x2F;kali-rolling(这里我使用linux的一个发行版kali作为介绍)<br>或可以简写为docker run -idt –name&#x3D;kali-test kalilinux&#x2F;kali-rolling<br>PS: 如果加载一个我们没有的镜像,docker会自动从官方仓库中进行拉去。</p>
+<p>如果你没有下载docker&#x2F;getting-started的进行,这里会自动帮你下载<br> 成功启动后,可以在浏览器中输入<code>http://localhost:8080/</code>即可看到如下页面</p>
+<p><img src="/2023/09/20/Docker%20file%20%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/AAwangzhan\1\hexoblog\source\image\image-20230919191443576.png"></p>
+
+        <h2 id="使用交互式容器">
+          <a href="#使用交互式容器" class="heading-link"><i class="fas fa-link"></i></a><a href="#使用交互式容器" class="headerlink" title="使用交互式容器"></a>使用交互式容器</h2>
+      <p>上面我们成功将镜像变成了容器,但上述的命令中我们都加入了-d,让容器在后台运行了。下面我们就来讲如何和正在运行的容器进行交互。</p>
+
+        <h3 id="查看容器-docker-ps">
+          <a href="#查看容器-docker-ps" class="heading-link"><i class="fas fa-link"></i></a><a href="#查看容器-docker-ps" class="headerlink" title="查看容器(docker ps)"></a>查看容器(docker ps)</h3>
+      <p>查看容器主要会用到ps命令</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"># 查看当前所有正在运行的容器</span><br><span class="line">docker ps</span><br><span class="line"># 查看当前所有的容器</span><br><span class="line">docker ps -a</span><br><span class="line"></span><br><span class="line"># 使用过滤器(除了name外,常用的还可以指定id:id= 、所有停止的容器:status=exited,正在运行的容器:status=running 等)</span><br><span class="line"></span><br><span class="line">docker ps -f name=指定的名字</span><br><span class="line"></span><br><span class="line"># 显示2个上次创建的容器(2可以改变)</span><br><span class="line"></span><br><span class="line">docker ps -n 2</span><br><span class="line"></span><br><span class="line"># 显示最新创建的容器（包括所有状态）</span><br><span class="line"></span><br><span class="line">docker ps -l</span><br><span class="line"></span><br><span class="line"># 仅显示ip</span><br><span class="line"></span><br><span class="line">docker ps -q</span><br><span class="line"></span><br><span class="line"> # 显示容器大小</span><br><span class="line"></span><br><span class="line">docker ps -s</span><br></pre></td></tr></table></div></figure>
+
+<div class="table-container"><table>
+<thead>
+<tr>
+<th>标签</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CONTAINER ID</td>
+<td>镜像ID</td>
+</tr>
+<tr>
+<td>IMAGE</td>
+<td>创建容器的镜像名称</td>
+</tr>
+<tr>
+<td>COMMAND</td>
+<td>默认启动命令(启动时会自动执行)</td>
+</tr>
+<tr>
+<td>CREATED</td>
+<td>创建容器的日期</td>
+</tr>
+<tr>
+<td>STATUS</td>
+<td>当前的状态(启动了多久,多久之前退出等)</td>
+</tr>
+<tr>
+<td>PORTS</td>
+<td>映射的端口</td>
+</tr>
+<tr>
+<td>NAMES</td>
+<td>容器的名称</td>
+</tr>
+<tr>
+<td>SIZE</td>
+<td>容器大小(使用-s命令参数时才能看到)</td>
+</tr>
+</tbody></table></div>
+
+        <h3 id="启动和关闭容器">
+          <a href="#启动和关闭容器" class="heading-link"><i class="fas fa-link"></i></a><a href="#启动和关闭容器" class="headerlink" title="启动和关闭容器"></a>启动和关闭容器</h3>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"># 停止容器</span><br><span class="line"></span><br><span class="line">docker container stop 容器名或容器id</span><br><span class="line"></span><br><span class="line"># 或可简写为</span><br><span class="line"></span><br><span class="line">docker stop 容器名或容器id</span><br><span class="line"></span><br><span class="line"># 强制关闭容器</span><br><span class="line"></span><br><span class="line">docker container kill 容器名或容器id</span><br><span class="line"></span><br><span class="line"># 或可简写为</span><br><span class="line"></span><br><span class="line">docker kill 容器名或容器id</span><br><span class="line"></span><br><span class="line"># 启动容器</span><br><span class="line"></span><br><span class="line">docker container start 容器名或容器id</span><br><span class="line"></span><br><span class="line"># 或可简写为</span><br><span class="line"></span><br><span class="line">docker start 容器名或容器id</span><br></pre></td></tr></table></div></figure>
+
+<p>如果我们成功启动或者关闭一个容器的话,会返回容器名或者容器id</p>
+<p>stop和kill的区别: stop是比较优雅的关掉一个容器,类似我们正常退出一个软件,而kill是当一个进程出现意外无法正常关闭的时候,我们强行进行关闭,有点像我们使用任务管理器进行结束进程操作</p>
+<p>操作后台容器</p>
+<p>之前我们下过一个kali并且放在了后台运行,如果没有下载可以执行下列命令(docker run -i -d -t –name&#x3D;kali-test kalilinux&#x2F;kali-rolling),下面我们就用下面的命令开启kali(如果你下的是其他系统,比如ubuntu也可以举一反三一下)<br>首先我们确保我们要进入的容器是开启状态的,使用docker ps -a查看其中的STATUS属性是否是Up开头,如果不是先照着上面启动容器的方法开启容器<br>我们开启容器后,如果需要在容器内执行命令,可以将后台切换到前台,也可能使用docker命令将我们需要执行的命令传入。<br>操作方法有很多种,这里我们介绍一些比较常用的方法</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"># 如果我只需要执行简单的一两条命令可以使用docker exec</span><br><span class="line"></span><br><span class="line"># 执行单条命令 (-i: 启动并且保留交互式命令行; -t:作用是分配一个虚拟的终端; docker run )</span><br><span class="line"></span><br><span class="line">docker exec -it 容器名或容器id 执行的命令</span><br><span class="line"></span><br><span class="line"># 比如</span><br><span class="line"></span><br><span class="line">docker exec -it kali-test whoami</span><br><span class="line"></span><br><span class="line"># 用这种方法,我们还可以启动命令行,根据Linux的特性,系统程序会在/bin中,linux中常用的Shell有多个,其中大部分用的Linux默认的为bash</span><br><span class="line"></span><br><span class="line"># 所以我们启动命令可以自行如下命令(除了/bin/bash外,linux一般还会带/bin/sh、/bin/rbash、/bin/dash等,具体区别可以自行百度)</span><br><span class="line"></span><br><span class="line">docker exec -it 容器名或容器id /bin/bash</span><br><span class="line"></span><br><span class="line"># 比如</span><br><span class="line"></span><br><span class="line">docker exec -it kali-test /bin/bash</span><br><span class="line"></span><br><span class="line"># 除了exec外还有attach可以使用,但它有个弊端,多终端启动attach后,都会会同步显示。如果有一个窗口阻塞了，那么其他窗口也无法再进行操作。</span><br><span class="line"></span><br><span class="line">docker attach 容器名或容器id</span><br><span class="line"></span><br><span class="line"># 比如</span><br><span class="line">docker attach kali-test</span><br></pre></td></tr></table></div></figure>
+
+<div class="table-container"><table>
+<thead>
+<tr>
+<th>exec可选参数</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-d</td>
+<td>会创建一个守护式容器在后台运行(这样创建容器后不会自动登录容器)。</td>
+</tr>
+<tr>
+<td>-e</td>
+<td>设置环境变量</td>
+</tr>
+<tr>
+<td>-i</td>
+<td>表示以《交互模式》运行容器。</td>
+</tr>
+<tr>
+<td>-t</td>
+<td>表示容器启动后会进入其命令行。加入这两个参数后，容器创建就能登录进去。即分配一个伪终端。</td>
+</tr>
+<tr>
+<td>-u</td>
+<td>设置用户名和UID。</td>
+</tr>
+<tr>
+<td>-w</td>
+<td>设置容器内的工作目录。</td>
+</tr>
+</tbody></table></div>
+
+        <h3 id="容器制作成镜像">
+          <a href="#容器制作成镜像" class="heading-link"><i class="fas fa-link"></i></a><a href="#容器制作成镜像" class="headerlink" title="容器制作成镜像"></a>容器制作成镜像</h3>
+      <ul>
+<li><pre><code>我们为什么要把容器制作成镜像?
+
+- 镜像可以看作为是一种备份,如果我们后期环境出现了问题,可以还原到早期镜像。
+
+- 镜像便于传播,可以让自己的其他设备或他人的重复利用变得更加简单容易。
+
+- # 将容器制作成镜像
+
+  docker commit 容器名 镜像名
+
+  # 镜像打包备份(打包备份的文件会自动存放在当前命令行的路径下,如果想让保存的文件可以打开,可以加.tar后缀)
+
+  docker save -o 保存的文件名 镜像名
+
+  # 镜像解压
+
+  docker load -i 文件路径/备份文件
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  我们将打包备份的镜像可以通过网络发送到其他设备上,使用docker镜像解压即可直接使用你的环境。</span><br><span class="line"></span><br><span class="line">  # Docker Dashboard(Docker 仪表板)</span><br><span class="line"></span><br><span class="line">  Docker 仪表板的主要作用为:快速访问容器日志，启动容器的 shell，并轻松管理容器生命周期（停止、删除等）。</span><br><span class="line"></span><br><span class="line">![](D:\AAwangzhan\1\hexoblog\source\image\image-20230919194210103.png)</span><br><span class="line"></span><br><span class="line"> 在[Docker](https://so.csdn.net/so/search?q=Docker&amp;spm=1001.2101.3001.7020)中，我们无法删除正在运行的容器，请先将其停止。 </span><br><span class="line"></span><br><span class="line"> 停止所有正在运行的容器。 </span><br><span class="line"></span><br><span class="line">   Terminal  </span><br><span class="line"></span><br><span class="line">```bash</span><br><span class="line">$ sudo docker stop $(sudo docker ps -aq)</span><br></pre></td></tr></table></div></figure>
+</code></pre>
+</li>
+</ul>
+<p> 卸下所有停止的容器。 </p>
+<p>   Terminal  </p>
+<figure class="highlight bash"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker <span class="built_in">rm</span> $(sudo docker ps -aq)</span><br></pre></td></tr></table></div></figure>
+
+<p>该错误的意思是docker已有一个容器占用了目前docker-compose里的subnet。<br>解决方法</p>
+<p>1、修改当前docker-compose里的network配置，换一个subnet</p>
+<p>2.执行命令docker network prune （原因：即使容器停止&#x2F;删除，网段依旧会被占用，运行该命令可清除占用子网网段即可）</p>
+<p>在Dockerfile所在目录下，使用以下命令构建镜像：</p>
+<p>其中，<code>-t</code>参数用于指定镜像的名称，<code>.</code>表示Dockerfile所在目录。</p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="https://qingchuana.github.io">Qingchuan</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="https://qingchuana.github.io/2023/09/20/Docker%20file%20%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">https://qingchuana.github.io/2023/09/20/Docker%20file%20%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://qingchuana.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2023/09/22/Java%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%A6%E4%B9%A0/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">[ 文章无标题 ]</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2023/09/18/ctfshow%20XSS%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%20web316-/"><span class="paginator-prev__text">Ctfshow XSS跨站脚本注入漏洞 Web316-Web333</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Docker-file-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">
+          Docker file 的基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9Docker%E6%93%8D%E4%BD%9C"><span class="toc-number">1.1.</span> <span class="toc-text">
+          对Docker操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E9%95%9C%E5%83%8F%E7%9A%84%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C"><span class="toc-number">1.2.</span> <span class="toc-text">
+          对镜像的基础操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%BD%93%E6%97%B6%E6%89%80%E6%9C%89%E9%95%9C%E5%83%8F-docker-images"><span class="toc-number">1.2.1.</span> <span class="toc-text">
+          获取当时所有镜像(docker images)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%89%E5%8E%BB%E9%95%9C%E5%83%8F-docker-pull"><span class="toc-number">1.2.2.</span> <span class="toc-text">
+          拉去镜像(docker pull)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%98%E6%96%B9%E9%95%9C%E5%83%8F"><span class="toc-number">2.</span> <span class="toc-text">
+          官方镜像</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E9%95%9C%E5%83%8F-docker-rmi"><span class="toc-number">2.0.1.</span> <span class="toc-text">
+          删除镜像(docker rmi)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E4%BA%A4%E4%BA%92%E5%BC%8F%E5%AE%B9%E5%99%A8"><span class="toc-number">2.1.</span> <span class="toc-text">
+          使用交互式容器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%AE%B9%E5%99%A8-docker-ps"><span class="toc-number">2.1.1.</span> <span class="toc-text">
+          查看容器(docker ps)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E5%92%8C%E5%85%B3%E9%97%AD%E5%AE%B9%E5%99%A8"><span class="toc-number">2.1.2.</span> <span class="toc-text">
+          启动和关闭容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E5%88%B6%E4%BD%9C%E6%88%90%E9%95%9C%E5%83%8F"><span class="toc-number">2.1.3.</span> <span class="toc-text">
+          容器制作成镜像</span></a></li></ol></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/icons/stun-logo.svg" alt="avatar"></div><p class="sidebar-ov-author__text">Hello Stun</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">36</div><div class="sidebar-ov-state-item__name">归档</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2023</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Qingchuan</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v6.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.8.0</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="/js/utils.js?v=2.8.0"></script><script src="/js/stun-boot.js?v=2.8.0"></script><script src="/js/scroll.js?v=2.8.0"></script><script src="/js/header.js?v=2.8.0"></script><script src="/js/sidebar.js?v=2.8.0"></script><script async>window.onload=function(){var a=document.createElement('script'),b=document.getElementsByTagName('script')[0];a.type='text/javascript',a.async=!0,a.src='/sw-register.js?v='+Date.now(),b.parentNode.insertBefore(a,b)};</script></body></html>

